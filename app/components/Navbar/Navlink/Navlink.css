@@ -1,0 +1,29 @@
+.nav-link-li {
+    display: flex;
+    margin-top: 0.675rem;
+    margin-bottom: 0.675rem;
+    width: 100%;
+    padding-left: 10px;
+    border-radius: 0.5rem;
+    height: 45px;
+    align-items: center;
+}
+
+.nav-link-a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+}
+
+.nav-link-icon {
+    color: rgba(0, 0, 0, 0.691);
+    width: 16px;
+    height: 16px;
+}
+
+.nav-link-text {
+    margin-left: 10px;
+    color: rgba(0, 0, 0, 0.691);
+    letter-spacing: -0.025rem;
+}
