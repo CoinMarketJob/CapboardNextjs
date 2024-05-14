@@ -5,8 +5,9 @@
 }
 
 .drop-down-arrow{
-    transform: rotate(270deg);
+    transform: rotate(0deg);
     color:black;
+    margin-right: 5px;
     width: 14px;
     height: 14px;
 }

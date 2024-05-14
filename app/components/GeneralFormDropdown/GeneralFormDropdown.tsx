@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./GeneralFormDropdown.css";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { motion, AnimatePresence } from "framer-motion";
+import { transform } from "next/dist/build/swc";
 
 interface GeneralFormProps {
+  child: React.ReactNode;
   name: string;
 }
-const GeneralFormDropdown: React.FC<GeneralFormProps> = ({ name }) => {
+const GeneralFormDropdown: React.FC<GeneralFormProps> = ({ name, child }) => {
   const [isFormDropdownOpen, setIsFormDropdownOpen] = useState(false);
 
   const ChangeFormDropdown = () => {
@@ -17,22 +19,27 @@ const GeneralFormDropdown: React.FC<GeneralFormProps> = ({ name }) => {
   return (
     <div>
       <a className="GF-drop-down-a" onClick={ChangeFormDropdown}>
-        <AnimatePresence>
-          <motion.div
-            initial={false}
-            animate={{ rotate: isFormDropdownOpen ? 90 : 0 }} // Döndürme animasyonu
-            transition={{ duration: 0.3 }}
-          >
             <FontAwesomeIcon
               icon={faChevronDown}
               className="nav-link-icon nav-link-arrow-icon drop-down-arrow"
+              style={isFormDropdownOpen ? {transform : "rotate(0deg)"} : {transform : "rotate(270deg)"}}
             />
-          </motion.div>
-        </AnimatePresence>
         {name}
       </a>
-
-      <div className="GFDropdown-address">Deneme</div>
+      <AnimatePresence>
+        {isFormDropdownOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <div>
+              {child}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

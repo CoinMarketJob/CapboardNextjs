@@ -1,0 +1,97 @@
+.section{
+    padding: 0%;
+}
+
+.section-2{
+    display: flex;
+    width: 80vw;
+}
+
+.row{
+    width: 80vw;
+    display: block;
+}
+
+.navbar{
+    list-style: none;
+    display: flex;
+    align-items: center;
+  }
+
+.navbar-2{
+    margin-bottom: 2%;
+    margin-top: 2%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    transform: translateY(-170%);
+}
+
+.navbar-item{
+    text-decoration: #495057;
+    color: #495057;
+    padding-right: 20px;
+}
+
+.tab-content{
+    border-radius: 0.5rem;
+    display: flex;
+    padding-left: 3%;
+    padding-top: 3%;
+    height: 30vh;
+    width: 80vw;
+    border: 1px solid black;
+}
+
+.right-section{
+    padding: 5%;
+    margin-left: 10%;
+    height: 10vh;
+    border-left: 1px solid black;
+}
+
+.bar{
+    position: absolute;
+    transform: translate(-20%);
+    transform: translateY(-200%);
+    border-radius: 0.5rem;
+    height: 4vh;
+    width: 57vW;
+    color: #3E3E3E;
+    background-color: #F2F2F2;
+}
+
+.bar-icon{
+    position: relative;
+    margin-top: 0.675rem;
+    margin-left: 0.5rem;
+}
+
+.icon-row{
+    transform: translateY(-190%);
+    margin-left: 70%;
+}
+
+.icon{
+    padding-left: 2rem;
+    transform: translateY(-110%);
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.section-right-bottom{
+    transform: translateY(-90%);
+    width: 57.5vw;
+    border-top: 1px solid black;
+    margin-top: 1rem;
+}
+
+.drop-file{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55vw;
+    height: 5vh;
+    border: 1px solid black;
+    margin-top: 0.675rem;
+}
