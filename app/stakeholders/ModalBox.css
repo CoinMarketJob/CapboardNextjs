@@ -1,9 +1,10 @@
 .modal-content {
+    overflow-y: scroll;
     position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     height: 80vh;
     pointer-events: auto;
     background-color: #fff;
@@ -131,4 +132,14 @@
 .btn-outline-primary {
     color: #000000;
     border-color: #000000;
+}
+
+.form-label{
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+}
+
+.civil-status-label{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
