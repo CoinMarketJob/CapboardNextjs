@@ -7,8 +7,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Stakeholders {
   id    Int     @id @default(autoincrement())
-  email String  @unique
+  type  bool
   name  String?
+  lastName  String?
+  contactEmail String  @unique
+  group  String?
+  address  String?
+  optionalLineOfAddress  String?
+  postalCode  String?
+  cityName  String?
+  country  String?
+  Identifier String
+
 }
