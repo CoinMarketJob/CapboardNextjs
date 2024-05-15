@@ -1,11 +1,23 @@
+import { useState } from "react";
 import GeneralFormDropdown from "../components/GeneralFormDropdown/generalFormDropdown";
 import "./ModalBox.css";
+import ModalBoxE from './ModalBoxE';
 
 interface ModalBoxProps {
   Type: number;
   CloseModal: void;
 }
+
 const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
+  const [showEntity, setShowEntity] = useState(false);
+
+  const handleEntityClick = () => {
+    setShowEntity(true);
+  };
+
+  const handlePersonClick = () => {
+    setShowEntity(false);
+  };
   return (
     <div className="modal-content">
       <div className="modal-header">
@@ -33,7 +45,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
             value="1"
             checked
           />
-          <label className="btn btn-outline-primary">Person</label>
+          <label onClick={handlePersonClick} className="btn btn-outline-primary">Person</label>
 
           <input
             type="radio"
@@ -42,7 +54,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
             id="type-entity"
             value="2"
           />
-          <label className="btn btn-outline-primary">Entity</label>
+          <label onClick={handleEntityClick} className="btn btn-outline-primary">Entity</label>
         </div>
 
         <div className="form-group input-group-outline mb-3">
@@ -811,22 +823,6 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
                       className="form-control"
                     />
                   </div>
-                  <ul className="list border">
-                    <li data-value="239">United Arab Emirates</li>
-                    <li data-value="71">Ethiopia</li>
-                    <li data-value="68">Equatorial Guinea</li>
-                    <li data-value="118">
-                      Korea, Democratic People's Republic of
-                    </li>
-                    <li data-value="144">Mauritius</li>
-                    <li data-value="193">Saint Pierre and Miquelon</li>
-                    <li data-value="199">Sao Tome and Principe</li>
-                    <li data-value="242">
-                      United States Minor Outlying Islands
-                    </li>
-                    <li data-value="1">Afghanistan</li>
-                    <li data-value="9">Antigua and Barbuda</li>
-                  </ul>
                 </div>
               </div>
             </div>
