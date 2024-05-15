@@ -1,23 +1,11 @@
-import { useState } from "react";
 import GeneralFormDropdown from "../components/GeneralFormDropdown/generalFormDropdown";
 import "./ModalBox.css";
-import ModalBoxE from './ModalBoxE';
 
 interface ModalBoxProps {
   Type: number;
   CloseModal: void;
 }
-
-const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
-  const [showEntity, setShowEntity] = useState(false);
-
-  const handleEntityClick = () => {
-    setShowEntity(true);
-  };
-
-  const handlePersonClick = () => {
-    setShowEntity(false);
-  };
+const ModalBoxE: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
   return (
     <div className="modal-content">
       <div className="modal-header">
@@ -45,8 +33,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
             value="1"
             checked
           />
-          <label onClick={handlePersonClick} className="btn btn-outline-primary">Person</label>
-
+          <label className="btn btn-outline-primary">Person</label>
           <input
             type="radio"
             className="btn-check"
@@ -54,7 +41,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
             id="type-entity"
             value="2"
           />
-          <label onClick={handleEntityClick} className="btn btn-outline-primary">Entity</label>
+          <label className="btn btn-outline-primary">Entity</label>
         </div>
 
         <div className="form-group input-group-outline mb-3">
@@ -287,7 +274,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
                     <option value="243">Uruguay</option>
                     <option value="253">Western Sahara</option>
                     <option value="211">
-                      South Georgia and the South Sandwich Islands
+                    South Georgia and the South Sandwich Islands
                     </option>
                     <option value="191">Saint Kitts and Nevis</option>
                     <option value="192">Saint Lucia</option>
@@ -319,7 +306,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
                     <option value="215">Sudan</option>
                     <option value="205">Singapore</option>
                     <option value="190">
-                      Saint Helena, Ascension and Tristan da Cunha
+                    Saint Helena, Ascension and Tristan da Cunha
                     </option>
                     <option value="217">Svalbard and Jan Mayen</option>
                     <option value="204">Sierra Leone</option>
@@ -344,10 +331,10 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
                     <option value="237">Uganda</option>
                     <option value="244">Uzbekistan</option>
                     <option value="194">
-                      Saint Vincent and the Grenadines
+                    Saint Vincent and the Grenadines
                     </option>
                     <option value="246">
-                      Venezuela, Bolivarian Republic of
+                    Venezuela, Bolivarian Republic of
                     </option>
                     <option value="250">Virgin Islands, British</option>
                     <option value="251">Virgin Islands, U.S.</option>
@@ -392,7 +379,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
                     <option value="148">Moldova, Republic of</option>
                     <option value="151">Montenegro</option>
                     <option value="134">
-                      Macedonia, the former Yugoslav Republic of
+                    Macedonia, the former Yugoslav Republic of
                     </option>
                     <option value="140">Malta</option>
                     <option value="98">Holy See (Vatican City State)</option>
@@ -418,67 +405,67 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
                     <option value="103">India</option>
                     <option value="257">Kosovo</option>
                     <option value="258">Curazao</option>
-                  </select>
-                  <div
+                </select>
+                <div
                     className="ac-select-container w-100"
                     style={{ display: "none" }}
-                  >
+                >
                     <div className="ac-select-dropdown w-100">
-                      <div className="ac-select-search-box">
+                    <div className="ac-select-search-box">
                         <input
-                          type="text"
-                          placeholder="Search..."
-                          className="form-control"
+                        type="text"
+                        placeholder="Search..."
+                        className="form-control"
                         />
-                      </div>
-                      <ul className="list border">
+                    </div>
+                    <ul className="list border">
                         <li data-value="239">United Arab Emirates</li>
                         <li data-value="71">Ethiopia</li>
                         <li data-value="68">Equatorial Guinea</li>
                         <li data-value="118">
-                          Korea, Democratic People's Republic of
+                        Korea, Democratic People's Republic of
                         </li>
                         <li data-value="144">Mauritius</li>
                         <li data-value="193">Saint Pierre and Miquelon</li>
                         <li data-value="199">Sao Tome and Principe</li>
                         <li data-value="242">
-                          United States Minor Outlying Islands
+                        United States Minor Outlying Islands
                         </li>
                         <li data-value="1">Afghanistan</li>
                         <li data-value="9">Antigua and Barbuda</li>
-                      </ul>
+                    </ul>
                     </div>
-                  </div>
                 </div>
-              </div>
+                </div>
             </div>
-          }
-          name="Address"
+            </div>
+        }
+        name="Address"
         />
         <GeneralFormDropdown
-          name="Stakeholders Details"
-          child={
+        name="Stakeholders Details"
+        child={
             <div>
-              <label className="form-label">Identifier</label>
-              <div className="form-group">
+            <label className="form-label">Identifier</label>
+            <div className="form-group">
                 <input
-                  name="street"
-                  placeholder="ID number"
-                  type="text"
-                  className="form-control"
+                name="street"
+                placeholder="ID number"
+                type="text"
+                className="form-control"
                 />
-              </div>
-              <label className="form-label">Custom Identifier</label>
-              <div className="form-group ">
+            </div>
+            <label className="form-label">Custom Identifier</label>
+            <div className="form-group ">
                 <input
-                  name="street2"
-                  placeholder="Employee ID"
-                  type="text"
-                  className="form-control"
+                name="street2"
+                placeholder="Employee ID"
+                type="text"
+                className="form-control"
                 />
-              </div>
-              <label className="form-label">Phone</label>
-              <div className="form-group ">
+            </div>
+            <label className="form-label">Phone</label>
+            <div className="form-group ">
                 <input
                   name="street2"
                   placeholder="0  "
@@ -801,34 +788,6 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
             </div>
           }
         />
-        <div>
-          <label className="civil-status-label">Civil Status</label>
-          <div className="form-group mb-3">
-            <div>
-              <select id="name" name="CivilStatus" className="form-select">
-                <option value="1">Select</option>
-                <option value="2">Single</option>
-                <option value="3">Married</option>
-                <option value="4">Married with separate property</option>
-              </select>
-              <div
-                className="ac-select-container w-100"
-                style={{ display: "none" }}
-              >
-                <div className="ac-select-dropdown w-100">
-                  <div className="ac-select-search-box">
-                    <input
-                      type="text"
-                      placeholder="Search..."
-                      className="form-control"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <GeneralFormDropdown
           name="STAKEHOLDER CUSTOM DETAIL"
           child={
@@ -849,6 +808,20 @@ Referred by: Albert Armengol
             </div>
           }
         />
+
+        <GeneralFormDropdown name="REPRESENTATIVES" child={
+            <div id="notes-container" className="collapse show">
+            <div className="ms-4">
+              <div className="mb-3 form-group input-group-outline">
+                <textarea
+                  name="notes"
+                  className="form-control"
+                  placeholder="Notes"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        } />
 
         <GeneralFormDropdown
           name="INTERNAL NOTE"
@@ -889,4 +862,4 @@ Referred by: Albert Armengol
   );
 };
 
-export default ModalBox;
+export default ModalBoxE;
