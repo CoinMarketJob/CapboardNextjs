@@ -4,7 +4,7 @@
 
 .section-2{
     display: flex;
-    width: 80vw;
+    width: 60vh;
 }
 
 .row{
@@ -44,9 +44,10 @@
 }
 
 .right-section{
-    padding: 5%;
-    margin-left: 10%;
-    height: 10vh;
+    padding: 6%;
+    padding-left: 3%;
+    margin-left: 5%;
+    height: 20vh;
     border-left: 1px solid black;
 }
 
@@ -82,16 +83,17 @@
 .section-right-bottom{
     transform: translateY(-90%);
     width: 57.5vw;
+    height: 5vh;
     border-top: 1px solid black;
-    margin-top: 1rem;
+    
 }
 
 .drop-file{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 55vw;
-    height: 5vh;
+    width: 65vw;
+    height: 8vh;
     border: 1px solid black;
     margin-top: 0.675rem;
 }
