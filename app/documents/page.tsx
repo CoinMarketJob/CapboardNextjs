@@ -1,6 +1,7 @@
 import "./documents.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFolderPlus, faHouse, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faFolderPlus, faHouse, faPlus } from '@fortawesome/free-solid-svg-icons';
+
 
 const Documents = () => {
   return (
