@@ -9,7 +9,7 @@ datasource db {
 
 model Stakeholders {
   id    Int     @id @default(autoincrement())
-  type  bool
+  type  Boolean 
   name  String?
   lastName  String?
   contactEmail String  @unique
@@ -19,6 +19,13 @@ model Stakeholders {
   postalCode  String?
   cityName  String?
   country  String?
-  Identifier String
+  identifier String?
+  customIdentifier String?
+  phone String?
+  birthdate  String?
+  nationality  String?
+  civilStatus  String?
+  customDetail  String?
+  notes  String?
 
 }

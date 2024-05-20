@@ -1,7 +1,9 @@
+"use client"
 import { useState } from "react";
 import GeneralFormDropdown from "../components/GeneralFormDropdown/generalFormDropdown";
 import "./ModalBox.css";
 import ModalBoxE from './ModalBoxE';
+import axios from "axios"
 
 interface ModalBoxProps {
   Type: number;
@@ -9,6 +11,25 @@ interface ModalBoxProps {
 }
 
 const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
+  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [group, setGroup] = useState('');
+  const [address, setAddress] = useState('');
+  const [optionalLineOfAddress, setOptionalLineOfAddress] = useState('');
+  const [postalCode, setPostalCode] = useState('');
+  const [cityName, setCityName] = useState('');
+  const [country, setCountry] = useState(''); // /******* Bakılacak... ******/
+  const [identifier, setIdentifier] = useState('');
+  const [customIdentifier, setCustomIdentifier] = useState('');
+  const [phone, setPhone] = useState('');
+  const [birthdate, setBirthdate] = useState('');
+  const [nationality, setNationality] = useState(''); // /******* Bakılacak... ******/
+  const [civilStatus, setCivilStatus] = useState(''); // /******* Bakılacak... ******/
+  const [customDetail, setCustomDetail] = useState('');
+  const [notes, setNotes] = useState('');
+
+
   const [showEntity, setShowEntity] = useState(false);
 
   const handleEntityClick = () => {
@@ -18,6 +39,50 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
   const handlePersonClick = () => {
     setShowEntity(false);
   };
+
+
+  const Save = async () =>{  
+    
+    const submitData = {
+      type: showEntity,
+      name,
+      lastName,
+      contactEmail,
+      group,
+      address,
+      optionalLineOfAddress,
+      postalCode,
+      cityName,
+      country,
+      identifier,
+      customIdentifier,
+      phone,
+      birthdate,
+      nationality,
+      civilStatus,
+      customDetail,
+      notes}
+      console.log(submitData);
+   try {
+    const response = await fetch('/api/stakeholders',{
+      method: 'POST',
+      body: JSON.stringify(submitData),
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+
+    if(response.ok){
+      window.location.href="/stakeholders";
+    }else{
+      console.log("Failed");
+    }
+   }
+   catch (error){
+      console.log(error);
+   }
+  }
+
   return (
     <div className="modal-content">
       <div className="modal-header">
@@ -74,6 +139,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
               placeholder="John"
               type="text"
               className="form-control border-end"
+              value={name} onChange={(e) => setName(e.target.value)}
             />
             <input
               name="surnames"
@@ -81,6 +147,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
               placeholder="Smith"
               type="text"
               className="form-control ps-2 border-start"
+              value={lastName} onChange={(e) => setLastName(e.target.value)}
             />
           </div>
         </div>
@@ -92,6 +159,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
               placeholder="johnsmith@company.com"
               type="email"
               className="form-control"
+              value={contactEmail} onChange={(e) => setContactEmail(e.target.value)}
             />
           </div>
         </div>
@@ -102,7 +170,8 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
             name="group"
             list="group-name"
             className="form-control"
-            placeholder="Group"
+            placeholder="Group"            
+            value={group} onChange={(e) => setGroup(e.target.value)}
           />
           <datalist id="group-name">
             <option value="Board members">Board members</option>
@@ -122,7 +191,8 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
                   name="street"
                   placeholder="Address"
                   type="text"
-                  className="form-control"
+                  className="form-control"                  
+                  value={address} onChange={(e) => setAddress(e.target.value)}
                 />
               </div>
               <div className="form-group mt-2">
@@ -131,6 +201,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
                   placeholder="optional line 2"
                   type="text"
                   className="form-control"
+                  value={optionalLineOfAddress} onChange={(e) => setOptionalLineOfAddress(e.target.value)}
                 />
               </div>
               <label className="form-label">City</label>
@@ -140,12 +211,14 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
                   placeholder="Postal code"
                   type="text"
                   className="form-control border-end"
+                  value={postalCode} onChange={(e) => setPostalCode(e.target.value)}
                 />
                 <input
                   name="city"
                   placeholder="City name"
                   type="text"
                   className="form-control ms-2 ps-2 border-start"
+                  value={cityName} onChange={(e) => setCityName(e.target.value)}
                 />
               </div>
               <label className="form-label">Country</label>
@@ -466,6 +539,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
                   placeholder="ID number"
                   type="text"
                   className="form-control"
+                  value={identifier} onChange={(e) => setIdentifier(e.target.value)}
                 />
               </div>
               <label className="form-label">Custom Identifier</label>
@@ -475,6 +549,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
                   placeholder="Employee ID"
                   type="text"
                   className="form-control"
+                  value={customIdentifier} onChange={(e) => setCustomIdentifier(e.target.value)}
                 />
               </div>
               <label className="form-label">Phone</label>
@@ -484,6 +559,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
                   placeholder="0  "
                   type="number"
                   className="form-control"
+                  value={phone} onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
               <label className="form-label">Birthdate</label>
@@ -493,6 +569,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
                   placeholder="optional line 2"
                   type="text"
                   className="form-control"
+                  value={birthdate} onChange={(e) => setBirthdate(e.target.value)}
                 />
               </div>
               <label className="form-label">Nationality</label>
@@ -843,6 +920,8 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
 Joined Date: 28.02.2020
 Referred by: Albert Armengol
 "
+
+value={customDetail} onChange={(e) => setCustomDetail(e.target.value)}
                   ></textarea>
                 </div>
               </div>
@@ -860,6 +939,7 @@ Referred by: Albert Armengol
                     name="notes"
                     className="form-control"
                     placeholder="Notes"
+                    value={notes} onChange={(e) => setNotes(e.target.value)}
                   ></textarea>
                 </div>
               </div>
@@ -881,6 +961,7 @@ Referred by: Albert Armengol
           type="submit"
           form="stakeholders-form"
           className="btn bg-gradient-primary"
+          onClick={Save}
         >
           Save
         </button>

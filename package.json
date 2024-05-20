@@ -19,6 +19,7 @@
     "@mui/material": "^5.15.17",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@prisma/client": "^5.13.0",
+    "axios": "^1.7.1",
     "bootstrap": "^5.3.3",
     "framer-motion": "^11.1.9",
     "next": "14.2.3",
