@@ -1,0 +1,61 @@
+.main-templates{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar{
+    height: 10vh;
+}
+
+.card-1{
+    margin-left: 2vw;
+    border: 1px solid rgba(0, 0, 0, 0.254);
+    width: 70vw;
+    height: 15vh;
+    border-radius: 0.5rem;
+}
+
+.card-2{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    overflow: hidden;
+    margin: 2vw;
+    border: 1px solid rgba(0, 0, 0, 0.254);
+    width: 70vw;
+    height: 20vh;
+    border-radius: 0.5rem;
+}
+
+.card-2-item{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 2%;
+    height: 10vh;
+    width: 10vw;
+    border: 1px solid rgba(0, 0, 0, 0.254);
+    border-radius: 0.5rem;
+}
+
+.input-wrapper{
+    margin-left: 1rem;
+    width: 25vw;
+    height: 5vh;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.254);
+    border-radius: 0.5rem;
+}
+
+.input{
+    margin-left: 1rem;
+    color: black;
+    padding: 0%;
+    background-color: white;
+    width: 23vw;
+    height: 5vh;
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+}
