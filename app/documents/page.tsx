@@ -34,10 +34,7 @@ const Documents = () => {
             <li style={{paddingTop: '20px', paddingLeft: '10vw', fontSize: '14px'}} >Size</li>
           </ul>
           <div className="section-right-bottom" >
-            <div className="drop-file"
-                  style={{border: '2px dashed gray',
-                  padding: '20px',
-                  textAlign: 'center',}} >
+            <div className="drop-file">
               Drop files or folders from your computer here!
             </div>
           </div>
