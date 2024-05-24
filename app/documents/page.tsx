@@ -1,4 +1,5 @@
 import "./documents.css";
+import Link from 'next/link';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolderPlus, faHouse, faPlus } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,11 +9,16 @@ const Documents = () => {
     <>
       <section className="section">
         <ul className="navbar" >
-          1
+          <Link className="link" href="/documents">Documents</Link>
+          <Link className="link" href="/signatures" >Signatures</Link>
+          <Link className="link" href="/templates">Templates</Link>
         </ul>
         <ul className="section-2">
         <div className="tab-content" >
-          <FontAwesomeIcon icon={faHouse} /> CMJ HQ
+          <div className="cmj-hq-main" >
+          <FontAwesomeIcon className="cmj-hq"  icon={faHouse} />
+          CMJ HQ
+          </div>
         <div className="right-section">
           <div className="row" >
           <div className="bar" >

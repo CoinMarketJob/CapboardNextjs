@@ -15,6 +15,7 @@ import {
 
 const List = () => {
     const [data, setData] = useState([]);
+    const [loaded, setLoaded] = useState(false);
     
     useEffect(() => {
         async function fetchData() {
@@ -23,13 +24,37 @@ const List = () => {
             const data = await response.json();
             setData(data);
             console.log(data);
+            setLoaded(true);
           } catch (error) {
             console.error('Veri getirme hatası:', error);
           }
         }
       
-        fetchData(); // fetchData fonksiyonunu çağır
+        fetchData();
       }, []); 
+
+      const deleteData = (stakeholder_id:number) => {
+        
+        async function deleteStakeholder(id:number) {
+
+          try {
+            const response = await fetch(`/api/stakeholders/${id}`, {
+              method: 'DELETE',
+            });
+        
+            if (response.ok) {
+              window.location.href="/stakeholders";              
+            } else {
+              console.error('Silme hatası:', response.statusText);
+            }
+          } catch (error) {
+            console.error('Hata:', error);
+
+          }
+
+        }
+       if(loaded) deleteStakeholder(stakeholder_id);
+      }
 
     
 
@@ -100,7 +125,7 @@ const List = () => {
                       className="stakeholder-icon"
                     />
                   </button>
-                  <button className="text-secondary font-weight-bold btn btn-link btn-s mb-0">
+                  <button className="text-secondary font-weight-bold btn btn-link btn-s mb-0" onClick={() => deleteData(item.id)}>
                     <FontAwesomeIcon
                       icon={faTrash}
                       className="stakeholder-icon"
