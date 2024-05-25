@@ -1,0 +1,31 @@
+.card-1{
+    margin-left: 1vw;
+    margin-top: 2vw;
+    border: 1px solid rgba(0, 0, 0, 0.254);
+    width: 85vw;
+    height: 65vh;
+    border-radius: 0.2rem;
+}
+
+.card-1-1{
+    margin-top: 5vh;
+    border: 1px solid rgba(0, 0, 0, 0.254);
+    width: 80vw;
+    height: 20vh;
+    border-radius: 0.2rem;
+}
+
+.card-1-2{
+    margin-top: 5vh;
+    border: 1px solid rgba(0, 0, 0, 0.254);
+    width: 80vw;
+    height: 15vh;
+    border-radius: 0.2rem;
+}
+
+.basic-info{
+    margin-top: 1.5vw;
+    margin-left: 1vw;
+    font-weight: 500;
+    font-size: 23px;
+}
