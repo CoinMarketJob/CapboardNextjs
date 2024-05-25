@@ -1,4 +1,11 @@
-.card-1{
+.scrollable-container {
+    max-height: 100vh; /* Set the max height of the container */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    padding: 1rem;
+    border: 1px solid #ccc;
+}
+
+.card-1, .card-2, .card-3, .card-4{
     margin-left: 1vw;
     margin-top: 2vw;
     border: 1px solid rgba(0, 0, 0, 0.254);
@@ -7,21 +14,26 @@
     border-radius: 0.2rem;
 }
 
-.card-1-1{
-    margin-top: 5vh;
-    border: 1px solid rgba(0, 0, 0, 0.254);
-    width: 80vw;
-    height: 20vh;
+.input-group{
+    flex-direction: column;
+    width: 300px;
+}
+
+.form{
+    margin-left: 1rem;
     border-radius: 0.2rem;
 }
 
-.card-1-2{
-    margin-top: 5vh;
-    border: 1px solid rgba(0, 0, 0, 0.254);
-    width: 80vw;
-    height: 15vh;
-    border-radius: 0.2rem;
+.card-item{
+    display: flex;
+    height: 20vh;
+    flex-direction: row;
+    margin-top: 3vh;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 3px;
 }
+
 
 .basic-info{
     margin-top: 1.5vw;
