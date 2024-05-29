@@ -38,6 +38,7 @@ enum ModalType {
 const Stakeholders = () => {
   const [openModal, setOpenModal] = useState(false);
   const [Type, setType] = useState(ModalType.Add);
+  const [StakeholderId, setStakeholderId] = useState(0);
 
   const closeModal = () => {
     setOpenModal(false);
@@ -48,11 +49,18 @@ const Stakeholders = () => {
     setOpenModal(true);
   };
 
+  const ShowFunction = (id:number) => {
+    setStakeholderId(id);
+    setOpenModal(true);
+  };
+
+
+
   return (
     <div className="stakeholders-main-div">
       <Modal id="ModalSign" open={openModal} onClose={closeModal}>
         <Box sx={{ ...style }}>
-          <ModalBox Type={Type} CloseModal={closeModal} />
+          <ModalBox Type={Type} CloseModal={closeModal} StakeholderId={StakeholderId} />
         </Box>
       </Modal>
       <ul className="nav nav-tabs" role="tablist">
@@ -185,7 +193,7 @@ const Stakeholders = () => {
                       <th className="text-secondary opacity-7 pb-1"></th>
                     </tr>
                   </thead>
-                  <List />
+                  <List ShowFunction={ShowFunction} />
                 </table>
               </div>
             </div>

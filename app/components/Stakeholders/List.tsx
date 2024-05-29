@@ -12,8 +12,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 
-
-const List = () => {
+interface ListProps {
+  ShowFunction: void;
+}
+const List :React.FC<ListProps> = ({ ShowFunction }) => {
     const [data, setData] = useState([]);
     const [loaded, setLoaded] = useState(false);
     
@@ -56,12 +58,16 @@ const List = () => {
        if(loaded) deleteStakeholder(stakeholder_id);
       }
 
+      const editData = (stakeholder_id:number) => {
+        ShowFunction(stakeholder_id);
+      }
+
     
 
     return(
         <tbody>
             {data.map((item, index) => (
-                <tr id="stakeholder-42065-row">
+                <tr key={index} id="stakeholder-42065-row">
                 <td style={{ maxWidth: 300 }}>
                   <div className="d-flex px-2 py-1 text-truncate">
                     <img
@@ -119,7 +125,7 @@ const List = () => {
                       />
                     </a>
                   </span>
-                  <button className="text-secondary font-weight-bold btn btn-link btn-s mb-0">
+                  <button className="text-secondary font-weight-bold btn btn-link btn-s mb-0" onClick={() => editData(item.id)}>
                     <FontAwesomeIcon
                       icon={faEdit}
                       className="stakeholder-icon"

@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GeneralFormDropdown from "../components/GeneralFormDropdown/generalFormDropdown";
 import "./ModalBox.css";
 import ModalBoxE from './ModalBoxE';
@@ -8,9 +8,10 @@ import axios from "axios"
 interface ModalBoxProps {
   Type: number;
   CloseModal: void;
+  StakeholderId : number | undefined | null;
 }
 
-const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
+const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal, StakeholderId }) => {
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
@@ -32,6 +33,38 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
 
   const [showEntity, setShowEntity] = useState(false);
 
+  useEffect(() => {
+    async function getStekeholder(stakeholder_id : number){
+      try {
+        const response = await fetch(`/api/stakeholders/get/${stakeholder_id}`);
+        const data = await response.json();
+        setName(data.name);
+        setLastName(data.lastName);
+        setContactEmail(data.contactEmail);
+        setGroup(data.group);
+        setAddress(data.address);
+        setOptionalLineOfAddress(data.optionalLineOfAddress);
+        setPostalCode(data.postalCode);
+        setCityName(data.cityName);
+        setCountry(data.country);
+        setIdentifier(data.identifier);
+        setCustomIdentifier(data.customIdentifier);
+        setPhone(data.phone);
+        setBirthdate(data.birthdate);
+        setNationality(data.nationality);
+        setCivilStatus(data.civilStatus);
+        setCustomDetail(data.customDetail);
+        setNotes(data.notes);
+
+      } catch (error) {
+        console.error('Veri getirme hatası:', error);
+      }
+    }
+
+    if(StakeholderId == null) return;
+    getStekeholder(StakeholderId);
+  },[])
+
   const handleEntityClick = () => {
     setShowEntity(true);
   };
@@ -41,46 +74,90 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal }) => {
   };
 
 
-  const Save = async () =>{  
-    
-    const submitData = {
-      type: showEntity,
-      name,
-      lastName,
-      contactEmail,
-      group,
-      address,
-      optionalLineOfAddress,
-      postalCode,
-      cityName,
-      country,
-      identifier,
-      customIdentifier,
-      phone,
-      birthdate,
-      nationality,
-      civilStatus,
-      customDetail,
-      notes}
-      console.log(submitData);
-   try {
-    const response = await fetch('/api/stakeholders',{
-      method: 'POST',
-      body: JSON.stringify(submitData),
-      headers: {
-        'content-type': 'application/json'
+  const Save = async () =>{ 
+    if(StakeholderId != null) {
+      const submitData = {
+        id: StakeholderId,
+        type: showEntity,
+        name,
+        lastName,
+        contactEmail,
+        group,
+        address,
+        optionalLineOfAddress,
+        postalCode,
+        cityName,
+        country,
+        identifier,
+        customIdentifier,
+        phone,
+        birthdate,
+        nationality,
+        civilStatus,
+        customDetail,
+        notes}
+        console.log(submitData);
+     try {
+      const response = await fetch('/api/stakeholders/edit',{
+        method: 'POST',
+        body: JSON.stringify(submitData),
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+      console.log(response);
+  
+      if(response.ok){
+        window.location.href="/stakeholders";
+      }else{
+        console.log("Failed");
       }
-    })
+     }
+     catch (error){
+        console.log(error);
+     }
 
-    if(response.ok){
-      window.location.href="/stakeholders";
     }else{
-      console.log("Failed");
-    }
-   }
-   catch (error){
-      console.log(error);
-   }
+      const submitData = {
+        type: showEntity,
+        name,
+        lastName,
+        contactEmail,
+        group,
+        address,
+        optionalLineOfAddress,
+        postalCode,
+        cityName,
+        country,
+        identifier,
+        customIdentifier,
+        phone,
+        birthdate,
+        nationality,
+        civilStatus,
+        customDetail,
+        notes}
+        console.log(submitData);
+     try {
+      const response = await fetch('/api/stakeholders',{
+        method: 'POST',
+        body: JSON.stringify(submitData),
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+  
+      if(response.ok){
+        window.location.href="/stakeholders";
+      }else{
+        console.log("Failed");
+      }
+     }
+     catch (error){
+        console.log(error);
+     }
+    }   
+
   }
 
   return (
