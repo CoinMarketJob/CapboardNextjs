@@ -1,0 +1,91 @@
+.scrollable-container {
+    max-height: 100vh; /* Set the max height of the container */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    padding: 1rem;
+    border: 1px solid #ccc;
+}
+
+.Logo{
+    width: 175px;
+    height: 175px;
+    text-align: center;
+    margin-left: 3vw;
+    border: 1px solid rgba(0, 0, 0, 0.254);
+}
+
+.card-1, .card-2, .card-3, .card-4{
+    margin-left: 1vw;
+    margin-top: 2vw;
+    border: 1px solid rgba(0, 0, 0, 0.254);
+    width: 85vw;
+    height: 65vh;
+    border-radius: 0.2rem;
+}
+
+.card-1-choices{
+    width: 37.5vw;
+    display: flex;
+    flex-direction: row;
+    transform: translateX(45%);
+}
+
+.input-group{
+    flex-direction: column;
+    width: 300px;
+}
+
+.form{
+    width: 32.5vw;
+    height: 5vh;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 0.1rem;
+}
+
+.card-item{
+    display: flex;
+    flex-direction: row;
+    height: 20vh;
+    flex-direction: row;
+    margin-top: 3vh;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.card-item-column{
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    margin-top: 3vh;
+    padding: 0.5rem;
+    border: 0px solid #ddd;
+    border-radius: 3px;
+}
+
+
+.titles{
+    margin-top: 1.5vw;
+    margin-left: 1vw;
+    font-weight: 500;
+    font-size: 23px;
+}
+
+.select-file-frame{
+    width: 30vw;
+    margin-left: 2rem;
+    font-style: rgba(0, 0, 0, 0.254);
+    border: 1px solid rgba(0, 0, 0, 0.254);
+}
+
+.button{
+    height: 50px;
+    width: 82.5px;
+    margin-top: 4rem;
+    margin-left: 2rem;
+    color: white;
+    border-radius: 0.2rem;
+    background-color: rgba(0, 0, 0, 0.684);
+}
