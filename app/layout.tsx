@@ -46,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   let DropListOwnership: Array<DropDownList> = [
-    { name: "Transaction", icon: faRightLeft, href: "/transactions" },
+    { name: "Transaction", icon: faRightLeft, href: "/transaction" },
     { name: "Cap Table", icon: faChartPie, href: "/captable" },
     { name: "Share Classes", icon: faFolderOpen, href: "/shareclasses" },
     { name: "Simulations", icon: faChartLine, href: "/simulations" },

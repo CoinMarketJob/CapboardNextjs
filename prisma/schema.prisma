@@ -27,5 +27,12 @@ model Stakeholders {
   civilStatus  String?
   customDetail  String?
   notes  String?
+}
 
+model User {
+  id            Int    @id @default(autoincrement())
+  name          String?
+  email         String?   @unique
+  hashedPassword String?
+  createdAt     DateTime @default(now())
 }

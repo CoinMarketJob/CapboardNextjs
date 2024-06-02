@@ -45,6 +45,7 @@ const Stakeholders = () => {
   };
 
   const ButtonClick = (type: ModalType) => {
+    setStakeholderId(undefined);
     setType(type);
     setOpenModal(true);
   };
