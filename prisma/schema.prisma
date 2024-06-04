@@ -36,3 +36,27 @@ model User {
   hashedPassword String?
   createdAt     DateTime @default(now())
 }
+model ShareClasses {
+  id            Int    @id @default(autoincrement())
+  name          String
+  nominalPrice Float
+  pools Pool[]  
+}
+
+model Pool {
+  id            Int    @id @default(autoincrement())
+  name          String?
+  grantsAmount Int
+  amountUnit AmountUnit @default(Shares)
+  date     DateTime @default(now())
+  shareClassId Int  
+  shareClass ShareClasses @relation(fields: [shareClassId], references: [id]) 
+
+  documentId Int?
+  Note String?
+}
+
+enum AmountUnit {
+  Shares
+  Percent
+}
