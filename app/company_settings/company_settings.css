@@ -10,15 +10,34 @@
     height: 175px;
     text-align: center;
     margin-left: 3vw;
+    margin-top: 1rem;
     border: 1px solid rgba(0, 0, 0, 0.254);
 }
 
-.card-1, .card-2, .card-3, .card-4{
+.card-1, .card-2{
     margin-left: 1vw;
     margin-top: 2vw;
     border: 1px solid rgba(0, 0, 0, 0.254);
     width: 85vw;
     height: 65vh;
+    border-radius: 0.2rem;
+}
+
+.card-3{
+    margin-left: 1vw;
+    margin-top: 2vw;
+    border: 1px solid rgba(0, 0, 0, 0.254);
+    width: 85vw;
+    height: 70vh;
+    border-radius: 0.2rem;
+}
+
+.card-4{
+    margin-left: 1vw;
+    margin-top: 2vw;
+    border: 1px solid rgba(0, 0, 0, 0.254);
+    width: 85vw;
+    height: 20vh;
     border-radius: 0.2rem;
 }
 
@@ -30,36 +49,146 @@
 }
 
 .input-group{
+    margin-left: 1rem;
     flex-direction: column;
     width: 300px;
 }
 
-.form{
-    width: 32.5vw;
-    height: 5vh;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+.input-group-billing{
     margin-left: 1rem;
-    margin-right: 1rem;
-    border-radius: 0.1rem;
+    flex-direction: column;
+    width: 80vw;
 }
 
 .card-item{
     display: flex;
     flex-direction: row;
-    height: 20vh;
+    height: 10vh;
+    width: auto;
     flex-direction: row;
-    margin-top: 3vh;
     padding: 0.5rem;
-    border: 1px solid #ddd;
     border-radius: 3px;
+}
+
+.transform-selective-buttons{
+    transform: translateX(-30%);
+}
+
+.transform-selective-buttons-normal{
+    transform: translateX(0%);
+}
+
+
+.selective-button-1{
+    margin: 0%;
+    width: 70px;
+    height: 50px;
+    color: white;
+    text-align: center;
+    background-color: black;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.selective-button-2{
+    margin: 0%;
+    width: 70px;
+    height: 50px;
+    color: black;
+    text-align: center;
+    background-color: white;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.selective-button-1:hover{
+    margin: 0%;
+    width: 70px;
+    height: 50px;
+    color: black;
+    text-align: center;
+    background-color: white;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.selective-button-group{
+    width: auto;
+    height: auto;
+    padding: 0%;
+    position: relative;
+    margin-right: 7.2vw;
+}
+
+.form{
+    margin-bottom: 1rem;
+    display: block;
+    width: 40vw;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.4rem;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #d2d6da;
+    appearance: none;
+    border-radius: 3px;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.form-2{
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.4rem;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    appearance: none;
+    border-radius: 3px;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.form-label{
+    font-size: 15px;
+}
+
+.suggestions-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    max-height: 150px;
+    overflow-y: auto;
+    background: white;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.autocomplete-input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
 }
 
 .card-item-column{
     display: flex;
     flex-direction: column;
     height: 60vh;
-    margin-top: 3vh;
     padding: 0.5rem;
     border: 0px solid #ddd;
     border-radius: 3px;
@@ -88,4 +217,76 @@
     color: white;
     border-radius: 0.2rem;
     background-color: rgba(0, 0, 0, 0.684);
+}
+
+.button-Invoices{
+    height: 50px;
+    width: 100px;
+    font-size: 17px;
+    font-weight: 400;
+    margin-top: 4rem;
+    margin-left: 2rem;
+    color: rgb(0, 0, 0);
+    border-color: rgba(0, 0, 0, 0.127);
+    background-color: rgba(255, 255, 255, 0.684);
+}
+
+.span-list-item{
+    font-size: 13px;
+    font-weight: 600;
+    width: 200px;
+    height: 60px;
+    margin-right: 0.750rem;
+    text-align: center;
+    border-radius: 1rem;
+    background-color: #F2F2F2;
+}
+
+.titles{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.delete-toggle-wrapper{
+    margin-top: 2rem;
+    display: flex;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.254);
+    background-color: white;
+}
+
+.delete-toggle{
+    height: 19px;
+    width: 19px;
+    background-color: black;
+    border-radius: 1rem;
+}
+
+.justify-start{
+    justify-content: flex-start;
+    background-color: rgba(58, 65, 111, 0.1);
+}
+
+.justify-end{
+    justify-content: flex-end;
+    background-color: #D7BBFF;
+    border-color: #AC96CC;
+}
+
+.delete-company-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.delete-button{
+    height: 45px;
+    width: 105px;
+    border: none;
+    color: white;
+    margin-left: 62vw;
+    border-radius: 0.3rem;
+    background-color: rgba(255, 0, 0, 0.63);
 }
