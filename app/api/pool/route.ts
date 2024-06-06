@@ -6,18 +6,19 @@ export async function POST(request: Request) {
   const {
     name,
     grantsAmount,
-    amountUnit,
     date,
     shareClassId,
     documentId,
     note,
   } = body; // Modal'dan gelen verileri al
 
+  const classId = parseInt(shareClassId, 10);
+  const amountGrant = parseInt(grantsAmount, 10);
   const pool = await prisma.pool.create({
     data: {
       name: name,
       date: date,
-      shareClassId: shareClassId,
+      shareClassId: classId,
       documentId: documentId,
       Note: note,
     },
@@ -25,8 +26,7 @@ export async function POST(request: Request) {
 
   const amount = await prisma.poolAmount.create({
     data: {
-      grantsAmount: grantsAmount,
-      amountUnit: amountUnit,
+      grantsAmount: amountGrant,
       date: date,
       poolId: pool.id,
     },

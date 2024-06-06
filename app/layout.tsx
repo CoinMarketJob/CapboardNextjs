@@ -53,7 +53,7 @@ export default function RootLayout({
   ];
 
   let DropListEquityPlans: Array<DropDownList> = [
-    { name: "Pools", icon: faWaterLadder, href: "/pools" },
+    { name: "Pools", icon: faWaterLadder, href: "/pool" },
     { name: "Plans", icon: faMap, href: "/plans" },
     { name: "Grants", icon: faHandHoldingHeart, href: "/grants" },
     { name: "Exercising", icon: faMoneyCheck, href: "/exercising" },

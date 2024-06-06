@@ -1,0 +1,93 @@
+.containerequity {
+    min-height: 100vh;
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainEquity {
+    padding: 5rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titleEquity {
+    margin: 0;
+    line-height: 1.15;
+    font-size: 1.5rem;
+    text-align: center;
+    padding-bottom: 5%;
+}
+
+.listEqiuty {
+    margin: 1rem 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    padding-bottom: 5%;
+}
+
+.list li {
+    margin: 0.5rem 0;
+}
+
+.createButton {
+    background-color: black;
+    color: white;
+    border: none;
+    border-bottom: none;
+    border-radius: 0.5rem;
+    padding: 1rem 4rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.createButton:hover {
+    background-color: #333;
+    border-bottom: none;
+}
+
+.infoIcon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+
+}
+
+.tooltip {
+    display: inline-block;
+    margin-left: 0.2rem;
+    cursor: pointer;
+    position: relative;
+    font-weight: bolder;
+    font-size: 20px;
+
+}
+
+
+.tooltip::after {
+    content: 'An equity plan is a document that outlines the details of equity distribution within a company.';
+    display: none;
+    position: absolute;
+    bottom: 125%;
+    font-size: 15px;
+    font-weight: lighter;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    z-index: 1;
+}
+
+.tooltip:hover::after {
+    display: block;
+}

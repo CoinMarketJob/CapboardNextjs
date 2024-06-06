@@ -1,0 +1,109 @@
+.container {
+    padding: 20px;
+    font-family: Arial;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    max-width: 100%;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: left;
+
+
+}
+
+.datePicker {
+    padding: 10px;
+}
+
+.addPoolBtn {
+    padding: 10px 20px;
+    color: black;
+    background-color: white;
+    border: 1px solid rgba(2, 2, 2, 0.8);
+    cursor: pointer;
+    margin-left: 75%;
+    margin-bottom: 1%;
+    border-radius: 4%;
+}
+
+
+.poolTable {
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.tableHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: lighter;
+    font-size: 14px;
+}
+
+.tableRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.tableHeader,
+.tableRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.625rem;
+    font-size: 12px;
+    font-weight: lighter;
+    position: relative;
+}
+
+.dropdownBtn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdownContent a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdownContent a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
+
+.tableHeader div,
+.tableRow div {
+    flex: 1;
+    text-align: center;
+    font-weight: normal;
+}

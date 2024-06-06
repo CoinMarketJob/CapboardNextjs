@@ -1,0 +1,130 @@
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    padding-bottom: 10px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #000;
+}
+
+.createPlanBtn {
+    background-color: #f1f1f1;
+    color: #000;
+    border-color: gray;
+    border-width: 0.1rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.createPlanBtn:hover {
+    background-color: #e0e0e0;
+}
+
+.equityPlan {
+    margin-top: 20px;
+}
+
+.planHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+}
+
+.equityPlanHeader {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 12px;
+    background-color: #fff;
+    padding: 1%;
+    padding-left: 5%;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+}
+
+.planDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+}
+
+.planDetails span {
+    flex: 0.5;
+    text-align: center;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdownBtn {
+    background: none;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    width: 2%;
+    ;
+}
+
+.EquityPool {
+    display: inline-block;
+}
+
+.poola,
+.granteda,
+.intervala,
+.durationa,
+.cliffa {
+    display: inline-block;
+}
+
+.viewTransactionsBtn {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+}
+
+.viewTransactionsBtn:hover {
+    background-color: #000;
+    color: #ddd;
+}
+
+.poolh,
+.grantedh,
+.durationh,
+.intervalh,
+.cliffh {
+    flex: 1;
+    text-align: left;
+    padding-right: 5%;
+    font-weight: inherit;
+}
