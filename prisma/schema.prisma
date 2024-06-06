@@ -40,23 +40,67 @@ model ShareClasses {
   id            Int    @id @default(autoincrement())
   name          String
   nominalPrice Float
+  Note String?
   pools Pool[]  
 }
 
 model Pool {
   id            Int    @id @default(autoincrement())
   name          String?
-  grantsAmount Int
-  amountUnit AmountUnit @default(Shares)
   date     DateTime @default(now())
   shareClassId Int  
   shareClass ShareClasses @relation(fields: [shareClassId], references: [id]) 
-
   documentId Int?
   Note String?
+  
+  poolAmaunts PoolAmount[] 
+  plans Plans[] 
+}
+
+model PoolAmount {
+  id            Int    @id @default(autoincrement())
+  grantsAmount Int
+  amountUnit AmountUnit @default(Shares)
+  date     DateTime @default(now())
+  poolId Int  
+  pool Pool @relation(fields: [poolId], references: [id], onDelete: Cascade) 
 }
 
 enum AmountUnit {
   Shares
   Percent
+}
+
+model Plans {
+  id             Int    @id @default(autoincrement())
+  planName       String
+  date           DateTime @default(now())
+  grantType      GrantType @default(Phantom)
+  pricePerShare  Float
+  purchasePrice  Float
+  vestingType    VestingType 
+  startDate      DateTime? 
+  duration       Int?
+  vestEvery      Int?
+  cliff          Int?  
+  goodLeaver     String?
+  badLeaver      String?
+  liquidityEvent String?
+  documentId    Int?
+  Note          String  
+  poolId         Int
+  pool Pool @relation(fields: [poolId], references: [id], onDelete: Cascade) 
+}
+
+enum GrantType {
+  Phantom
+  Stock
+  StockOptions
+  Warrants
+  SARs
+}
+
+enum VestingType {
+  None
+  Time
 }
