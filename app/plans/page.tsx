@@ -58,7 +58,7 @@ const PlansPage = () => {
                                 <span>Cliff</span>
                             </div>
                             <div className={styles.planDetails}>
-                                <span>{item.pool.name}</span>
+                                <span>{item.name}</span>
                                 <span>0</span>
                                 <span>48</span>
                                 <span>1</span>

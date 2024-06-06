@@ -30,6 +30,7 @@ const PlanForm: React.FC<pooll> = ({ handleClosePopup }) => {
             const data = await response.json();
             setPools(data);
             console.log(data);
+            setPool(data[0].id);
           } catch (error) {
             console.error('Veri getirme hatası:', error);
           }
@@ -45,7 +46,6 @@ const PlanForm: React.FC<pooll> = ({ handleClosePopup }) => {
                 poolId: pool,
                 date: new Date(date),
                 pricePerShare: pricePerShare,
-                vestingType: vestingType,
                 startDate: Date(vestingDate),
                 duration: duration,
                 vestEvery: vestEvery,
@@ -66,7 +66,7 @@ const PlanForm: React.FC<pooll> = ({ handleClosePopup }) => {
               console.log(response);
           
               if(response.ok){
-                window.location.href="/pool";
+                window.location.href="/plans";
               }else{
                 console.log("Failed");
               }
@@ -166,7 +166,7 @@ const PlanForm: React.FC<pooll> = ({ handleClosePopup }) => {
                 </div>
                 <div className={styles.buttons}>
                     <button type="button" className={styles.closeButton} onClick={handleClosePopup}>CLOSE</button>
-                    <button type="submit" className={styles.saveButton} onClick={Save}>SAVE</button>
+                    <button type="button" className={styles.saveButton} onClick={Save}>SAVE</button>
                 </div>
             </form>
         </div>
