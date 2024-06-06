@@ -1,20 +1,29 @@
 "use client";
 
-import React from 'react';
+import React, { ChangeEvent, use, useState } from 'react';
 import "./company_settings.css";
+import { transform } from 'next/dist/build/swc';
+import { motion } from 'framer-motion';
 
 const CompanySettings = () => {
+  const [toggleDelete, setToggleDelete] = useState<boolean>(false);
+  const [selectiveButtonShareNum, setSelectiveButtonShareNum] = useState<boolean>(true);
+  const [differentnum, setDifferentNum] = useState<boolean>(true);
+  const [allowdecimalVesting, setAllowDecimalVesting] = useState<boolean>(true);
+  const [isSPV, setIsSPV] = useState<boolean>(true);
+
   return (
     <div className="scrollable-container">
       <div className="card-1">
         <h4 className="titles">Basic Info</h4>
-        <div className="card-item">
+        <div style={{height: "auto"}} className="card-item">
           <div className='Logo' >Logo</div>
           <ul> <div className="input-group">
             <label>Name</label>
             <input
+            style={{width: "32vw"}}
               name="name"
-              placeholder="John"
+              placeholder="Company Name"
               type="text"
               className="form"
             />
@@ -22,15 +31,16 @@ const CompanySettings = () => {
           <div className="input-group">
             <label>URL</label>
             <input
+            style={{width: "32vw"}}
               name="name"
-              placeholder="https//:..."
+              placeholder=""
               type="text"
               className="form"
             />
           </div>
             </ul>
           <ul className='card-1-choices' >
-              <div className="form mb-3">
+              <div className="form-2 mb-3">
               <label className="form-label">Operating Country</label>
                 <div>
                   <select id="country" name="country" className="form-select">
@@ -333,48 +343,48 @@ const CompanySettings = () => {
                   </div>
                 </div>
               </div>
-              <div className="form mb-3">
+              <div className="form-2 mb-3">
               <label className="form-label">Currency</label>
                 <div>
                 <select id="currency" name="currency" className="form-select">
-            <option value="USD">United States Dollar (USD)</option>
-            <option value="EUR">Euro (EUR)</option>
-            <option value="JPY">Japanese Yen (JPY)</option>
-            <option value="GBP">British Pound Sterling (GBP)</option>
-            <option value="AUD">Australian Dollar (AUD)</option>
-            <option value="CAD">Canadian Dollar (CAD)</option>
-            <option value="CHF">Swiss Franc (CHF)</option>
-            <option value="CNY">Chinese Yuan (CNY)</option>
-            <option value="SEK">Swedish Krona (SEK)</option>
-            <option value="NZD">New Zealand Dollar (NZD)</option>
-            <option value="MXN">Mexican Peso (MXN)</option>
-            <option value="SGD">Singapore Dollar (SGD)</option>
-            <option value="HKD">Hong Kong Dollar (HKD)</option>
-            <option value="NOK">Norwegian Krone (NOK)</option>
-            <option value="KRW">South Korean Won (KRW)</option>
-            <option value="TRY">Turkish Lira (TRY)</option>
-            <option value="RUB">Russian Ruble (RUB)</option>
-            <option value="INR">Indian Rupee (INR)</option>
-            <option value="BRL">Brazilian Real (BRL)</option>
-            <option value="ZAR">South African Rand (ZAR)</option>
-            <option value="DKK">Danish Krone (DKK)</option>
-            <option value="PLN">Polish Zloty (PLN)</option>
-            <option value="THB">Thai Baht (THB)</option>
-            <option value="IDR">Indonesian Rupiah (IDR)</option>
-            <option value="HUF">Hungarian Forint (HUF)</option>
-            <option value="CZK">Czech Koruna (CZK)</option>
-            <option value="ILS">Israeli New Shekel (ILS)</option>
-            <option value="CLP">Chilean Peso (CLP)</option>
-            <option value="PHP">Philippine Peso (PHP)</option>
-            <option value="AED">United Arab Emirates Dirham (AED)</option>
-            <option value="COP">Colombian Peso (COP)</option>
-            <option value="SAR">Saudi Riyal (SAR)</option>
-            <option value="MYR">Malaysian Ringgit (MYR)</option>
-            <option value="RON">Romanian Leu (RON)</option>
-            <option value="ARS">Argentine Peso (ARS)</option>
-            <option value="EGP">Egyptian Pound (EGP)</option>
-            <option value="VND">Vietnamese Dong (VND)</option>
-            <option value="KZT">Kazakhstani Tenge (KZT)</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="JPY">JPY</option>
+            <option value="GBP">GBP</option>
+            <option value="AUD">AUD</option>
+            <option value="CAD">CAD</option>
+            <option value="CHF">CHF</option>
+            <option value="CNY">CNY</option>
+            <option value="SEK">SEK</option>
+            <option value="NZD">NZD</option>
+            <option value="MXN">MXN</option>
+            <option value="SGD">SGD</option>
+            <option value="HKD">HKD</option>
+            <option value="NOK">NOK</option>
+            <option value="KRW">KRW</option>
+            <option value="TRY">TRY</option>
+            <option value="RUB">RUB</option>
+            <option value="INR">INR</option>
+            <option value="BRL">BRL</option>
+            <option value="ZAR">ZAR</option>
+            <option value="DKK">DKK</option>
+            <option value="PLN">PLN</option>
+            <option value="THB">THB</option>
+            <option value="IDR">IDR</option>
+            <option value="HUF">HUF</option>
+            <option value="CZK">CZK</option>
+            <option value="ILS">ILS</option>
+            <option value="CLP">CLP</option>
+            <option value="PHP">PHP</option>
+            <option value="AED">AED</option>
+            <option value="COP">COP</option>
+            <option value="SAR">SAR</option>
+            <option value="MYR">MYR</option>
+            <option value="RON">RON</option>
+            <option value="ARS">ARS</option>
+            <option value="EGP">EGP</option>
+            <option value="VND">VND</option>
+            <option value="KZT">KZT</option>
           </select>
                   <div
                     className="ac-select-container w-100"
@@ -394,8 +404,59 @@ const CompanySettings = () => {
               </div>
           </ul>
         </div>
-        <div className="card-item">2. sıra</div>
-      </div>
+        <h4 style={{transform: "translateY(100%)", marginLeft: "1rem", fontSize: "20px", fontWeight: "600"}} >Others</h4>
+        <ul style={{display: 'flex', flexDirection: 'row', width: "auto", height: "auto", transform: "translateX(-9%)", marginTop: "9vh"}}>
+            <div className='selective-button-group' >
+            <label style={{transform: "translateY(-200%) translateX(100%)", fontSize: "15px"}} >Show share numbers</label>
+            <button
+            onClick={() => selectiveButtonShareNum ? null : setSelectiveButtonShareNum(!selectiveButtonShareNum)}
+            className={`${
+              selectiveButtonShareNum ? "selective-button-1" : "selective-button-2"} p-[1px]`}>NO</button>
+              <button
+              onClick={() => selectiveButtonShareNum ? setSelectiveButtonShareNum(!selectiveButtonShareNum) : null}
+              className={`${
+                selectiveButtonShareNum ? "selective-button-2" : "selective-button-1"} p-[1px]`}>YES</button>
+                </div>
+                {selectiveButtonShareNum ? null : <div style={{transform: "translateX(-26%)"}} className='selective-button-group' >
+            <label style={{transform: "translateY(-200%) translateX(100%)", fontSize: "15px"}} >Show share numbers</label>
+            <button
+            onClick={() => differentnum ? null : setDifferentNum(!differentnum)}
+            className={`${
+              differentnum ? "selective-button-1" : "selective-button-2"} p-[1px]`}>NO</button>
+              <button
+              onClick={() => differentnum ? setDifferentNum(!differentnum) : null}
+              className={`${
+                differentnum ? "selective-button-2" : "selective-button-1"} p-[1px]`}>YES</button>
+                </div>}
+                <div className={`selective-button-group ${
+              selectiveButtonShareNum ? "transform-selective-buttons" : "transform-selective-buttons-normal"
+            } p-[1px]`} >
+                <label style={{transform: "translateY(-200%) translateX(99%)", fontSize: "15px"}} >Allow decimal vesting</label>
+            <button
+            onClick={() => allowdecimalVesting ? null : setAllowDecimalVesting(!allowdecimalVesting)}
+            className={`${
+              allowdecimalVesting ? "selective-button-1" : "selective-button-2"} p-[1px]`}>NO</button>
+              <button
+              onClick={() => allowdecimalVesting ? setAllowDecimalVesting(!allowdecimalVesting) : null}
+              className={`${
+                allowdecimalVesting ? "selective-button-2" : "selective-button-1"} p-[1px]`}>YES</button>
+                </div>
+                <div className={`selective-button-group ${
+              selectiveButtonShareNum ? "transform-selective-buttons" : "transform-selective-buttons-normal"
+            } p-[1px]`} >
+                  <label style={{transform: "translateY(-200%) translateX(110%)", fontSize: "15px"}} >Is an SPV</label>
+            <button
+            onClick={() => isSPV ? null : setIsSPV(!isSPV)}
+            className={`${
+              isSPV ? "selective-button-1" : "selective-button-2"} p-[1px]`}>NO</button>
+              <button
+              onClick={() => isSPV ? setIsSPV(!isSPV) : null}
+              className={`${
+                isSPV ? "selective-button-2" : "selective-button-1"} p-[1px]`}>YES</button>
+                </div>
+                </ul>
+                <button className='button'>SAVE</button>
+                </div>
       <div className="card-2">
         <h4 className="titles">
           Templates
@@ -410,25 +471,115 @@ const CompanySettings = () => {
             </input>
           </div>
           <span style={{marginLeft: "2rem", marginTop: "1.5rem", marginBottom:"1rem"}}>Issue certificate templates must contain the following variables:</span>
-          <ul><span style={{backgroundColor: "#39393920", borderRadius: "1rem", height: "30px"}} >%issue_number%</span> <span>Certificate number. Ex: 2344</span></ul>
-          <ul><span style={{backgroundColor: "#39393920", borderRadius: "1rem", height: "30px"}} >%shares_amount%</span> <span>Shares amount. Ex: 294.593</span></ul>
-          <ul><span style={{backgroundColor: "#39393920", borderRadius: "1rem", height: "30px"}} >%stakeholder_name%</span> <span>Stakeholder name</span></ul>
-          <ul><span style={{backgroundColor: "#39393920", borderRadius: "1rem", height: "30px"}} >%company_name%</span> <span>Company name</span></ul>
-          <li style={{marginLeft: "2rem", listStyle: "none"}}>Click here to download a template.</li>
+          <ul style={{width: "auto", height: "auto"}} >  <span className='span-list-item'>%issue_number%</span>  <span>Certificate number. Ex: 2344</span></ul>
+          <ul> <span className='span-list-item' >%shares_amount%</span>  <span>Shares amount. Ex: 294.593</span></ul>
+          <ul> <span className='span-list-item'>%stakeholder_name%</span>  <span>Stakeholder name</span></ul>
+          <ul> <span className='span-list-item'>%company_name%</span>  <span>Company name</span></ul>
+          <li style={{marginLeft: "2rem", listStyle: "none", fontSize: "14px"}}>Click here to download a template.</li>
           <button className='button' >SAVE</button>
           </div>
       </div>
       <div className="card-3">
-        <h4 className="basic-info">Basic Info</h4>
-        <div className="card-item">1. sıra</div>
-        <div className="card-item">2. sıra</div>
-        <div className="card-item">3. sıra</div>
-        <div className="card-item">4. sıra</div>
+        <h4 className="titles">Billing Info</h4>
+        <ul className="card-item">
+          <div className="input-group-billing">
+          <label className="form-label"> Full Company Name </label>
+            <input
+              name="companyName"
+              placeholder="Company Name"
+              type="email"
+              className="form"
+            />
+          </div>
+          <div className="input-group-billing">
+          <label className="form-label"> Billing Contact </label>
+            <input
+              name="billingContact"
+              placeholder="billing@company.com"
+              type="email"
+              className="form"
+            />
+          </div>
+          </ul>
+        <div className="card-item">
+        <div className="input-group-billing">
+          <label className="form-label"> Billing Country </label>
+            <input
+              name="billingCountry"
+              placeholder="Turkey"
+              type="email"
+              className="autocomplete-input "
+            />
+          </div>
+          <div className="input-group-billing">
+          <label className="form-label"> Billing Address </label>
+            <input
+              name="billingAddress"
+              placeholder="Address"
+              type="email"
+              className="form"
+            />
+          </div>
+          </div>
+        <div className="card-item">
+          <div className="input-group-billing">
+          <label className="form-label"> Postal Code <span style={{fontSize: "12px"}} >optional</span> </label>
+            <input
+              name="postalCode"
+              placeholder="08223"
+              type="email"
+              className="form"
+            />
+          </div>
+          </div>
+        <div className="card-item">
+          <div className="input-group-billing">
+          <label className="form-label">VAT registration number </label>
+            <input
+              name="registrationNumbertype"
+              placeholder="Select"
+              type="email"
+              className="form"
+            />
+          </div>
+          <div className="input-group-billing">
+          <label className="form-label"> </label>
+            <input
+            style={{width: "20vw", transform: "translateX(-9%", marginTop: "0.5rem"}}
+              name="registrationNumber"
+              placeholder="0123456789"
+              type="email"
+              className="form"
+            />
+          </div>
+          </div>
+          <ul style={{display: "flex", flexDirection: "row" , padding: "0%", margin: "0%"}} className='buttons-row-card-3' >
+            <button className='button'>SAVE</button>
+            <button className='button-Invoices'>Invoices</button>
+            </ul>
       </div>
       <div className="card-4">
-        <h4 className="basic-info">Basic Info</h4>
-        <div className="card-item">1. sıra</div>
-        <div className="card-item">2. sıra</div>
+        <h4 className="titles">Delete Company</h4>
+        <span style={{fontSize: "14px", marginLeft: "1rem"}} >Once you delete the company, there is no going back. Please be certain.</span>
+        <ul className='delete-company-row' >
+        <div
+            onClick={() => setToggleDelete(!toggleDelete)}
+            className={`delete-toggle-wrapper ${
+              toggleDelete ? "justify-start" : "justify-end"
+            } p-[1px]`}
+          >
+      <motion.div
+        className={`delete-toggle ${toggleDelete ? 'bg-white' : 'bg-white'}`}
+        layout
+        transition={{type: 'spring' , stiffness:250 , damping: 30}}
+      />
+    </div>
+    <ul style={{flexDirection: "column", marginTop: "1.5rem"}} >
+    <h6 style={{fontSize: "15px", margin: "0" }} >Confirm</h6>
+    <span style={{fontSize: "13px", margin: "0" }} >I want to delete the company.</span>
+    </ul>
+    <button className='delete-button' >DELETE</button>
+    </ul>
       </div>
     </div>
   );
