@@ -8,7 +8,7 @@ interface pooll {
 
 const PlanForm: React.FC<pooll> = ({ handleClosePopup }) => {
     return (
-        <div className={styles.equityPopup}>
+        <div className={styles.container}>
             <div className={styles.equityPopupHeader}>
                 <h2>Add Plan</h2>
             </div>
