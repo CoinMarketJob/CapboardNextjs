@@ -1,2 +1,0 @@
--- AddForeignKey
-ALTER TABLE `Plans` ADD CONSTRAINT `Plans_poolId_fkey` FOREIGN KEY (`poolId`) REFERENCES `Pool`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

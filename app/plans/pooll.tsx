@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './PlanFormm.module.css';
 
 interface pooll {
@@ -7,6 +7,78 @@ interface pooll {
 }
 
 const PlanForm: React.FC<pooll> = ({ handleClosePopup }) => {
+    const [name, setName] = useState('');
+    const [pools, setPools] = useState([]);
+    const [pool, setPool] = useState([]);
+    const [date, setDate] = useState('');
+    const [type, setType] = useState('');
+    const [vestingType, setVestingType] = useState('');
+    const [vestingDate, setVestingDate] = useState('');
+    const [duration, setDuration] = useState('');
+    const [vestEvery, setVeryEvery] = useState('');
+    const [cliff, setCliff] = useState('');
+    const [goodLeaver, setGoodLeaver] = useState('');
+    const [badLeaver, setBadLeaver] = useState('');
+    const [liquidityEvent, setLiquidityEvent] = useState('');
+    const [note, setNote] = useState('');
+    const [pricePerShare, setPricePerShare] = useState();
+
+    useEffect(() => {
+        async function fetchData() {
+          try {
+            const response = await fetch('/api/pool/get');
+            const data = await response.json();
+            setPools(data);
+            console.log(data);
+          } catch (error) {
+            console.error('Veri getirme hatası:', error);
+          }
+        }
+      
+        fetchData();
+      }, []);
+
+      const Save = () => {
+        async function Submit() {
+            const submitData = {
+                planName: name,
+                poolId: pool,
+                date: new Date(date),
+                pricePerShare: pricePerShare,
+                vestingType: vestingType,
+                startDate: Date(vestingDate),
+                duration: duration,
+                vestEvery: vestEvery,
+                cliff: cliff,
+                goodLeaver: goodLeaver,
+                badLeaver: badLeaver,
+                liquidityEvent: liquidityEvent,  
+                Note:  note
+            }
+             try {
+              const response = await fetch('/api/plans',{
+                method: 'POST',
+                body: JSON.stringify(submitData),
+                headers: {
+                  'content-type': 'application/json'
+                }
+              })
+              console.log(response);
+          
+              if(response.ok){
+                window.location.href="/pool";
+              }else{
+                console.log("Failed");
+              }
+             }
+             catch (error){
+                console.log(error);
+             }
+        }
+
+        Submit();
+      }
+
     return (
         <div className={styles.container}>
             <div className={styles.equityPopupHeader}>
@@ -15,19 +87,23 @@ const PlanForm: React.FC<pooll> = ({ handleClosePopup }) => {
             <form className={styles.equityPlanForm}>
                 <div className={styles.equityFormGroup}>
                     <label htmlFor="poolName">Plan Name</label>
-                    <input type="text" id="poolName" placeholder="IT Phantoms, Options pool, ..." />
+                    <input type="text" id="poolName" placeholder="IT Phantoms, Options pool, ..." value={name} onChange={(e) => setName(e.target.value)} />
                 </div>
                 <div className={styles.equityFormGroup}>
                     <label htmlFor="fromPool">From Pool</label>
-                    <input type="search" id="fromPool" />
+                    <select value={pool} onChange={(e) => setPool(e.target.value)}>
+                        {pools.map((item,index) => (
+                            <option key={index} value={item.id}>{item.name}</option>
+                        ))}
+                    </select>
                 </div>
                 <div className={styles.equityFormGroup}>
                     <label htmlFor="equityDate">Date</label>
-                    <input type="date" id="equityDate" />
+                    <input type="date" id="equityDate" value={date} onChange={(e) => setDate(e.target.value)} />
                 </div>
                 <div className={styles.equityFormGroup}>
                     <label htmlFor="grantType">Grant Type</label>
-                    <select id="grantType">
+                    <select id="grantType" value={type} onChange={(e) => setType(e.target.value)}>
                         <option value="Phantom">Phantom</option>
                         <option value="Stock">Stock</option>
                         <option value="StockOptions">Stock Options</option>
@@ -38,10 +114,8 @@ const PlanForm: React.FC<pooll> = ({ handleClosePopup }) => {
                 <div className={styles.grantPresets}>GRANT PRESETS</div>
                 <div className={styles.equityFormGroup}>
                     <label htmlFor="purchasePrice">Purchase Price</label>
-                    <input type="text" id="purchasePrice" />
+                    <input type="text" id="purchasePrice" value={pricePerShare} onChange={(e) => setPricePerShare(e.target.value)} />
                     <select id="currency">
-                        <option value="USD">Dollar/USD</option>
-                        <option value="EUR">Euro</option>
                         <option value="TRY">Turkish Lira/TL</option>
                     </select>
                 </div>
@@ -49,55 +123,50 @@ const PlanForm: React.FC<pooll> = ({ handleClosePopup }) => {
                     <h3>Vesting</h3>
                     <div className={styles.equityFormGroup}>
                         <label htmlFor="vestingType">Type</label>
-                        <select id="vestingType">
+                        <select id="vestingType" value={vestingType} onChange={(e) => setVestingType(e.target.value)}>
                             <option value="Time">Time (simple)</option>
                             <option value="None">None</option>
                         </select>
                     </div>
                     <div className={styles.equityFormGroup}>
                         <label htmlFor="startDate">Start Date (optional)</label>
-                        <input type="date" id="startDate" />
+                        <input type="date" id="startDate" value={vestingDate} onChange={(e) => setVestingDate(e.target.value)} />
                     </div>
                     <div className={styles.equityFormGroup}>
                         <label htmlFor="duration">Duration</label>
-                        <input type="number" id="duration" placeholder="Please Enter Month" />
+                        <input type="number" id="duration" placeholder="Please Enter Month" value={duration} onChange={(e) => setDuration(e.target.value)} />
                     </div>
                     <div className={styles.equityFormGroup}>
                         <label htmlFor="vestEvery">Vest Every</label>
-                        <input type="number" id="vestEvery" placeholder="Please Enter Month" />
+                        <input type="number" id="vestEvery" placeholder="Please Enter Month" value={vestEvery} onChange={(e) => setVeryEvery(e.target.value)} />
                     </div>
                     <div className={styles.equityFormGroup}>
                         <label htmlFor="cliff">Cliff</label>
-                        <input type="number" id="cliff" placeholder="Please Enter Month" />
+                        <input type="number" id="cliff" placeholder="Please Enter Month" value={cliff} onChange={(e) => setCliff(e.target.value)} />
                     </div>
                 </div>
                 <div className={styles.definitions}>
                     <h3>Definitions</h3>
                     <div className={styles.equityFormGroup}>
                         <label htmlFor="goodLeaver">Good Leaver</label>
-                        <textarea id="goodLeaver" cols={50} rows={4}></textarea>
+                        <textarea id="goodLeaver" cols={50} rows={4} value={goodLeaver} onChange={(e) => setGoodLeaver(e.target.value)}></textarea>
                     </div>
                     <div className={styles.equityFormGroup}>
                         <label htmlFor="badLeaver">Bad Leaver</label>
-                        <textarea id="badLeaver" cols={50} rows={4}></textarea>
+                        <textarea id="badLeaver" cols={50} rows={4} value={badLeaver} onChange={(e) => setBadLeaver(e.target.value)}></textarea>
                     </div>
                     <div className={styles.equityFormGroup}>
                         <label htmlFor="liquidityEvent">Liquidity Event</label>
-                        <textarea id="liquidityEvent" cols={50} rows={4}></textarea>
+                        <textarea id="liquidityEvent" cols={50} rows={4} value={liquidityEvent} onChange={(e) => setLiquidityEvent(e.target.value)}></textarea>
                     </div>
-                </div>
-                <div className={styles.documents}>
-                    <h3>Documents</h3>
-                    <label htmlFor="fileUpload" className={styles.fileUploadButton}>Upload File</label>
-                    <input type="file" id="fileUpload" style={{ display: 'none' }} />
                 </div>
                 <div className={styles.internalNote}>
                     <h3>Internal Note</h3>
-                    <textarea className={styles.internalNoteTextarea} cols={50} rows={4} placeholder="Notes"></textarea>
+                    <textarea className={styles.internalNoteTextarea} cols={50} rows={4} placeholder="Notes" value={note} onChange={(e) => setNote(e.target.value)}></textarea>
                 </div>
                 <div className={styles.buttons}>
                     <button type="button" className={styles.closeButton} onClick={handleClosePopup}>CLOSE</button>
-                    <button type="submit" className={styles.saveButton}>SAVE</button>
+                    <button type="submit" className={styles.saveButton} onClick={Save}>SAVE</button>
                 </div>
             </form>
         </div>

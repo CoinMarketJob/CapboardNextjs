@@ -77,7 +77,6 @@ model Plans {
   date           DateTime @default(now())
   grantType      GrantType @default(Phantom)
   pricePerShare  Float
-  purchasePrice  Float
   vestingType    VestingType 
   startDate      DateTime? 
   duration       Int?

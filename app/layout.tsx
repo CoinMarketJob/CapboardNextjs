@@ -70,11 +70,6 @@ export default function RootLayout({
     { name: "Subscription", icon: faDollarSign, href: "/subscription" },
   ];
 
-  let DropListMyInformation: Array<DropDownList> = [
-    { name: "Stakeholder Profile", icon: faUser, href: "/stakeholderprofile" },
-    { name: "My Equity", icon: faMoneyBill1, href: "/myequity" },
-    { name: "My Documents", icon: faFileLines, href: "/mydocuments" },
-  ];
 
   return (
     <html lang="en">
@@ -89,7 +84,6 @@ export default function RootLayout({
             <NavlinkDropdown name="Investor relations" icon={faHandshake} Navlinks={DropListInvestorRelations} />
             <Navlink name="Documents" href="/documents" icon={faFileLines} />
             <NavlinkDropdown name="Company" icon={faBuilding} Navlinks={DropListCompany} />
-            <NavlinkDropdown name="My Information" icon={faUser} Navlinks={DropListMyInformation} />
             <Navlink name="Portfolio" href="/portfolio" icon={faBriefcase} />
             <Navlink name="Account Settings" href="/accountsettings" icon={faGear} />
             <Navlink name="Logout" href="/logout" icon={faRightFromBracket} />
