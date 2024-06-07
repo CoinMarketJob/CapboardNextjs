@@ -1,7 +1,7 @@
 const Dahboard = () => {
   return (
-    <div>Dahboard</div>
+    <div>Dashboard</div>
   )
 }
 
-export default Dahboard
+export default Dashboard
