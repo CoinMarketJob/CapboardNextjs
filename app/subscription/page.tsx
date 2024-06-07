@@ -31,7 +31,7 @@ const Subscription = () => {
           <ul style={{flexDirection: "column", width: "auto", height: "80vh", marginLeft: "5vw"}}>
             <ul style={{justifyContent: "center"}} >
             <div className='selective-button-group'>
-            <ul style={{flexDirection: "row", marginLeft: "30vw"}} >
+            <ul style={{flexDirection: "row", marginLeft: "28vw"}} >
               <button
                 onClick={() => planOption ? null : setPlanOption(!planOption)}
                 className={`${
