@@ -1,1 +1,126 @@
+.navbar{
+    width: 80vw;
+    height: 50px;
+    display: flex;
+    font-size: small;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    margin-left: 2vw;
+    list-style: none;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.405);
+}
+
+.content{
+
+}
+
+.link{
+    font-weight: 600;
+    margin-left: 2rem;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.card{
+    margin: 0 auto;
+    width: 85vw;
+    height: 122vh;
+    margin-left: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.405);
+}
+
+.title{
+    margin-left: 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 21px;
+}
+
+.selective-button-group {
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.selective-button-1{
+    margin: 0%;
+    width: 100px;
+    height: 45px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    background-color: rgb(215, 187, 255);
+    border: 0px solid rgb(0, 0, 0);
+}
+
+.selective-button-2{
+    width: 100px;
+    height: 45px;
+    color: rgba(0, 0, 0, 0.483);
+    text-align: center;
+    background-color: f2f2f2f2;
+    border: 1px solid rgba(0, 0, 0, 0.205);
+}
+
+.plans-group{
+    margin-left: 7.5vw;
+    width: 60vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.plan-1{
+    display: flex;
+    flex-direction: column;
+    padding: 0%;
+    width: 27vw;
+    height: 80vh;
+    border-radius: 0.2rem;
+    border: 1px solid rgba(0, 0, 0, 0.205);
+    background-color: rgba(227, 225, 225, 0.515);
+}
+
+.plan-1-item{
+    font-size: medium;
+    margin-left: 0%;
+    display: flex;
+    flex-direction: row;
+    transform: translateX(-15%);
+}
+
+.plan-2{
+    margin-left: 2vw;
+    display: flex;
+    flex-direction: column;
+    padding: 0%;
+    width: 27vw;
+    height: 80vh;
+    border-radius: 0.2rem;
+    border: 1px solid rgba(0, 0, 0, 0.205);
+    background-color: rgba(227, 225, 225, 0.515);
+}
+
+.subscribe-button{
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 3vh;
+    margin-right: 3vh;
+    width: 24vw;
+    height: 45px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    border-radius: 0.2rem;
+    border: 0px solid rgb(0, 0, 0);
+    background-color: rgb(215, 187, 255);
+}
+
+.plan-1-item-icon{
+    margin-top: 5px;
+    margin-left: 10%;
+    margin-right: 3%;
+    font-size: 11px;
+}
 
