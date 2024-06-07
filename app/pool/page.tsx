@@ -92,6 +92,36 @@ const PoolPage = () => {
         fetchData();
       }, []);
 
+      const Edit = (id : number) => {
+
+      }
+
+      const PoolIncrease = (id : number) => {
+        handleCreatePool();
+        toggleDropdown();
+      }
+
+      const Delete = (id : number) => {
+
+        async function deletePool(id:number) {
+          try {
+            const response = await fetch(`/api/pool/${id}`, {
+              method: 'DELETE',
+            });
+        
+            if (response.ok) {
+              window.location.href="/pool";              
+            } else {
+              console.error('Silme hatası:', response.statusText);
+            }
+          } catch (error) {
+            console.error('Hata:', error);
+          }
+        }
+
+        deletePool(id);
+      }
+
     return (
         <div className={styles.container}>
             <h1 id='poolshead'>Pools</h1>
@@ -122,10 +152,9 @@ const PoolPage = () => {
                                         <button onClick={toggleDropdown} className={styles.dropdownBtn}>⋮</button>
                                         {dropdownVisible && (
                                             <div className={styles.dropdownContent}>
-                                                <a href="#">Edit</a>
-                                                <a href="#">Delete</a>
-                                                <a href="#">Notify new grant</a>
-                                                <a href="#">Generate document</a>
+                                                <a onClick={(e) => PoolIncrease(item.id)}>Pool increase</a>
+                                                <a onClick={(e) => Edit(item.id)}>Edit</a>
+                                                <a onClick={(e) => Delete(item.id)}>Delete</a>
                                             </div>
                                         )}
                                  </div>);

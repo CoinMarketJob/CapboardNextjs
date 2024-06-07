@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import PlanForm from './pooll'
 
 const PlansPage = () => {
+    const [dropdownVisible, setDropdownVisible] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([]);
     const router = useRouter();
@@ -15,6 +16,11 @@ const PlansPage = () => {
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
+    };
+
+    const toggleDropdown = () => {
+        setDropdownVisible(!dropdownVisible);
+        console.log(dropdownVisible);
     };
 
     useEffect(() => {
@@ -32,6 +38,31 @@ const PlansPage = () => {
         fetchData();
       }, []);
 
+      const Edit = (id : number) => {
+
+      }
+
+      const Delete = (id : number) => {
+
+        async function deletePool(id:number) {
+          try {
+            const response = await fetch(`/api/plans/${id}`, {
+              method: 'DELETE',
+            });
+        
+            if (response.ok) {
+              window.location.href="/plans";              
+            } else {
+              console.error('Silme hatası:', response.statusText);
+            }
+          } catch (error) {
+            console.error('Hata:', error);
+          }
+        }
+
+        deletePool(id);
+      }
+
     return (
         <div className={styles.plans}>
             <div className={styles.container}>
@@ -46,7 +77,13 @@ const PlansPage = () => {
                         <div className={styles.planHeader}>
                             <span>{item.planName} - {item.grantType}</span>
                             <div className={styles.dropdown}>
-                                <button className={styles.dropdownBtn}>⋮</button>
+                                <button onClick={toggleDropdown} className={styles.dropdownBtn}>⋮</button>
+                                {dropdownVisible && (
+                                            <div className={styles.dropdownContent}>
+                                                <a onClick={(e) => Edit(item.id)}>Edit</a>
+                                                <a onClick={(e) => Delete(item.id)}>Delete</a>
+                                            </div>
+                                        )}
                             </div>
                         </div>
                         <div className={styles.EquityPool}>
