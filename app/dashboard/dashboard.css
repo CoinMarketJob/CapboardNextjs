@@ -1,1 +1,93 @@
+.card-row{
+    margin-top: 2rem;
+    width: auto;
+    height: auto;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.title{
+    margin-left: 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 15px;
+}
+.card-1{
+    flex-direction: column;
+    display: flex;
+    padding-top: 10px;
+    margin-right: 2vw;
+    width: 19vw;
+    height: 10vh;
+    border-radius: 0.2rem;
+    border: 1px solid rgba(0, 0, 0, 0.208);
+}
+
+.card-1-title{
+    font-weight: 500;
+    font-size: 13px;
+    margin-left: 10px;
+}
+.card-1-title-2{
+    font-weight: 640;
+    font-size: 23px;
+    margin-left: 10px;
+}
+.card-2{
+    height: 45vh;
+    width: 82vw;
+    margin-left: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.208);
+}
+
+.card-3{
+    padding: 0%;
+    height: 30vh;
+    width: 82vw;
+    margin-top: 5vh;
+    margin-left: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.208);
+}
+
+.stakeholders-not-joined-list{
+    padding: 0%;
+    font-weight: 300;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+}
+
+.stakeholders-not-joined-list-item-row{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+}
+
+.stakeholders-not-joined-list-header{
+    font-weight: 500;
+    font-size: 11px;
+    margin-left: 0%;
+    display: flex;
+    flex-direction: row;
+}
+
+.stakeholders-not-joined-list-item{
+    margin-left: 0%;
+    display: flex;
+    flex-direction: row;
+}
+
+.invite-button{
+    height: 30px;
+    width: 100px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.208);
+}
+
+.underline{
+    height: 0.5px;
+    background: rgba(0, 0, 0, 0.06);
+}
 
