@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import "./collabrators.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faCaretUp, faPenToSquare, faPlus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Collaborators = () => {
@@ -14,7 +14,7 @@ const Collaborators = () => {
         setIsLogDropdownOpen(!isLogDropdownOpen);
     };
 
-    const stakeholdersNotJoined = [
+    const collabrators = [
         {
             name: 1,
             accessLevel: "Bir",
@@ -42,15 +42,17 @@ const Collaborators = () => {
     ];
 
     const collaboratorsLogs = [
-        { name: "VIEW_STAKEHOLDERS_LIST", type: "BİR", collaborator: "1" },
-        { name: "VIEW_CHANGE_REQUESTS", type: "İKİ", collaborator: "2" },
-        { name: "VIEW_DOCUMENTS_LIST", type: "ÜÇ", collaborator: "3" },
-        { name: "VIEW_SHARE_CLASSES_LIST", type: "DÖRT", collaborator: "4" },
+        { name: "VIEW_STAKEHOLDERS_LIST", type: "EDIT", collaborator: "1" },
+        { name: "VIEW_CHANGE_REQUESTS", type: "CREATE", collaborator: "2" },
+        { name: "VIEW_DOCUMENTS_LIST", type: "VIEW", collaborator: "3" },
+        { name: "VIEW_SHARE_CLASSES_LIST", type: "VIEW", collaborator: "4" },
     ];
+
+    const cardHeight = collabrators.length * 70 + 60; // Calculate height based on item count (60px per item + 60px base height)
 
     return (
         <div>
-            <div className="card-1">
+            <div className="card-1" style={{ height: `${cardHeight}px` }}>
                 <div
                     style={{
                         display: "flex",
@@ -60,10 +62,28 @@ const Collaborators = () => {
                 >
                     <h2 className="title">Collaborators</h2>
                     <button className="button">
-                        <FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff" }} />
+                        <FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff", marginRight: "10px" }} />
                         ADD COLLABORATOR
                     </button>
                 </div>
+                <div className="collaborators-list-bar">
+                                <div style={{width: "250px", fontSize: "11px"}} >NAME</div>
+                                <div style={{width: "700px", fontSize: "11px"}} >EMAIL</div>
+                                <div style={{width: "250px", fontSize: "11px"}} >ACCESS LEVEL</div>
+                                <div style={{width: "200px", fontSize: "11px"}} >ACCEPTED</div>
+                            </div>
+                            <div className="underline" ></div>
+                    {collabrators.map((collaborator) => (
+                        <div className="collaborators-list" key={collaborator.name}>
+                            <div style={{width: "250px", fontSize: "15px"}} >{collaborator.name}</div>
+                            <div style={{width: "700px", fontSize: "17px"}} >{collaborator.Email}</div>
+                            <div style={{width: "250px", fontSize: "17px"}} >{collaborator.accessLevel}</div>
+                            <div style={{width: "200px", fontSize: "17px"}} >{collaborator.accepted}</div>
+                            <FontAwesomeIcon style={{width: "15px", height: "15px", marginRight: "1rem"}} icon={faPenToSquare} />
+                            <FontAwesomeIcon style={{width: "15px", height: "15px"}} icon={faTrashCan} />
+                            <div className="underline" ></div>
+                        </div>
+                    ))}
             </div>
             <div className="card-2">
                 <h2 className="title">Notifications</h2>
@@ -82,13 +102,13 @@ const Collaborators = () => {
                     >
                         <motion.div
                             className={`delete-toggle ${
-                                toggleDelete ? "bg-green" : "bg-red"
+                                toggleDelete ? "bg-white" : "bg-white"
                             }`}
                             layout
                             transition={{ type: "spring", stiffness: 250, damping: 30 }}
                         />
                     </div>
-                    <div style={{ marginLeft: "1rem" }}>
+                    <div style={{ marginLeft: "1rem", marginTop: "5vh" }}>
                         <h6 style={{ fontSize: "15px", margin: "0" }}>
                             Simulation notifications
                         </h6>
@@ -111,51 +131,41 @@ const Collaborators = () => {
                         cursor: "pointer",
                     }}
                 >
-                    <FontAwesomeIcon icon={faCaretDown} />
-                    <span style={{ marginLeft: "0.5vw", fontSize: "17px" }}>
+                    {isLogDropdownOpen ? <FontAwesomeIcon icon={faCaretUp} /> : <FontAwesomeIcon icon={faCaretDown} />}
+                    <span style={{ marginLeft: "0.5vw", fontSize: "17px", fontWeight: "500" }}>
                         2024-06-07
                     </span>
-                    <div
-                        style={{
-                            backgroundColor: "#2da38b",
-                            color: "white",
-                            borderRadius: "0.2rem",
-                            width: "250px",
-                            textAlign: "center",
-                            fontWeight: "500",
-                            marginLeft: "1rem",
-                        }}
-                    >
+                    <div className="green-text">
                         iglschzgrutlunmjlh@cazlg.com
                     </div>
                 </div>
-                    {isLogDropdownOpen && (
-                        <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                        >
-                            <div className="list-log-dropdown">
-                                {collaboratorsLogs.map((item) => (
-                                    <ul className="stakeholders-not-joined-list" key={item.name}>
-                                        <div className="stakeholders-not-joined-list-item-row">
-                                            <div style={{ width: "280px" }}>
-                                                <div className="logs-list-item">{item.name}</div>
-                                            </div>
-                                            <div style={{ width: "280px" }}>
-                                                <div className="logs-list-item">{item.type}</div>
-                                            </div>
-                                            <div style={{ width: "265px" }}>
-                                                <div className="logs-list-item">{item.collaborator}</div>
-                                            </div>
+                {isLogDropdownOpen && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                        <div className="log-list-dropdown">
+                            {collaboratorsLogs.map((item) => (
+                                <ul key={item.name}>
+                                    <div className="log-list">
+                                        <div style={{ width: "250px" }}>
+                                            <div className="log-list-item-type">{item.type}</div>
                                         </div>
-                                        <div className="underline"></div>
-                                    </ul>
-                                ))}
-                            </div>
-                        </motion.div>
-                    )}
+                                        <div style={{ width: "300px", marginBottom: "10px" }}>
+                                            <div className="log-list-item">{item.name}</div>
+                                        </div>
+                                        <div style={{ width: "265px" }}>
+                                            <div className="log-list-item">{item.collaborator}</div>
+                                        </div>
+                                    </div>
+                                    <div className="underline"></div>
+                                </ul>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
             </div>
         </div>
     );
