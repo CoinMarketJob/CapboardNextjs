@@ -2,10 +2,18 @@ import prisma from "@/libs/prismadb";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-    const transactions = await prisma.transaction.findMany({
-        where: { type: "Grant", },
-        include: { stakeholder: true, plan: true }
-    });
+    const stakeholdersWithGrantTransactions = await prisma.stakeholders.findMany({
+        include: {
+          transactions: {
+            where: {
+              type: "Grant"
+            },
+            include: {
+              plan: true
+            }
+          }
+        }
+      });
 
-    return NextResponse.json(transactions);
+    return NextResponse.json(stakeholdersWithGrantTransactions);
 }

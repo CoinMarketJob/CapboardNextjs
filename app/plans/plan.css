@@ -1,0 +1,33 @@
+.cardPadding{
+    padding: 40px;
+}
+
+.card .card-header {
+    padding: 1.5rem;
+}
+.card-header:first-child {
+    border-radius: 1rem 1rem 0 0;
+}
+
+.card-header {
+    padding: 0.5rem 1rem;
+    margin-bottom: 0;
+    background-color: #fff;
+    border-bottom: 0 solid rgba(0, 0, 0, 0.125);
+}
+
+.btn-secondary, .btn.bg-gradient-secondary {
+    transform: none !important;
+    border-radius: 3px;
+    opacity: 1;
+    background-color: transparent !important;
+}
+
+.btn-secondary, .btn.bg-gradient-secondary {
+    color: black;
+}
+
+.card .card-body {
+    font-family: "Rethink Sans", "Inter", sans-serif;
+    padding: 1.5rem;
+}

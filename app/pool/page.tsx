@@ -32,8 +32,6 @@ const PoolPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [pools, setPools] = useState<Pool[]>([]);
     const [data, setData] = useState<any[]>([]);
-    const [amauntData, setAmauntData] = useState<any[]>([]);
-    const [stakeholders, setStakeholders] = useState<any[]>([]);
 
     const toggleDropdown = (id: number) => {
         setDropdownVisible(dropdownVisible === id ? null : id);
@@ -86,18 +84,8 @@ const PoolPage = () => {
                 const response = await fetch('/api/pool/get');
                 const data = await response.json();
                 setData(data);
+                console.log(data);
 
-                const response2 = await fetch('/api/pool/amount/get');
-                const data2 = await response2.json();
-                setAmauntData(data2);
-
-                const stakeholdersNotJoined = [
-                    { name: 1, size: "Bir", grant: "BİR", grantable: "sqsrpfxnlqaikbxeld@cazlq.com", granted: "BİR", grantVested: "sqsrpfxnlqaikbxeld@cazlq.com", exercised: "sqsrpfxnlqaikbxeld@cazlq.com"},
-                    { name: 1, size: "Bir", grant: "BİR", grantable: "sqsrpfxnlqaikbxeld@cazlq.com", granted: "BİR", grantVested: "sqsrpfxnlqaikbxeld@cazlq.com", exercised: "sqsrpfxnlqaikbxeld@cazlq.com"},
-                    { name: 1, size: "Bir", grant: "BİR", grantable: "sqsrpfxnlqaikbxeld@cazlq.com", granted: "BİR", grantVested: "sqsrpfxnlqaikbxeld@cazlq.com", exercised: "sqsrpfxnlqaikbxeld@cazlq.com"},
-                    { name: 1, size: "Bir", grant: "BİR", grantable: "sqsrpfxnlqaikbxeld@cazlq.com", granted: "BİR", grantVested: "sqsrpfxnlqaikbxeld@cazlq.com", exercised: "sqsrpfxnlqaikbxeld@cazlq.com"},
-                ];
-                setStakeholders(stakeholdersNotJoined);
             } catch (error) {
                 console.error('Veri getirme hatası:', error);
             }
@@ -135,13 +123,7 @@ const PoolPage = () => {
         deletePool(id);
     };
 
-    const poolsList = [
-        { name: 1, size: "Bir", grant: "BİR", grantable: "sqsrpfxnlqaikbxeld@cazlq.com", granted: "BİR", grantVested: "sqsrpfxnlqaikbxeld@cazlq.com", exercised: "0"},
-        { name: 1, size: "Bir", grant: "BİR", grantable: "sqsrpfxnlqaikbxeld@cazlq.com", granted: "BİR", grantVested: "sqsrpfxnlqaikbxeld@cazlq.com", exercised: "0"},
-        { name: 3, size: "Üç", grant: "ÜÇ", grantable: "sqsrpfxnlqaikbxeld@cazlq.com", granted: "ÜÇ", grantVested: "sqsrpfxnlqaikbxeld@cazlq.com", exercised: "0"},
-        { name: 1, size: "Bir", grant: "BİR", grantable: "sqsrpfxnlqaikbxeld@cazlq.com", granted: "BİR", grantVested: "sqsrpfxnlqaikbxeld@cazlq.com", exercised: "0"},
-    ];
-
+    
     return (
         <div className={styles.container}>
             <h1 style={{ fontSize: "19px", marginLeft: "1rem", marginTop: "1vh" }}>Pools</h1>
@@ -163,14 +145,37 @@ const PoolPage = () => {
                     </ul>
                 </div>
                 <div>
-                {poolsList.map((item, index) => (
-                    <ul key={index} className={styles.poolsList}>
-                      <div className={styles.underline} ></div>
-                        <ul className="pools-row">
-                            <PoolsListCom name={item.grant} grant={item.grant} grantable={item.grantable} granted={item.granted} grantVested={item.grantVested} exercised={item.exercised} />
+                 {data.map((item, index) => {
+
+                    const size = item.transactions.reduce((acc, transaction) => {
+                        if (transaction.type === 'PoolCreation' || transaction.type === 'PoolIncrease') {
+                            return acc + transaction.amount;
+                          } else if (transaction.type === 'PoolDecrease') {
+                            return acc - transaction.amount;
+                          } else {
+                            return acc;
+                          }
+                    }, 0);
+
+                    const granted = item.transactions.reduce((acc, transaction) => {
+                        if (transaction.type === 'Grant') {
+                            return acc + transaction.amount;
+                          } else {
+                            return acc;
+                          }
+                    }, 0);
+
+                    const grantable = size - granted;
+
+                    return(
+                        <ul key={index} className={styles.poolsList}>
+                            <div className={styles.underline} ></div>
+                            <ul className="pools-row">
+                                <PoolsListCom name={item.poolName} grant={size} grantable={grantable} granted={granted} grantVested={0} exercised={0} transactionData={item.transactions} />
                             </ul>
-                    </ul>
-                ))}
+                        </ul>
+                    );
+                })} 
                 </div>                
             </div>
 

@@ -1,135 +1,78 @@
-'use client'
-import React, {useState, useEffect} from 'react';
-import styles from './PageForm.module.css';
-import { useRouter } from 'next/navigation';
-import PlanForm from './pooll'
+"use client"
+import React, {useEffect, useState} from 'react'
+import "./plan.css"
+import PlanList from '../components/Plan/PlanList'
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import ModalBox from './ModalBox';
 
 const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  bgcolor: "background.paper",
-  border: "0px",
-  borderRadius: "18px",
-  boxShadow: 24,
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "background.paper",
+    border: "0px",
+    borderRadius: "18px",
+    boxShadow: 24,
+    width: "60%"
 };
-const PlansPage = () => {
-    const [dropdownVisible, setDropdownVisible] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [data, setData] = useState([]);
-    const router = useRouter();
 
-    const handleCreatePlanClick = () => {
-        setIsModalOpen(true);
+const page = () => {
+    const [openModal, setOpenModal] = useState(false);
+    const [plan, setPlan] = useState([]);
+
+    const closeModal = () => {
+        setOpenModal(false);
     };
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
-
-    const toggleDropdown = () => {
-        setDropdownVisible(!dropdownVisible);
-        console.log(dropdownVisible);
-    };
+    const changeModalState = () => {
+        setOpenModal(!openModal);
+    }
 
     useEffect(() => {
         async function fetchData() {
-          try {
-            const response = await fetch('/api/plans/get');
-            const data = await response.json();
-            setData(data);
-            console.log(data);
-          } catch (error) {
-            console.error('Veri getirme hatası:', error);
-          }
-        }
-      
-        fetchData();
-      }, []);
+            try {
+                const response = await fetch('/api/plans/get');
+                const data = await response.json();
+                setPlan(data);
+                console.log(data);
 
-      const Edit = (id : number) => {
-
-      }
-
-      const Delete = (id : number) => {
-
-        async function deletePool(id:number) {
-          try {
-            const response = await fetch(`/api/plans/${id}`, {
-              method: 'DELETE',
-            });
-        
-            if (response.ok) {
-              window.location.href="/plans";              
-            } else {
-              console.error('Silme hatası:', response.statusText);
+            } catch (error) {
+                console.error('Veri getirme hatası:', error);
             }
-          } catch (error) {
-            console.error('Hata:', error);
-          }
         }
 
-        deletePool(id);
-      }
+        fetchData();
+    }, []);
 
-    return (
-        <div className={styles.plans}>
-          <Modal id="ModalSign" open={isModalOpen} onClose={handleCloseModal}>
+
+  return (
+    <div className="cardPadding">
+        <Modal id="ModalSign" open={openModal} onClose={closeModal}>
             <Box sx={{ ...style }}>
-              <PlanForm handleClosePopup={handleCloseModal}/>
+                <ModalBox CloseModal={closeModal} />
             </Box>
-          </Modal>
-            <div className={styles.container}>
-                <div className={styles.header}>
-                    <h1>Equity plans</h1>
-                    <button className={styles.createPlanBtn} onClick={handleCreatePlanClick}>+ CREATE YOUR EQUITY PLAN</button>
-                </div>
-                {data.map((item,index) => {
+        </Modal>
 
-                    return(
-                    <div key={index} className={styles.equityPlan}>
-                        <div className={styles.planHeader}>
-                            <span>{item.planName} - {item.grantType}</span>
-                            <div className={styles.dropdown}>
-                                <button onClick={toggleDropdown} className={styles.dropdownBtn}>⋮</button>
-                                {dropdownVisible && (
-                                            <div className={styles.dropdownContent}>
-                                                <a onClick={(e) => Edit(item.id)}>Edit</a>
-                                                <a onClick={(e) => Delete(item.id)}>Delete</a>
-                                            </div>
-                                        )}
-                            </div>
-                        </div>
-                        <div className={styles.EquityPool}>
-                            <div className={styles.equityPlanHeader}>
-                                <span>Pool</span>
-                                <span>Granted</span>
-                                <span>Duration</span>
-                                <span>Interval</span>
-                                <span>Cliff</span>
-                            </div>
-                            <div className={styles.planDetails}>
-                                <span>{item.name}</span>
-                                <span>0</span>
-                                <span>48</span>
-                                <span>1</span>
-                                <span>12</span>
-                            </div>
-                            <button className={styles.viewTransactionsBtn}>VIEW TRANSACTIONS</button>
-                        </div>
+        <div className="me-4 rounded-1 card">
+            <div className="pb-0 card-header">
+                <div className="justify-content-between row">
+                    <div className="col-12 col-md-auto d-flex  mt-1 col">
+                        <h5 className="mb-md-0">Equity plans</h5>
                     </div>
-                    );
-                })}
-
-
-                
+                    <div className="col-12 col-md-auto text-end col">
+                        <button type="button" 
+                        className="btn-secondary w-100 rounded-1 btn btn-primary" onClick={changeModalState}>Create your Equity Plan</button>
+                    </div>
+                </div>
             </div>
-
+            <div className="card-body">
+                <PlanList planData={plan}/>
+            </div>
         </div>
-    );
-};
+    </div>
+  )
+}
 
-export default PlansPage;
+export default page

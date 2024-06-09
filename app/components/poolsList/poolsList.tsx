@@ -1,7 +1,7 @@
 'use client';
 import { faChevronRight, faMinus, faPenToSquare, faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import "./poolsList.css";
 
@@ -13,6 +13,7 @@ interface PoolListProps {
     granted: string;
     grantVested: string;
     exercised: string;
+    transactionData : Array<any>;
 }
 
 const PoolsListCom: React.FC<PoolListProps> = ({
@@ -22,9 +23,11 @@ const PoolsListCom: React.FC<PoolListProps> = ({
     granted,
     grantVested,
     exercised,
+    transactionData
 }) => {
 
     const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
+    const [filteredTransactions, setFilteredTransactions] = useState([]);
 
     const graphData = {
         datasets: [{
@@ -42,6 +45,23 @@ const PoolsListCom: React.FC<PoolListProps> = ({
         setDropdownVisible(!dropdownVisible);
         console.log(dropdownVisible)
     };
+
+    useEffect(() => {
+        const transactions = transactionData.filter(x=> x.type == "PoolCreation" || x.type == "PoolIncrease" || x.type == "PoolDecrease");
+        
+        const updatedTransactions = transactions.map(transaction => {
+            if (transaction.type === "PoolCreation") {
+              return { ...transaction, type: "PoolIncrease" };
+            } else {
+              return transaction;
+            }
+          });
+          setFilteredTransactions(updatedTransactions);
+    }, []);
+
+    const PoolIncrease = (id) => {
+
+    }
 
     return (
         <div>
@@ -63,10 +83,17 @@ const PoolsListCom: React.FC<PoolListProps> = ({
             </ul>
             {dropdownVisible && (
                 <div className='dropdown' >
-                    <ul style={{display: "flex", flexDirection: "row"}} >
-                        <div style={{fontSize: "15px"}}>2024-06-09</div>
-                        <div style={{ width: "120px", textAlign: "center", marginLeft: "7vw", fontSize: "13px", backgroundColor: "#f1f5f9", color: "#475569 ", borderRadius: "0.2rem", fontWeight: "500"}} >POOL INCREASE</div>
-                        <div style={{marginLeft: "10vw", fontSize: "15px"}} >{grantable}</div>
+                    <ul className="detailUl">
+                        {filteredTransactions.map((item, index) => (
+                            <li key={index} className="DetailLi">
+                                <div style={{fontSize: "15px"}}>{item.date}</div>
+                                <div style={{ width: "120px", textAlign: "center", marginLeft: "7vw", fontSize: "13px", backgroundColor: "#f1f5f9", color: "#475569 ", borderRadius: "0.2rem", fontWeight: "500"}} >{item.type}</div>
+                                <div style={{marginLeft: "10vw", fontSize: "15px"}} >{item.amount}</div>
+                            </li>
+                        ))}
+                        
+                    
+                    
                     </ul>
                 </div>
             )}

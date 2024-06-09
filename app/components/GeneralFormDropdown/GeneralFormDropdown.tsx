@@ -17,7 +17,7 @@ const GeneralFormDropdown: React.FC<GeneralFormProps> = ({ name, child }) => {
     setIsFormDropdownOpen(!isFormDropdownOpen);
   };
   return (
-    <div>
+    <div style={{padding: 20}}>
       <a className="GF-drop-down-a" onClick={ChangeFormDropdown}>
             <FontAwesomeIcon
               icon={faChevronDown}
@@ -34,7 +34,7 @@ const GeneralFormDropdown: React.FC<GeneralFormProps> = ({ name, child }) => {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div>
+            <div style={{padding: 15}}>
               {child}
             </div>
           </motion.div>

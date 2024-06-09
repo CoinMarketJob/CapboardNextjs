@@ -1,0 +1,98 @@
+.container {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 20px auto;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .searchContainer {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  .searchInput {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .searchInput::placeholder {
+    color: #999;
+  }
+  
+  .tableWrapper {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .tableHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: #e8e8e8;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .tableHeader .sarge {
+    font-weight: bold;
+  }
+  
+  .table {
+    width: 100%;
+  }
+  
+  .tableSubHeader, .tableRow {
+    display: flex;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .tableSubHeader {
+    background-color: #f8f8f8;
+    font-weight: bold;
+  }
+  
+  .tableRow {
+    background-color: #fff;
+  }
+  
+  .tableRow:nth-child(even) {
+    background-color: #f8f8f8;
+  }
+  
+  .tableSubHeader span, .tableRow span {
+    flex: 1;
+    text-align: center;
+  }
+  

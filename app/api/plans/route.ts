@@ -14,8 +14,8 @@ export async function POST(request: Request) {
   const plans = await prisma.plan.create({
     data: {
       planName: planName,
-      poolId: poolId,
-      date: date,
+      poolId: parseInt(poolId,10),
+      date: new Date(date),
       grantType: grantType,
       note: Note,
     },
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
   const transaction = await prisma.transaction.create({
     data: {
-      date: date,
+      date: new Date(date),
       type: "PlanCreation",
       planId: plans.id,
       poolId: poolId,      

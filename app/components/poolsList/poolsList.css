@@ -8,3 +8,11 @@
 .dropdown{
     margin-top: 10px;
 }
+
+.detailUl{
+    list-style: none;
+}
+
+.DetailLi{
+    display: flex;
+}
