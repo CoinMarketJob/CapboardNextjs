@@ -54,7 +54,7 @@ const PoolsListCom: React.FC<PoolListProps> = ({
                 <div style={{ width: "100px", fontSize: "10px", marginLeft: "3vw" }}>{grantVested}</div>
                 <div style={{ width: "100px", fontSize: "10px", marginLeft: "5vw" }}>{exercised}</div>
                 <div style={{width: "100px", marginLeft: "3vw", padding: "0%", transform: "translateY(-130%)"}} >
-                    <Doughnut style={{width: "100px", height: "100px"}} data={graphData} options={options} />
+                    <Doughnut style={{width: "80px", height: "100px"}} data={graphData} options={options} />
                 </div>
                 <FontAwesomeIcon style={{margin: "7px"}} icon={faPlus} />
                 <FontAwesomeIcon style={{margin: "7px"}} icon={faMinus} />
