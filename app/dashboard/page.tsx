@@ -62,7 +62,7 @@ const Dashboard = () => {
         </li>
         <li className="card-1" >
           <span className="card-1-title" >Stakeholders</span>
-          <span className="card-1-title-2" >2</span>
+          <span className="card-1-title-2" >1</span>
         </li>
         <li className="card-1" >
           <span className="card-1-title" >Not Diluted Shares</span>

@@ -3,7 +3,19 @@ import React, {useState, useEffect} from 'react';
 import styles from './PageForm.module.css';
 import { useRouter } from 'next/navigation';
 import PlanForm from './pooll'
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
+  border: "0px",
+  borderRadius: "18px",
+  boxShadow: 24,
+};
 const PlansPage = () => {
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,6 +77,11 @@ const PlansPage = () => {
 
     return (
         <div className={styles.plans}>
+          <Modal id="ModalSign" open={isModalOpen} onClose={handleCloseModal}>
+            <Box sx={{ ...style }}>
+              <PlanForm handleClosePopup={handleCloseModal}/>
+            </Box>
+          </Modal>
             <div className={styles.container}>
                 <div className={styles.header}>
                     <h1>Equity plans</h1>
@@ -110,9 +127,6 @@ const PlansPage = () => {
 
                 
             </div>
-
-            {isModalOpen && 
-            <PlanForm handleClosePopup={handleCloseModal}/>}
 
         </div>
     );

@@ -26,6 +26,7 @@ const CompanySettings = () => {
               placeholder="Company Name"
               type="text"
               className="form"
+              value="CoinMarketJob"
             />
           </div>
           <div className="input-group">
@@ -36,6 +37,7 @@ const CompanySettings = () => {
               placeholder=""
               type="text"
               className="form"
+              value="https://coinmarketjob.com"
             />
           </div>
             </ul>
@@ -43,8 +45,8 @@ const CompanySettings = () => {
               <div className="form-2 mb-3">
               <label className="form-label">Operating Country</label>
                 <div>
-                  <select id="country" name="country" className="form-select">
-                    <option value="239">United Arab Emirates</option>
+                  <select id="country" name="country" className="form-select" value="asd">
+                    <option value="asd">Turkey</option>
                     <option value="71">Ethiopia</option>
                     <option value="68">Equatorial Guinea</option>
                     <option value="118">
@@ -489,6 +491,7 @@ const CompanySettings = () => {
               placeholder="Company Name"
               type="email"
               className="form"
+              value="CoinMarketJob"
             />
           </div>
           <div className="input-group-billing">
@@ -498,6 +501,7 @@ const CompanySettings = () => {
               placeholder="billing@company.com"
               type="email"
               className="form"
+              value="billing@coinmarketjob.com"
             />
           </div>
           </ul>
@@ -508,7 +512,8 @@ const CompanySettings = () => {
               name="billingCountry"
               placeholder="Turkey"
               type="email"
-              className="autocomplete-input "
+              className="autocomplete-input"
+              value="billing@coinmarketjob.com"
             />
           </div>
           <div className="input-group-billing">
@@ -518,6 +523,7 @@ const CompanySettings = () => {
               placeholder="Address"
               type="email"
               className="form"
+              value="United Kingdom"
             />
           </div>
           </div>
@@ -539,7 +545,8 @@ const CompanySettings = () => {
               name="registrationNumbertype"
               placeholder="Select"
               type="email"
-              className="form"
+              className="form"              
+              value="11111111111"
             />
           </div>
           <div className="input-group-billing">
@@ -549,7 +556,8 @@ const CompanySettings = () => {
               name="registrationNumber"
               placeholder="0123456789"
               type="email"
-              className="form"
+              className="form"          
+              value="0123456789"
             />
           </div>
           </div>

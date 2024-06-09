@@ -301,8 +301,8 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal, StakeholderId }) 
               <label className="form-label">Country</label>
               <div className="form-group mb-3">
                 <div>
-                  <select id="country" name="country" className="form-select">
-                    <option value="239">United Arab Emirates</option>
+                  <select id="country" name="country" className="form-select" value="asd">
+                    <option value="asd">Turkey</option>
                     <option value="71">Ethiopia</option>
                     <option value="68">Equatorial Guinea</option>
                     <option value="118">
@@ -652,8 +652,8 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal, StakeholderId }) 
               <label className="form-label">Nationality</label>
               <div className="form-group mb-3">
                 <div>
-                  <select id="country" name="country" className="form-select">
-                    <option value="239">United Arab Emirates</option>
+                  <select id="country" name="country" className="form-select" value="asd">
+                    <option value="asd">Turkey</option>
                     <option value="71">Ethiopia</option>
                     <option value="68">Equatorial Guinea</option>
                     <option value="118">
@@ -933,7 +933,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal, StakeholderId }) 
                         />
                       </div>
                       <ul className="list border">
-                        <li data-value="239">United Arab Emirates</li>
+                        <li data-value="239">Turken</li>
                         <li data-value="71">Ethiopia</li>
                         <li data-value="68">Equatorial Guinea</li>
                         <li data-value="118">
@@ -960,7 +960,7 @@ const ModalBox: React.FC<ModalBoxProps> = ({ Type, CloseModal, StakeholderId }) 
           <div className="form-group mb-3">
             <div>
               <select id="name" name="CivilStatus" className="form-select">
-                <option value="1">Select</option>
+                <option value="1">Single</option>
                 <option value="2">Single</option>
                 <option value="3">Married</option>
                 <option value="4">Married with separate property</option>
