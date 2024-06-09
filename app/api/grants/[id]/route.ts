@@ -4,11 +4,11 @@ import { NextResponse } from "next/server";
 export async function DELETE(
    request: Request, {params} : {params: {id : string}}
 ) {
-    const plansId = parseInt(params.id, 10);
+    const id = parseInt(params.id, 10);
 
-    const classes = await prisma.grants.delete({
+    const classes = await prisma.transaction.delete({
         where: {
-            id: plansId
+            id: id
         }
     })
     return NextResponse.json(classes)

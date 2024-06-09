@@ -7,8 +7,9 @@ export async function GET(
 ) {
   const plansId = parseInt(params.id, 10);
 
-  const classes = await prisma.plans.findUnique({
+  const classes = await prisma.plan.findUnique({
     where: { id: plansId },
+    include:  {pool: true, plan: true}
   });
 
   return NextResponse.json(classes);

@@ -6,7 +6,7 @@ export async function DELETE(
 ) {
     const plansId = parseInt(params.id, 10);
 
-    const classes = await prisma.plans.delete({
+    const classes = await prisma.plan.delete({
         where: {
             id: plansId
         }

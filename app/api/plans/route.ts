@@ -7,41 +7,29 @@ export async function POST(request: Request) {
     planName,
     poolId,
     date,
-    pricePerShare,
-    startDate,
-    duration,
-    vestEvery,
-    cliff,
-    goodLeaver,
-    badLeaver,
-    liquidityEvent,
+    grantType,
     Note,
-  } = body; // Modal'dan gelen verileri al
+  } = body;
 
-  // const pricePer = parseFloat(pricePerShare);
-  // const dur = parseInt(duration, 10);
-  // const vest = parseInt(vestEvery, 10);
-  // const clf = parseInt(cliff, 10);
-
-  const plans = await prisma.plans.create({
+  const plans = await prisma.plan.create({
     data: {
       planName: planName,
-      poolId: parseInt(poolId, 10),
+      poolId: poolId,
       date: date,
-      pricePerShare: 1,
-      duration: 1,
-      vestEvery: 1,
-      cliff: 1,
-      goodLeaver: goodLeaver,
-      badLeaver: badLeaver,
-      liquidityEvent: liquidityEvent,
-      Note: Note,
-      purchasePrice: 21,
-      vestingType: "Time",
+      grantType: grantType,
+      note: Note,
     },
   });
 
-  await console.log(plans);
+  const transaction = await prisma.transaction.create({
+    data: {
+      date: date,
+      type: "PlanCreation",
+      planId: plans.id,
+      poolId: poolId,      
+    },
+  });
 
-  return NextResponse.json(plans);
+
+  return NextResponse.json(transaction);
 }

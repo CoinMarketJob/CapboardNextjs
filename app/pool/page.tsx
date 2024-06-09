@@ -19,7 +19,6 @@ const PoolPage = () => {
     const [pools, setPools] = useState<Pool[]>([]); // useState'in tipi belirlendi
 
     const [data, setData] = useState([]);
-    const [amauntData, setAmauntData] = useState([]);
 
     const toggleDropdown = () => {
         setDropdownVisible(!dropdownVisible);
@@ -65,10 +64,6 @@ const PoolPage = () => {
          catch (error){
             console.log(error);
          }
-
-    
-
-
         handleCloseModal();
     };
 
@@ -78,10 +73,6 @@ const PoolPage = () => {
             const response = await fetch('/api/pool/get');
             const data = await response.json();
             setData(data);
-
-            const response2 = await fetch('/api/pool/amount/get');
-            const data2 = await response2.json();
-            setAmauntData(data2);
 
             console.log(data);
           } catch (error) {
@@ -136,29 +127,21 @@ const PoolPage = () => {
                     <div>GRANTED</div>
                     <div>GRANT VESTED</div>
                 </div>
-
-                    {data.map((item,index) => {
-                          const totalGrantsAmount = amauntData
-                            .filter(amount => amount.poolId === item.id)
-                            .reduce((acc, amount) => acc + amount.grantsAmount, 0);
-
-                    return (
-                                     <div key={index} className={styles.tableRow}>
-                                        <div>{item.name}</div>
-                                        <div>{totalGrantsAmount}</div>
-                                        <div>{totalGrantsAmount}</div>
-                                        <div>0</div>
-                                        <div>0</div>
-                                        <button onClick={toggleDropdown} className={styles.dropdownBtn}>⋮</button>
-                                        {dropdownVisible && (
-                                            <div className={styles.dropdownContent}>
-                                                <a onClick={(e) => PoolIncrease(item.id)}>Pool increase</a>
-                                                <a onClick={(e) => Edit(item.id)}>Edit</a>
-                                                <a onClick={(e) => Delete(item.id)}>Delete</a>
-                                            </div>
-                                        )}
-                                 </div>);
-                    })}
+                <div className={styles.tableRow}>
+                    <div>Deneme</div>
+                    <div>10</div>
+                    <div>1</div>
+                    <div>9</div>
+                    <div>0</div>
+                    <button onClick={toggleDropdown} className={styles.dropdownBtn}>⋮</button>
+                    {dropdownVisible && (
+                        <div className={styles.dropdownContent}>
+                            <a>Pool increase</a>
+                            <a>Edit</a>
+                            <a>Delete</a>
+                        </div>
+                    )}
+                </div>
             </div>
             
             {isModalOpen && <PoolFormModal isOpen={isModalOpen} onClose={handleCloseModal} onSave={handleAddPool} />}

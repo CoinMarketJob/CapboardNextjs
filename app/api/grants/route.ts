@@ -4,11 +4,13 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const body = await request.json();
   const {
-    planName,
-    planId,
     stakeholderId,
+    planId,
+    amount,
     date,
-    pricePerShare,
+    expiryDate,
+    purchasePrice,
+    vestingType,
     startDate,
     duration,
     vestEvery,
@@ -16,34 +18,30 @@ export async function POST(request: Request) {
     goodLeaver,
     badLeaver,
     liquidityEvent,
-    Note,
-  } = body; // Modal'dan gelen verileri al
+    note
+  } = body;
 
-  // const pricePer = parseFloat(pricePerShare);
-  // const dur = parseInt(duration, 10);
-  // const vest = parseInt(vestEvery, 10);
-  // const clf = parseInt(cliff, 10);
-
-  const plans = await prisma.grants.create({
+  const transaction = await prisma.transaction.create({
     data: {
-      planName: planName,
-      planId: parseInt(planId, 10),
+      type: "Grant", 
       stakeholderId: parseInt(stakeholderId, 10),
-      date: date,
-      pricePerShare: 1,
-      duration: 1,
-      vestEvery: 1,
-      cliff: 1,
+      planId: parseInt(planId, 10),
+      amount: parseInt(amount, 10),
+      date: new Date(date),
+      expiryDate: new Date(expiryDate),
+      purchasePrice: parseInt(purchasePrice, 10),
+      vestingType: vestingType,
+      startDate: new Date(startDate),
+      duration: parseInt(duration, 10),
+      vestEveryDate: parseInt(vestEvery, 10),
+      cliff: parseInt(cliff, 10),
       goodLeaver: goodLeaver,
       badLeaver: badLeaver,
       liquidityEvent: liquidityEvent,
-      Note: Note,
-      purchasePrice: 21,
-      vestingType: "Time",
+      note: note,    
     },
   });
 
-  await console.log(plans);
 
-  return NextResponse.json(plans);
+  return NextResponse.json(transaction);
 }

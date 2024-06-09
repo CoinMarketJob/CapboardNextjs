@@ -7,9 +7,12 @@ export async function GET(
 ) {
   const poolId = parseInt(params.id, 10);
 
-  const pool = await prisma.pool.findUnique({
-    where: { id: poolId },
+  const transactions = await prisma.transaction.findMany({
+    where: {
+      poolId: poolId
+    },
+    include: {pool : true,}
   });
 
-  return NextResponse.json(pool);
+  return NextResponse.json(transactions);
 }

@@ -39,10 +39,16 @@ model User {
   createdAt     DateTime @default(now())
 }
 model ShareClasses {
-  id            Int    @id @default(autoincrement())
-  name          String
-  nominalPrice Float
-  Note String?
+  id                Int    @id @default(autoincrement())
+  name              String
+  nominalPrice      Float
+  votingRights      Boolean @default(false)
+  dividendRights    Boolean @default(false)
+  antiDilition      String?
+  taxValue          Int?
+  hurdle            Int?
+  issueCertificates Boolean @default(false)
+  Note              String?
 
   pools Pool[]
 }
@@ -54,11 +60,13 @@ model Transaction {
   stakeholderId         Int?
   stakeholder           Stakeholders?    @relation(fields: [stakeholderId], references: [id])
   poolId                Int?             
-  pool                  Pool?            @relation(fields: [poolId], references: [id])
-  amount                Int
+  pool                  Pool?            @relation(fields: [poolId], references: [id], onDelete: Cascade)
+  planId                Int?             
+  plan                  Plan?            @relation(fields: [planId], references: [id], onDelete: Cascade)
+  amount                Int?
   expiryDate            DateTime?
-  purchasePrice         Int
-  vestingType           VestingType     @default(Time)
+  purchasePrice         Int?
+  vestingType           VestingType?     @default(Time)
   startDate             DateTime?
   duration              Int?
   vestEveryDate         Int?
@@ -79,6 +87,19 @@ model Pool {
   note                  String?
 
   transactions Transaction[]
+  plans        Plan[]
+}
+
+model Plan {
+  id                    Int             @id @default(autoincrement())
+  planName              String
+  poolId                Int
+  pool                  Pool           @relation(fields: [poolId], references: [id])
+  date                  DateTime        @default(now())
+  grantType             GrantType       @default(Phantom)
+  note                  String? 
+  
+  transactions Transaction[]
 }
 
 enum TransactionType {
@@ -92,5 +113,12 @@ enum TransactionType {
 enum VestingType {
   Time
   None
+}
+
+enum GrantType {
+  Phantom
+  StockOptions
+  Warrants
+  SARs
 }
 

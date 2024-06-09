@@ -2,7 +2,10 @@ import prisma from "@/libs/prismadb";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-    const grants = await prisma.grants.findMany();
+    const transactions = await prisma.transaction.findMany({
+        where: { type: "Grant", },
+        include: { stakeholder: true, plan: true }
+    });
 
-    return NextResponse.json(grants);
+    return NextResponse.json(transactions);
 }
