@@ -26,6 +26,7 @@
     justify-content: center;
     flex-direction: column;
     display: flex;
+    padding-top: 1vh ;
     padding-left: 1.5vw;
     margin-left: 2vw;
     margin-right: 2vw;
@@ -39,7 +40,7 @@
 .card-3-2{
     flex-direction: column;
     display: flex;
-    padding-top: 2vh;
+    padding-top: 4vh;
     padding-left: 1.5vw;
     margin-left: 2vw;
     margin-right: 2vw;
@@ -57,17 +58,20 @@
 }
 
 .button{
-    width: 10vw;
-    height: 40px;
+    font-size: 14px;
+    font-weight: 400;
+    width: 11vw;
+    height: 45px;
     margin-top: 10px;
-    margin-left: 64.5vw;
+    margin-left: 62.5vw;
+    margin-right: 1vw;
     font-weight: 500;
     color: white;
     background-color: black;
 }
 .delete-toggle-wrapper{
     margin-left: 2vw;
-    margin-top: 7vh;
+    margin-top: 3vh;
     display: flex;
     width: 40px;
     height: 20px;
@@ -95,6 +99,67 @@
     border-color: #AC96CC;
 }
 
-.list-log-dropdown{
+.bg-white{
+    color: white;
+    background-color: white;
+}
+
+.green-text{
+    background-color: #2da38b;
+    color: white;
+    border-radius: 0.2rem;
+    height: 30px;
+    width: 250px;
+    text-align: center;
+    margin-left: 1rem;
+    font-weight: 500;
+}
+
+.log-list-dropdown{
+    margin-top: 1rem;
+    padding: 0%;
+}
+
+.log-list{
+    margin-left: 0%;
+    margin-left: 0%;
+    display: flex;
+    flex-direction: row;
+}
+
+.log-list-item{
+    margin-top: 1rem;
+}
+
+.log-list-item-type{
+    width: 12vw;
+    height: 35px;
+    margin-top: 10px;
+    padding-top: 1.5%;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 0.2rem;
+    color: white;
+    background-color: #00939f !important;
+}
+
+.underline{
+    height: 0.5px;
+    margin-top: 1rem;
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.collaborators-list-bar{
+    margin-top: 5vh;
     margin-left: 2vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.collaborators-list{
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    margin-left: 2vw;
+    display: flex;
+    flex-direction: row;
 }
