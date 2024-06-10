@@ -140,3 +140,146 @@
     outline: 0px;
     padding: 0px;
 }
+
+.container {
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+.main {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+
+
+.title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.description {
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: flex-end;
+}
+
+.filterItem {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    position: relative;
+}
+
+.select,
+.input {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.searchButton {
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+
+}
+
+.searchButton :hover {
+    border: 1px solid black;
+}
+
+.addButton {
+    padding: 0.5rem 1rem;
+    background-color: #000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+}
+
+.transactions {
+    border-top: 1px solid #ddd;
+
+}
+
+
+
+.transaction {
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+    padding-bottom: 2%;
+}
+
+.date {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.details {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid #ddd;
+    padding-top: 2%;
+}
+
+.id {
+    color: #666;
+}
+
+.type {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    color: white;
+    margin-bottom: 1%;
+}
+
+.grant {
+    background-color: #8e44ad;
+}
+
+.pool {
+    background-color: #1abc9c;
+}
+
+.equity {
+    background-color: #e74c3c;
+}
+
+.name {
+    flex: 1;
+}
+
+.info {
+    color: #666;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.editButton,
+.deleteButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+}
