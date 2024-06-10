@@ -75,6 +75,10 @@ model Transaction {
   badLeaver             String?
   liquidityEvent        String?
   note                  String?
+
+  documentId            Int?
+  document              Documents?      @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
 }
 
 
@@ -85,6 +89,8 @@ model Pool {
   shareClassId          Int
   shareClass            ShareClasses    @relation(fields: [shareClassId], references: [id])
   note                  String?
+  documentId            Int?
+  document              Documents?      @relation(fields: [documentId], references: [id], onDelete: Cascade)
 
   transactions Transaction[]
   plans        Plan[]
@@ -94,12 +100,26 @@ model Plan {
   id                    Int             @id @default(autoincrement())
   planName              String
   poolId                Int
-  pool                  Pool           @relation(fields: [poolId], references: [id])
+  pool                  Pool           @relation(fields: [poolId], references: [id], onDelete: Cascade)
   date                  DateTime        @default(now())
   grantType             GrantType       @default(Phantom)
   note                  String? 
+
+  documentId            Int?
+  document              Documents?      @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
   
   transactions Transaction[]
+}
+
+model Documents {
+  id                    Int             @id @default(autoincrement())
+  DocumentName          String
+  Date                  DateTime        @default(now())
+
+  pools Pool[]
+  transactions Transaction[]
+  plans Plan[]
 }
 
 enum TransactionType {

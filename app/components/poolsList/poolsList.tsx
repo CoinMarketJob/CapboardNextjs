@@ -7,6 +7,7 @@ import "./poolsList.css";
 
 
 interface PoolListProps {
+    id: number;
     name: string;
     grant: string;
     grantable: string;
@@ -14,16 +15,21 @@ interface PoolListProps {
     grantVested: string;
     exercised: string;
     transactionData : Array<any>;
+    deleteFunc: void;
+    editFunc: void;
 }
 
 const PoolsListCom: React.FC<PoolListProps> = ({
+    id,
     name,
     grant,
     grantable,
     granted,
     grantVested,
     exercised,
-    transactionData
+    transactionData,
+    deleteFunc,
+    editFunc
 }) => {
 
     const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
@@ -76,10 +82,9 @@ const PoolsListCom: React.FC<PoolListProps> = ({
                 <div style={{width: "100px", marginLeft: "3vw", padding: "0%", transform: "translateY(-130%)"}} >
                     <Doughnut style={{width: "80px", height: "100px"}} data={graphData} options={options} />
                 </div>
-                <FontAwesomeIcon style={{margin: "7px"}} icon={faPlus} />
-                <FontAwesomeIcon style={{margin: "7px"}} icon={faMinus} />
-                <FontAwesomeIcon style={{margin: "7px"}} icon={faPenToSquare} />
-                <FontAwesomeIcon style={{margin: "7px"}} icon={faTrashAlt} />
+                <FontAwesomeIcon style={{margin: "7px"}} icon={faPlus} onClick={() => editFunc("PoolIncrease",id)} />
+                <FontAwesomeIcon style={{margin: "7px"}} icon={faMinus} onClick={() => editFunc("PoolDecrease",id)} />
+                <FontAwesomeIcon style={{margin: "7px"}} icon={faTrashAlt} onClick={() => deleteFunc(id)} />
             </ul>
             {dropdownVisible && (
                 <div className='dropdown' >

@@ -21,17 +21,27 @@ export async function POST(request: Request) {
     note
   } = body;
 
+  const plan = await prisma.plan.findFirst({
+    where: {
+      id: parseInt(planId, 10),
+    },
+    include: {
+      pool: true,
+    },
+  });
+
   const transaction = await prisma.transaction.create({
     data: {
       type: "Grant", 
       stakeholderId: parseInt(stakeholderId, 10),
       planId: parseInt(planId, 10),
+      poolId: plan?.pool.id,
       amount: parseInt(amount, 10),
       date: new Date(date),
       expiryDate: new Date(expiryDate),
       purchasePrice: parseInt(purchasePrice, 10),
       vestingType: vestingType,
-      startDate: new Date(startDate),
+      startDate: startDate != "" ? new Date(startDate) : null,
       duration: parseInt(duration, 10),
       vestEveryDate: parseInt(vestEvery, 10),
       cliff: parseInt(cliff, 10),

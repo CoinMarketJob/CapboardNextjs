@@ -32,6 +32,8 @@ const PoolPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [pools, setPools] = useState<Pool[]>([]);
     const [data, setData] = useState<any[]>([]);
+    const [editType, setEdit] = useState("");
+    const [editId, setEditId] = useState();
 
     const toggleDropdown = (id: number) => {
         setDropdownVisible(dropdownVisible === id ? null : id);
@@ -78,6 +80,12 @@ const PoolPage = () => {
         handleCloseModal();
     };
 
+    const Edit = (type: string , id: number) => {
+        setEdit(type);
+        setEditId(id);
+        setIsModalOpen(true);
+    }
+
     useEffect(() => {
         async function fetchData() {
             try {
@@ -93,15 +101,6 @@ const PoolPage = () => {
 
         fetchData();
     }, []);
-
-    const Edit = (id: number) => {
-        // Edit functionality
-    };
-
-    const PoolIncrease = (id: number) => {
-        handleCreatePool();
-        toggleDropdown(id);
-    };
 
     const Delete = (id: number) => {
         async function deletePool(id: number) {
@@ -171,7 +170,7 @@ const PoolPage = () => {
                         <ul key={index} className={styles.poolsList}>
                             <div className={styles.underline} ></div>
                             <ul className="pools-row">
-                                <PoolsListCom name={item.poolName} grant={size} grantable={grantable} granted={granted} grantVested={0} exercised={0} transactionData={item.transactions} />
+                                <PoolsListCom id={item.id} name={item.poolName} grant={size} grantable={grantable} granted={granted} grantVested={0} exercised={0} transactionData={item.transactions} deleteFunc={Delete} editFunc={Edit} />
                             </ul>
                         </ul>
                     );
@@ -179,7 +178,7 @@ const PoolPage = () => {
                 </div>                
             </div>
 
-            {isModalOpen && <PoolFormModal isOpen={isModalOpen} onClose={handleCloseModal} onSave={handleAddPool} />}
+            {isModalOpen && <PoolFormModal isOpen={isModalOpen} onClose={handleCloseModal} onSave={handleAddPool} type={editType} editId={editId} />}
         </div>
     );
 };

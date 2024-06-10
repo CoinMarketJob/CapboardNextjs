@@ -8,6 +8,8 @@ import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
     isOpen: boolean;
+    type: string;
+    editId: number;
     onClose: () => void;
     onSave: (pool: PoolState) => Promise<void>;
 }
@@ -22,7 +24,7 @@ interface PoolState {
     documents: File | null;
 }
 
-const PoolFormModal: React.FC<Props> = ({ isOpen, onClose, onSave }) => {
+const PoolFormModal: React.FC<Props> = ({ isOpen, onClose, onSave, type, editId }) => {
     const router = useRouter();
     const [ShareClass, setShareClass] = useState([]);
 
@@ -74,7 +76,35 @@ const PoolFormModal: React.FC<Props> = ({ isOpen, onClose, onSave }) => {
     };
 
     const handleSave = async () => {
-        await onSave(pool);
+        if(type == "PoolIncrease" || type  == "PoolDecrease") {
+            const submitData = {
+                grantsAmount: pool.amount,
+                date: pool.date,
+                Type: type,
+                poolId: editId,
+                note: pool.internalNote
+            };
+    
+            try {
+                const response = await fetch('/api/pool/edit', {
+                    method: 'POST',
+                    body: JSON.stringify(submitData),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+    
+                if (response.ok) {
+                    window.location.href = "/pool";
+                } else {
+                    console.log("Failed");
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }else{
+            await onSave(pool);
+        }
         router.push('/pool'); // Yönlendirmek istediğiniz sayfanın yolunu belirtin
     };
 
@@ -96,7 +126,7 @@ const PoolFormModal: React.FC<Props> = ({ isOpen, onClose, onSave }) => {
                                 value={pool.poolName}
                                 onChange={handleInputChange}
                             />
-                        </div>
+                        </div>                        
                         <div className="formGroupPool amount">
                             <label htmlFor="amount">Amount for grants</label>
                             <div className="amountWrapper">

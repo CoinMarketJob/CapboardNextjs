@@ -23,6 +23,7 @@ const PlanList: React.FC<PlanListProps> = ({ planData }) => {
         {planData.map((item,index) => {
             
             const [isOpen, setIsOpen] = useState(true);
+            const [dropdownOpen, setDropdownOpen] = useState(false);
             const transactions = item.transactions.filter(x=> x.type == "Grant");
             const granted = transactions.reduce((acc,transaction) => acc + transaction.amount, 0);
             const grantTransaction = transactions.find(x => x.type === "Grant");
@@ -33,6 +34,9 @@ const PlanList: React.FC<PlanListProps> = ({ planData }) => {
 
             const ChangeVisibilityMenu = () => {
                 setIsOpen(!isOpen);
+              };
+              const ChangeVisibilityDropdown = () => {
+                setIsOpen(!dropdownOpen);
               };
 
             return (
@@ -53,11 +57,27 @@ const PlanList: React.FC<PlanListProps> = ({ planData }) => {
                             </AnimatePresence>
                         </div>
                         <div className="NameHeader" onClick={ChangeVisibilityMenu}>{item.planName} - {item.grantType}</div>
-                        <div className="MenuList">
+                        <div className="MenuList" onClick={ChangeVisibilityDropdown}>
                             <FontAwesomeIcon
                                 icon={faEllipsisVertical}
                                 className="HeaderArrow"
                                 />
+
+
+                            <AnimatePresence>
+                                    {dropdownOpen && (
+                                    <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: "auto", opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                                    >
+                                        <ul>
+                                            <li>Delete</li>    
+                                        </ul>                        
+                                    </motion.div>
+                                    )}
+                            </AnimatePresence>
                         </div>
                     </div>
                     <AnimatePresence>
