@@ -1,0 +1,170 @@
+.container {
+    width: 100%;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+.main {
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.dropdown select,
+.dateInput input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.buttons button {
+    margin-left: 24rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.select select {
+    padding: 0.7rem 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.statItem {
+    flex: 1;
+    padding: 1.5rem;
+
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    margin-left: 3%;
+    margin-right: 2%;
+}
+
+.statItem div:first-child {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.statItem div:nth-child(2) {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.statItem div:nth-child(3) {
+    font-size: 0.875rem;
+    color: #999;
+}
+
+.tableHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.tableHeader h3 {
+    font-size: 24px;
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+}
+
+.searchInput {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 1rem;
+}
+
+.toggleContainer {
+    display: flex;
+    align-items: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:checked+.slider:before {
+    transform: translateX(14px);
+}
+
+.table {
+    border-top: 1px solid #ddd;
+}
+
+.tableRow,
+.tableRoww {
+    display: flex;
+    padding: 1rem 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.tableCell {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.tableCell:first-child {
+    text-align: left;
+}
