@@ -1,0 +1,15 @@
+.modal-button{
+    height: 150px;
+    justify-content: center;
+}
+
+.title{
+    text-align: center;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.span{
+    text-align: center;
+    font-size: 13px;
+}
