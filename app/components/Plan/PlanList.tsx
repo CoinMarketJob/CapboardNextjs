@@ -117,11 +117,11 @@ const PlanList: React.FC<PlanListProps> = ({ planData }) => {
                                                 <td className="align-middle"><span>{cliff}</span></td>
                                                 <td className="align-middle text-end">
                                                     <a className="text-primary text-xs text-uppercase me-2">
-                                                        <span className="me-2">View grants</span>
+                                                        <span className="me-2 black-text" >View grants</span>
                                                     </a>
                                                 </td>
                                                 <td className="align-middle text-end">
-                                                    <a className="text-primary text-xs text-uppercase text-bold">View transactions</a>
+                                                    <a className="text-primary text-xs text-uppercase text-bold black-text me-2">View transactions</a>
                                                 </td>
                                             </tr>
                                         </tbody>

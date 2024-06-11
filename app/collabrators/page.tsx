@@ -17,29 +17,11 @@ const Collaborators = () => {
     const collabrators = [
         {
             name: 1,
-            accessLevel: "Bir",
-            accepted: "BİR",
-            Email: "sqsrpfxnlqaikbxeld@cazlq.com",
-        },
-        {
-            name: 2,
-            accessLevel: "İki",
-            accepted: "İKİ",
-            Email: "sqsrpfxnlqaikbxeld@cazlq.com",
-        },
-        {
-            name: 3,
-            accessLevel: "Üç",
-            accepted: "ÜÇ",
-            Email: "sqsrpfxnlqaikbxeld@cazlq.com",
-        },
-        {
-            name: 4,
-            accessLevel: "Dört",
-            accepted: "DÖRT",
-            Email: "sqsrpfxnlqaikbxeld@cazlq.com",
-        },
-    ];
+            accessLevel: "Full",
+            accepted: "2024-06-10",
+            Email: "merenkirkas@protonmail.com",
+        }
+    ]
 
     const collaboratorsLogs = [
         { name: "VIEW_STAKEHOLDERS_LIST", type: "EDIT", collaborator: "1" },
@@ -136,7 +118,7 @@ const Collaborators = () => {
                         2024-06-07
                     </span>
                     <div className="green-text">
-                        iglschzgrutlunmjlh@cazlg.com
+                        merenkirkas@protonmail.com
                     </div>
                 </div>
                 {isLogDropdownOpen && (

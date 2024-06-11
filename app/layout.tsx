@@ -49,15 +49,13 @@ export default function RootLayout({
     { name: "Transaction", icon: faRightLeft, href: "/transaction" },
     { name: "Cap Table", icon: faChartPie, href: "/captable" },
     { name: "Share Classes", icon: faFolderOpen, href: "/shareclasses" },
-    { name: "Simulations", icon: faChartLine, href: "/simulations" },
   ];
 
   let DropListEquityPlans: Array<DropDownList> = [
     { name: "Pools", icon: faWaterLadder, href: "/pool" },
     { name: "Plans", icon: faMap, href: "/plans" },
     { name: "Grants", icon: faHandHoldingHeart, href: "/grants" },
-    { name: "Exercising", icon: faMoneyCheck, href: "/exercising" },
-  ];
+    ];
 
   // let DropListInvestorRelations: Array<DropDownList> = [
   //   { name: "Updates", icon: faEnvelope, href: "/updates" },
@@ -85,7 +83,7 @@ export default function RootLayout({
             <Navlink name="Documents" href="/documents" icon={faFileLines} />
             <NavlinkDropdown name="Company" icon={faBuilding} Navlinks={DropListCompany} />
             <Navlink name="Portfolio" href="/portfolio" icon={faBriefcase} />
-            <Navlink name="Account Settings" href="/accountsettings" icon={faGear} />
+            <Navlink name="Account Settings" href="/subscription" icon={faGear} />
             <Navlink name="Logout" href="/logout" icon={faRightFromBracket} />
           </ul>
         </aside>

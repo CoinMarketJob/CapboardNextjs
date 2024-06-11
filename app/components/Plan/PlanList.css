@@ -11,12 +11,18 @@
     display: flex;
     justify-content: flex-end;
 }
-
+.text-primary{
+    text-decoration: none;
+    color: black;
+   
+}
 .HeaderArrow{
     margin-left: 10px;
     margin-right: 10px;    
 }
-
+.black-text{
+    color: black !important;
+}
 .NameHeader{
     width: 500px;
 }

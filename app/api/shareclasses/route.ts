@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   const auth = await prisma.shareClasses.create({
     data: {
         name: name,
-        nominalPrice: nominalPrice,
+        nominalPrice: parseFloat(nominalPrice),
         Note: Note
     }
   });

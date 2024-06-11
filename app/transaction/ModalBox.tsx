@@ -782,8 +782,6 @@ const SingleGrant = () => <div>Single Grant Component</div>;
 
 // Map modal types to their respective components
 const modalComponents: { [key: string]: React.FC } = {
-    'Financing Round': FinancingRound,
-    'Valuation': Valuation,
     'Stock Split': StockSplit,
     'Convertible Loan': ConvertibleLoan,
     'Issue Shares': IssueShares,
@@ -828,14 +826,12 @@ const ModalBoxT: React.FC<{ CloseModal: () => void }> = ({ CloseModal }) => {
             {}
             <div style={{ display: 'flex', flexDirection: 'row', padding: '0%' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: '0%' }}>
-                    <ModalButton Title="Financing Round" Span="Add a capital increase with valuation, shares, and pools. You can add or edit individual transactions later." onClick={() => handleOpenModal('Financing Round')} />
-                    <ModalButton Title="Valuation" Span="Update your company’s post-money valuation." onClick={() => handleOpenModal('Valuation')} />
                     <ModalButton Title="Stock Split" Span="" onClick={() => handleOpenModal('Stock Split')} />
+                    <ModalButton Title="Decrease Shares" Span="Reduce the amount of shares that a stakeholder has" onClick={() => handleOpenModal('Decrease Shares')} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: '0%' }}>
                     <ModalButton Title="Convertible Loan" Span="Add a convertible loan/SAFE with optional parameters like a cap" onClick={() => handleOpenModal('Convertible Loan')} />
                     <ModalButton Title="Issue Shares" Span="Issue new shares and assign them to a stakeholder." onClick={() => handleOpenModal('Issue Shares')} />
-                    <ModalButton Title="Decrease Shares" Span="Reduce the amount of shares that a stakeholder has" onClick={() => handleOpenModal('Decrease Shares')} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: '0%', marginRight: '1rem' }}>
                     <ModalButton Title="Secondary" Span="Add a share transfer between two stakeholders" onClick={() => handleOpenModal('Secondary')} />

@@ -51,6 +51,7 @@ model ShareClasses {
   Note              String?
 
   pools Pool[]
+  transaction Transaction[]
 }
 
 model Transaction {
@@ -63,6 +64,19 @@ model Transaction {
   pool                  Pool?            @relation(fields: [poolId], references: [id], onDelete: Cascade)
   planId                Int?             
   plan                  Plan?            @relation(fields: [planId], references: [id], onDelete: Cascade)
+  shareClassId          Int?
+  shareClass            ShareClasses?      @relation(fields: [shareClassId], references: [id], onDelete: Cascade)
+  transferPrice         Int?
+  issuePrice            Int?
+  totalInvestment       Int?
+  retention             Int?
+  totalPayment          Int?
+  floor                 Int?
+  cap                   Int?
+  discount              Int?
+  maturityDate          DateTime?
+  interestStartDate     DateTime?
+  nonCompounding        Int?
   amount                Int?
   expiryDate            DateTime?
   purchasePrice         Int?
@@ -122,7 +136,41 @@ model Documents {
   plans Plan[]
 }
 
+model CompanyBasicInfo {
+  id                    Int             @id @default(autoincrement())
+  logoURL               String
+  name                  String
+  country               String
+  currency              String
+  url                   String
+  showShareNumber       Boolean
+  decimalVesting        Boolean
+  isAnSpv               Boolean
+}
+
+model BillingInfo {
+  id                      Int             @id @default(autoincrement())
+  fullCompanyName         String
+  billingContract         String
+  billingCountry          String
+  billingAddress          String
+  PostalCode              String
+  vatRegistirationNumber  VatType
+  TaxNumber               String
+}
+
+enum VatType {
+  TurkishTax
+  EuropenVat
+}
+
 enum TransactionType {
+  StockSplit
+  ConvertibleLoan
+  Secondary
+  DecreaseShares
+  IssueShares
+  Payout
   Grant
   PoolCreation
   PlanCreation

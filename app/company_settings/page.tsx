@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, use, useState } from 'react';
+import React, { ChangeEvent, use, useState, useRef  } from 'react';
 import "./company_settings.css";
 import { transform } from 'next/dist/build/swc';
 import { motion } from 'framer-motion';
@@ -12,12 +12,64 @@ const CompanySettings = () => {
   const [allowdecimalVesting, setAllowDecimalVesting] = useState<boolean>(true);
   const [isSPV, setIsSPV] = useState<boolean>(true);
 
+  const [name, setName] = useState('');
+  const [url, setUrl] = useState('');
+  const [country, setCountry] = useState('');
+  const [currency, setCurrency] = useState('');
+  const [logoUrl, setLogoUrl] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleLogoClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+  
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        const response = await fetch("/api/CompanyLogo", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setLogoUrl(data.url);
+        } else {
+          console.error("Error uploading logo:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error uploading logo:", error);
+      }
+    }
+  };
+
+ 
   return (
     <div className="scrollable-container">
       <div className="card-1">
         <h4 className="titles">Basic Info</h4>
         <div style={{height: "auto"}} className="card-item">
-          <div className='Logo' >Logo</div>
+        <div>
+          <input
+            type="file"
+            ref={fileInputRef}
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+          />
+          <img
+            src={logoUrl || "/placeholder-logo.png"} // Eğer logoUrl yoksa, placeholder göster
+            alt="Logo"
+            onClick={handleLogoClick}
+            style={{ cursor: "pointer" }} // Tıklanabilir olduğunu gösteren imleç
+          />
+        </div>
           <ul> <div className="input-group">
             <label>Name</label>
             <input
@@ -26,7 +78,7 @@ const CompanySettings = () => {
               placeholder="Company Name"
               type="text"
               className="form"
-              value="CoinMarketJob"
+              value={name} onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="input-group">
@@ -37,7 +89,7 @@ const CompanySettings = () => {
               placeholder=""
               type="text"
               className="form"
-              value="https://coinmarketjob.com"
+              value={url} onChange={(e) => setUrl(e.target.value)}
             />
           </div>
             </ul>
@@ -45,7 +97,8 @@ const CompanySettings = () => {
               <div className="form-2 mb-3">
               <label className="form-label">Operating Country</label>
                 <div>
-                  <select id="country" name="country" className="form-select" value="asd">
+                  <select id="country" name="country" className="form-select" 
+                    value={country} onChange={(e) => setCountry(e.target.value)}>
                     <option value="asd">Turkey</option>
                     <option value="71">Ethiopia</option>
                     <option value="68">Equatorial Guinea</option>
@@ -348,7 +401,7 @@ const CompanySettings = () => {
               <div className="form-2 mb-3">
               <label className="form-label">Currency</label>
                 <div>
-                <select id="currency" name="currency" className="form-select">
+                <select id="currency" name="currency" className="form-select" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             <option value="USD">USD</option>
             <option value="EUR">EUR</option>
             <option value="JPY">JPY</option>
@@ -546,7 +599,7 @@ const CompanySettings = () => {
               placeholder="Select"
               type="email"
               className="form"              
-              value="11111111111"
+              value="Turkish Tax Identification Number"
             />
           </div>
           <div className="input-group-billing">
