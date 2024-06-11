@@ -10,18 +10,20 @@ export async function POST(request: Request) {
     currency,
     url,
     showShareNumber,
+    decimalVesting,
     isAnSpv
   } = body; // Modal'dan gelen verileri al
 
-  const stakeholder = await prisma.companybasicinfo.update({
+  const stakeholder = await prisma.companyBasicInfo.update({
     where: { id: 1 },
     data: {
-        logoUrl,
+        logoURL: logoUrl,
         name,
         country,
         currency,
         url,
         showShareNumber,
+        decimalVesting,
         isAnSpv
     },
   });

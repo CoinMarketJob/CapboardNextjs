@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, use, useState, useRef  } from 'react';
+import React, { ChangeEvent, use, useState, useRef, useEffect  } from 'react';
 import "./company_settings.css";
 import { transform } from 'next/dist/build/swc';
 import { motion } from 'framer-motion';
@@ -19,36 +19,164 @@ const CompanySettings = () => {
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const [fullCompanyName, setFullCompanyName] = useState('');
+  const [billingContract, setBillingContract] = useState('');
+  const [billingCountry, setBillingCountry] = useState('');
+  const [billingAddress, setBillingAddress] = useState('');
+  const [PostalCode, setPostalCode] = useState('');
+  const [vatRegistirationNumber, setVatRegistirationNumber] = useState('');
+  const [TaxNumber, setTaxNumber] = useState('');
+
+
+
   const handleLogoClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
   };
-  
+
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
 
-      const formData = new FormData();
-      formData.append("file", file);
+      // Blob'ı ArrayBuffer'a dönüştür
+      const reader = new FileReader();
+      reader.onload = async function(event) {
+        const arrayBuffer = event.target?.result as ArrayBuffer;
+        const buffer = Buffer.from(arrayBuffer); // ArrayBuffer'ı Buffer'a dönüştür
 
-      try {
-        const response = await fetch("/api/CompanyLogo", {
-          method: "POST",
-          body: formData,
-        });
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("Content-Type", file.type); 
 
-        if (response.ok) {
-          const data = await response.json();
-          setLogoUrl(data.url);
-        } else {
-          console.error("Error uploading logo:", response.statusText);
+        try {
+          const response = await fetch("/api/CompanyLogo", {
+            method: "POST",
+            body: formData,
+          });
+  
+          if (response.ok) {
+            const data = await response.json();
+            setLogoUrl(data.url);
+            console.log("Logo uploaded successfully:", data.url);
+          } else {
+            console.error("Error uploading logo:", response.statusText);
+          }
+        } catch (error) {
+          console.error("Error uploading logo:", error);
         }
-      } catch (error) {
-        console.error("Error uploading logo:", error);
-      }
+      };
+      reader.readAsArrayBuffer(file);
     }
   };
+  const BasicInfoSave = () => {
+
+    async function save() {
+      const data = {
+        logoUrl: logoUrl,
+        name: name,
+        country:country,
+        currency:currency,
+        url:url,
+        showShareNumber:selectiveButtonShareNum,
+        decimalVesting:allowdecimalVesting,
+        isAnSpv:isSPV,
+      };
+      
+      try {
+        const response = await fetch('/api/CompanySettings',{
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'content-type': 'application/json'
+          }
+        })
+        console.log(response);
+    
+        if(response.ok){
+          window.location.href="/company_settings";
+        }else{
+          console.log("Failed");
+        }
+       }
+       catch (error){
+          console.log(error);
+       }
+  
+    }
+
+    save();
+  }
+
+  const SaveBill = () => {
+
+    async function save() {
+      const data = {        
+        fullCompanyName,
+        billingContract,
+        billingCountry,
+        billingAddress,
+        PostalCode,              
+        vatRegistirationNumber,
+        TaxNumber
+      };
+      
+      try {
+        const response = await fetch('/api/BillingInfo',{
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'content-type': 'application/json'
+          }
+        })
+        console.log(response);
+    
+        if(response.ok){
+          window.location.href="/company_settings";
+        }else{
+          console.log("Failed");
+        }
+       }
+       catch (error){
+          console.log(error);
+       }
+  
+    }
+
+    save();
+  }
+
+  useEffect(() => {
+    async function fetchData() {
+        try {
+            const response = await fetch('/api/CompanySettings/get');
+            const data = await response.json();
+            setName(data.name);
+            setUrl(data.url);
+            setCountry(data.country);
+            setCurrency(data.currency);
+            setLogoUrl(data.logoURL);
+            setSelectiveButtonShareNum(data.showShareNumber);
+            setAllowDecimalVesting(data.decimalVesting);
+            setIsSPV(data.isAnSpv);
+
+            const response2 = await fetch('/api/BillingInfo/get');
+            const data2 = await response2.json();
+            setFullCompanyName(data2.fullCompanyName);
+            setBillingContract(data2.billingContract);
+            setBillingCountry(data2.billingCountry);
+            setBillingAddress(data2.billingAddress);
+            setPostalCode(data2.PostalCode);
+            setVatRegistirationNumber(data2.vatRegistirationNumber);
+            setTaxNumber(data2.TaxNumber);
+
+        } catch (error) {
+            console.error('Veri getirme hatası:', error);
+        }
+    }
+
+    fetchData();
+}, []);
 
  
   return (
@@ -67,7 +195,8 @@ const CompanySettings = () => {
             src={logoUrl || "/placeholder-logo.png"} // Eğer logoUrl yoksa, placeholder göster
             alt="Logo"
             onClick={handleLogoClick}
-            style={{ cursor: "pointer" }} // Tıklanabilir olduğunu gösteren imleç
+            style={{ cursor: "pointer" }}
+            className="Logo" // Tıklanabilir olduğunu gösteren imleç
           />
         </div>
           <ul> <div className="input-group">
@@ -510,7 +639,7 @@ const CompanySettings = () => {
                 isSPV ? "selective-button-2" : "selective-button-1"} p-[1px]`}>YES</button>
                 </div>
                 </ul>
-                <button className='button'>SAVE</button>
+                <button className='button' onClick={BasicInfoSave}>SAVE</button>
                 </div>
       <div className="card-2">
         <h4 className="titles">
@@ -544,7 +673,7 @@ const CompanySettings = () => {
               placeholder="Company Name"
               type="email"
               className="form"
-              value="CoinMarketJob"
+              value={fullCompanyName} onChange={(e) => setFullCompanyName(e.target.value)}
             />
           </div>
           <div className="input-group-billing">
@@ -554,7 +683,7 @@ const CompanySettings = () => {
               placeholder="billing@company.com"
               type="email"
               className="form"
-              value="billing@coinmarketjob.com"
+              value={billingContract} onChange={(e) => setBillingContract(e.target.value)}
             />
           </div>
           </ul>
@@ -566,7 +695,7 @@ const CompanySettings = () => {
               placeholder="Turkey"
               type="email"
               className="autocomplete-input"
-              value="billing@coinmarketjob.com"
+              value={billingCountry} onChange={(e) => setBillingCountry(e.target.value)}
             />
           </div>
           <div className="input-group-billing">
@@ -576,7 +705,7 @@ const CompanySettings = () => {
               placeholder="Address"
               type="email"
               className="form"
-              value="United Kingdom"
+              value={billingAddress} onChange={(e) => setBillingAddress(e.target.value)}
             />
           </div>
           </div>
@@ -588,19 +717,21 @@ const CompanySettings = () => {
               placeholder="08223"
               type="email"
               className="form"
+              value={PostalCode} onChange={(e) => setPostalCode(e.target.value)}
             />
           </div>
           </div>
         <div className="card-item">
           <div className="input-group-billing">
           <label className="form-label">VAT registration number </label>
-            <input
+            <select
               name="registrationNumbertype"
-              placeholder="Select"
-              type="email"
               className="form"              
-              value="Turkish Tax Identification Number"
-            />
+              value={vatRegistirationNumber} onChange={(e) => setVatRegistirationNumber(e.target.value)}
+            >
+              <option value='TurkishTax'>Turkish Tax Identification Number</option>
+              <option value='EuropenVat'>Europen VAT Number</option>
+            </select>
           </div>
           <div className="input-group-billing">
           <label className="form-label"> </label>
@@ -609,13 +740,13 @@ const CompanySettings = () => {
               name="registrationNumber"
               placeholder="0123456789"
               type="email"
-              className="form"          
-              value="0123456789"
+              className="form"        
+              value={TaxNumber} onChange={(e) => setTaxNumber(e.target.value)}
             />
           </div>
           </div>
           <ul style={{display: "flex", flexDirection: "row" , padding: "0%", margin: "0%"}} className='buttons-row-card-3' >
-            <button className='button'>SAVE</button>
+            <button className='button' onClick={SaveBill}>SAVE</button>
             <button className='button-Invoices'>Invoices</button>
             </ul>
       </div>
