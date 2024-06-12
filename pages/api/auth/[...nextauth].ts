@@ -1,22 +1,19 @@
 import NextAuth, { AuthOptions } from "next-auth"
-// import { PrismaAdapter } from "@auth/prisma-adapter"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client"
 import prisma from '@/libs/prismadb'
-import CredentialsProvider from "next-auth/providers/credentials";
+import Credentials from "next-auth/providers/credentials"
 import bcrypt from 'bcrypt'
 
 
 export const authOptions : AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    CredentialsProvider({
-      name: "credentials",
+    Credentials({
       credentials: {
         email: { label: "email", type: "text"},
         password: {  label: "password", type: "password" }
       },
-      async authorize(credentials, req) {
+      authorize: async (credentials) => {
         if(!credentials?.email || !credentials.password){
           throw new Error('Gecersiz mail ya da parola...')
         }
@@ -37,9 +34,8 @@ export const authOptions : AuthOptions = {
         }
 
         return user
-
-      }
-    })
+      },
+    }),
     
   ],
   pages : {

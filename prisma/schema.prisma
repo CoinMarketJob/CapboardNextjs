@@ -37,6 +37,8 @@ model User {
   email         String?   @unique
   hashedPassword String?
   createdAt     DateTime @default(now())
+
+  logRecord LogRecord[]
 }
 model ShareClasses {
   id                Int    @id @default(autoincrement())
@@ -157,6 +159,36 @@ model BillingInfo {
   PostalCode              String
   vatRegistirationNumber  VatType
   TaxNumber               String
+}
+
+model LogRecord {
+  id                      Int             @id @default(autoincrement())
+  userId                  Int
+  user                    User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type                    LogType
+  page                    LogPage
+  date                    DateTime        @default(now())
+}
+
+enum LogType {
+  View
+  Edit
+  Delete
+  Create
+}
+
+enum LogPage{
+  Stakeholders
+  Transactions
+  Captable
+  ShareClasses
+  Pools
+  Plans
+  Grants
+  Documents
+  Settings
+  BillingInfo
+  Collabarators  
 }
 
 enum VatType {

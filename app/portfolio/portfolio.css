@@ -65,6 +65,11 @@
     border: 1px solid rgba(0, 0, 0, 0.208);
 }
 
+.Logo{
+    width: 60px;
+    height: 60px;
+}
+
 .underline{
     height: 1px;
     background: linear-gradient(to right, rgb(255, 255, 255), #cdc5c5, rgb(255, 255, 255));

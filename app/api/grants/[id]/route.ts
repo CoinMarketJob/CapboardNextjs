@@ -1,3 +1,4 @@
+import { getCurrentUser } from '@/app/actions/getCurrentUser';
 import prisma from '@/libs/prismadb'
 import { NextResponse } from "next/server";
 
@@ -11,5 +12,15 @@ export async function DELETE(
             id: id
         }
     })
+
+    const currentUser = await getCurrentUser();
+
+    const log = await prisma.logRecord.create({
+      data: {
+        userId: currentUser?.id,
+        type: "Delete",
+        page: "Grants"
+      }
+    });
     return NextResponse.json(classes)
 }

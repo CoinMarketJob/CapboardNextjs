@@ -1,3 +1,4 @@
+import { getCurrentUser } from "@/app/actions/getCurrentUser";
 import prisma from "@/libs/prismadb";
 import { NextResponse } from "next/server";
 
@@ -47,6 +48,16 @@ export async function POST(request: Request) {
       customDetail,
       notes,
     },
+  });
+
+  const currentUser = await getCurrentUser();
+
+  const log = await prisma.logRecord.create({
+    data: {
+      userId: currentUser?.id,
+      type: "Edit",
+      page: "Stakeholders"
+    }
   });
 
   return NextResponse.json(stakeholder);

@@ -11,5 +11,15 @@ export async function DELETE(
             id: plansId
         }
     })
+
+    const currentUser = await getCurrentUser();
+
+    const log = await prisma.logRecord.create({
+      data: {
+        userId: currentUser?.id,
+        type: "Delete",
+        page: "Plans"
+      }
+    });
     return NextResponse.json(classes)
 }

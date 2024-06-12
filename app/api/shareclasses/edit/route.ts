@@ -1,3 +1,4 @@
+import { getCurrentUser } from "@/app/actions/getCurrentUser";
 import prisma from "@/libs/prismadb";
 import { NextResponse } from "next/server";
 
@@ -17,6 +18,16 @@ export async function POST(request: Request) {
         nominalPrice: nominalPrice,
         Note: Note
     },
+  });
+
+  const currentUser = await getCurrentUser();
+
+  const log = await prisma.logRecord.create({
+    data: {
+      userId: currentUser?.id,
+      type: "Edit",
+      page: "ShareClasses"
+    }
   });
 
   return NextResponse.json(classes);
