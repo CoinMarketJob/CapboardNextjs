@@ -3,13 +3,29 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import styles from './share.module.css';
 
+type ShareClass = {
+  name: string;
+  nominalPrice: number;
+  votingRights: boolean;
+  dividendRights: boolean;
+  liquidationPreference: boolean;
+  antiDilution: boolean;
+  hurdle: boolean;
+  note: string;
+};
+
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isNotesOpen, setIsNotesOpen] = useState(false);
   const [name, setName] = useState("");
   const [nominalPrice, setNominalPrice] = useState("");
   const [note, setNote] = useState("");
-  const [shareClasses, setShareClasses] = useState([]);
+  const [shareClasses, setShareClasses] = useState<ShareClass[]>([]);
+  const [votingRights, setVotingRights] = useState(false);
+  const [dividendRights, setDividendRights] = useState(false);
+  const [liquidationPreference, setLiquidationPreference] = useState(false);
+  const [antiDilution, setAntiDilution] = useState(false);
+  const [hurdle, setHurdle] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -24,53 +40,73 @@ export default function Home() {
   };
 
   const Save = () => {
-
     async function saveShareClasses() {
-      const submitData = {      
+      const submitData: ShareClass = {
         name,
-        nominalPrice,
-        Note: note
-      }
-        console.log(submitData);
+        nominalPrice: parseFloat(nominalPrice),
+        note,
+        votingRights,
+        dividendRights,
+        liquidationPreference,
+        antiDilution,
+        hurdle
+      };
+      console.log(submitData);
       try {
-        const response = await fetch('/api/shareclasses',{
+        const response = await fetch('/api/shareclasses', {
           method: 'POST',
           body: JSON.stringify(submitData),
           headers: {
-            'content-type': 'application/json'
+            'Content-Type': 'application/json'
           }
-        })
+        });
         console.log(response);
-  
-        if(response.ok){
-          window.location.href="/shareclasses";
-        }else{
+
+        if (response.ok) {
+          window.location.href = "/shareclasses";
+        } else {
           console.log("Failed");
         }
+      } catch (error) {
+        console.log(error);
       }
-      catch (error){
-          console.log(error);
-      }  
     }
     saveShareClasses();
-  }
+  };
 
   useEffect(() => {
     async function fetchData() {
-        try {
-            const response = await fetch('/api/shareclasses/get');
-            const data = await response.json();
-            setShareClasses(data);
-            console.log(data);
+      try {
+        const response = await fetch('/api/shareclasses/get');
+        const data: ShareClass[] = await response.json();
+        setShareClasses(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  }, []);
 
+  const Delete = (id: number) => {
+    async function deleteShareClasses(id: number) {
+        try {
+            const response = await fetch(`/api/shareclasses/${id}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                window.location.href = "/shareclasses";
+            } else {
+                console.error('Silme hatası:', response.statusText);
+            }
         } catch (error) {
-            console.error('Veri getirme hatası:', error);
+            console.error('Hata:', error);
         }
     }
 
-    fetchData();
-}, []);
-
+    deleteShareClasses(id);
+};
 
   return (
     <div className={styles.container}>
@@ -94,28 +130,24 @@ export default function Home() {
             <div className={styles.tableCell}></div>
           </div>
 
-{shareClasses.map((item,index) => {
-
-  return(
-          <div key={index} className={styles.tableRow}>
-            <div className={styles.tableCell}>{item.name}</div>
-            <div className={styles.tableCell}>
-              <div>✓ voting</div>
-              <div>✓ dividend</div>
-              <div>✗ no liquidation preference</div>
-              <div>✗ no anti-dilution</div>
-              <div>✗ no hurdle</div>
+          {shareClasses.map((item, index) => (
+            <div key={index} className={styles.tableRow}>
+              <div className={styles.tableCell}>{item.name}</div>
+              <div className={styles.tableCell}>
+                <div className={item.votingRights ? styles.checkmark : styles.crossmark}>{item.votingRights ? '✓ voting' : '✗ no voting'}</div>
+                <div className={item.dividendRights ? styles.checkmark : styles.crossmark}>{item.dividendRights ? '✓ dividend' : '✗ no dividend'}</div>
+                <div className={item.liquidationPreference ? styles.checkmark : styles.crossmark}>{item.liquidationPreference ? '✓ liquidation preference' : '✗ no liquidation preference'}</div>
+                <div className={item.antiDilution ? styles.checkmark : styles.crossmark}>{item.antiDilution ? '✓ anti-dilution' : '✗ no anti-dilution'}</div>
+                <div className={item.hurdle ? styles.checkmark : styles.crossmark}>{item.hurdle ? '✓ hurdle' : '✗ no hurdle'}</div>
+              </div>
+              <div className={styles.tableCell}>--</div>
+              <div className={styles.tableCell}>--</div>
+              <div className={styles.tableCell}>
+                <button className={styles.iconButton}>✏</button>
+                <button className={styles.iconButton} onClick={() => Delete(item.id)}>🗑</button>
+              </div>
             </div>
-            <div className={styles.tableCell}>--</div>
-            <div className={styles.tableCell}>--</div>
-            <div className={styles.tableCell}>
-              <button className={styles.iconButton}>✏️</button>
-              <button className={styles.iconButton}>🗑️</button>
-            </div>
-          </div>
-  );
-})}
-          
+          ))}
         </div>
 
         {isModalOpen && (
@@ -124,23 +156,38 @@ export default function Home() {
               <button className={styles.closeButton} onClick={closeModal}>×</button>
               <h3>Share class</h3>
               <form>
-                <input className={styles.input} type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-                <input className={styles.input} type="text" value={nominalPrice} onChange={(e) => setNominalPrice(e.target.value)} placeholder="Nominal share price" />
+                <input
+                  className={styles.input}
+                  type="text"
+                  placeholder="Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <input
+                  className={styles.input}
+                  type="number"
+                  placeholder="Nominal share price"
+                  value={nominalPrice}
+                  onChange={(e) => setNominalPrice(e.target.value)}
+                />
                 <div className={styles.checkboxContainer}>
-                  <label><input type="checkbox" /> Voting rights</label>
-                  <label><input type="checkbox" /> Dividend rights</label>
-                  <label><input type="checkbox" /> Liquidation Preference</label>
-                  <label><input type="checkbox" /> Anti-dilution</label>
-                  <label><input type="checkbox" /> Tax value</label>
-                  <label><input type="checkbox" /> Hurdle</label>
-                  <label><input type="checkbox" /> Issue certificates</label>
+                  <label><input type="checkbox" checked={votingRights} onChange={(e) => setVotingRights(e.target.checked)} /> Voting rights</label>
+                  <label><input type="checkbox" checked={dividendRights} onChange={(e) => setDividendRights(e.target.checked)} /> Dividend rights</label>
+                  <label><input type="checkbox" checked={liquidationPreference} onChange={(e) => setLiquidationPreference(e.target.checked)} /> Liquidation Preference</label>
+                  <label><input type="checkbox" checked={antiDilution} onChange={(e) => setAntiDilution(e.target.checked)} /> Anti-dilution</label>
+                  <label><input type="checkbox" checked={hurdle} onChange={(e) => setHurdle(e.target.checked)} /> Hurdle</label>
                 </div>
                 <div>
                   <button type="button" className={styles.notesToggle} onClick={toggleNotes}>
                     NOTES {isNotesOpen ? '▲' : '▼'}
                   </button>
                   {isNotesOpen && (
-                    <textarea className={styles.textarea} value={note} onChange={(e) => setNote(e.target.value)} placeholder="Notes"></textarea>
+                    <textarea
+                      className={styles.textarea}
+                      value={note}
+                      onChange={(e) => setNote(e.target.value)}
+                      placeholder="Notes"
+                    ></textarea>
                   )}
                 </div>
                 <div className={styles.buttonContainer}>
@@ -152,7 +199,6 @@ export default function Home() {
           </div>
         )}
       </main>
-    </div>
-  );
+    </div>
+  );
 }
-

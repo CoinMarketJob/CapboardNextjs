@@ -41,16 +41,16 @@ model User {
   logRecord LogRecord[]
 }
 model ShareClasses {
-  id                Int    @id @default(autoincrement())
-  name              String
-  nominalPrice      Float
-  votingRights      Boolean @default(false)
-  dividendRights    Boolean @default(false)
-  antiDilition      String?
-  taxValue          Int?
-  hurdle            Int?
-  issueCertificates Boolean @default(false)
-  Note              String?
+  id                          Int    @id @default(autoincrement())
+  name                        String
+  nominalPrice                Float
+  votingRights                Boolean @default(false)
+  dividendRights              Boolean @default(false)
+  liquidationPreference       Boolean @default(false)
+  antiDilution                Boolean @default(false)
+  tax                         Boolean @default(false)
+  hurdle                      Boolean @default(false)
+  issueCertificates           Boolean @default(false)
 
   pools Pool[]
   transaction Transaction[]

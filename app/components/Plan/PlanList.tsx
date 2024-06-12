@@ -14,10 +14,6 @@ interface PlanListProps {
 }
 
 const PlanList: React.FC<PlanListProps> = ({ planData }) => {
-
-
-  
-
   return (
     <div>
         {planData.map((item,index) => {

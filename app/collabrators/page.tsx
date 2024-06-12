@@ -1,18 +1,78 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./collabrators.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp, faPenToSquare, faPlus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { AnimatePresence, motion } from "framer-motion";
+import List from "../components/Collabrators/List";
+
+interface ActivityItem {
+    action: string;
+    page: string;
+    date: string;
+    user: {
+      email: string;
+    };
+  }
+  
+  interface ActivityGroup {
+    date: string;
+    users: {
+      [userId: string]: {
+        email: string;
+        activities: ActivityItem[];
+      };
+    };
+  }
+
 
 const Collaborators = () => {
     const [toggleDelete, setToggleDelete] = useState<boolean>(false);
-    const [isLogDropdownOpen, setIsLogDropdownOpen] = useState(false);
 
-    const changeLogDropdown = () => {
-        setIsLogDropdownOpen(!isLogDropdownOpen);
+    const [activeDate, setActiveDate] = useState<string | null>(null);
+
+    const toggleActivities = (date: string) => {
+      setActiveDate(activeDate === date ? null : date);
     };
+
+    const [logs, setLogs] = useState([]);
+    const [filteredLogs, setFilteredLogs] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await fetch('/api/LogRecord/get');
+                const data = await response.json();
+                console.log(data);
+                setLogs(data);
+
+            } catch (error) {
+                console.error('Veri getirme hatası:', error);
+            }
+        }
+
+        fetchData();
+    },[])
+
+    useEffect(() => {
+        const groupByDateAndUser = (data: ActivityItem[]) => {
+            const grouped: { [date: string]: { [userId: string]: ActivityItem[] } } = {};
+            data.forEach((item) => {
+              const date = item.date.split("T")[0]; // Sadece tarih kısmını alıyoruz
+              const userId = item.user.id; // Kullanıcı ID'sini alıyoruz
+              grouped[date] = grouped[date] || {}; // Tarih yoksa yeni bir obje oluştur
+              grouped[date][userId] = grouped[date][userId] || []; // Kullanıcı yoksa yeni bir dizi oluştur
+              grouped[date][userId].push(item);
+            });
+            return Object.entries(grouped).map(([date, users]) => ({ date, users }));
+          };
+
+          setFilteredLogs(groupByDateAndUser(logs));
+          console.log(filteredLogs);
+
+    },[logs])
+
 
     const collabrators = [
         {
@@ -23,18 +83,10 @@ const Collaborators = () => {
         }
     ]
 
-    const collaboratorsLogs = [
-        { name: "VIEW_STAKEHOLDERS_LIST", type: "EDIT", collaborator: "1" },
-        { name: "VIEW_CHANGE_REQUESTS", type: "CREATE", collaborator: "2" },
-        { name: "VIEW_DOCUMENTS_LIST", type: "VIEW", collaborator: "3" },
-        { name: "VIEW_SHARE_CLASSES_LIST", type: "VIEW", collaborator: "4" },
-    ];
-
-    const cardHeight = collabrators.length * 70 + 60; // Calculate height based on item count (60px per item + 60px base height)
 
     return (
         <div>
-            <div className="card-1" style={{ height: `${cardHeight}px` }}>
+            <div className="card-1">
                 <div
                     style={{
                         display: "flex",
@@ -103,52 +155,8 @@ const Collaborators = () => {
             <h2 style={{ marginLeft: "2vw", fontSize: "21px", marginTop: "5vh" }}>
                 Latest collaborators activity
             </h2>
-            <div className={isLogDropdownOpen ? "card-3-2" : "card-3"}>
-                <div
-                    onClick={changeLogDropdown}
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        alignItems: "center",
-                        cursor: "pointer",
-                    }}
-                >
-                    {isLogDropdownOpen ? <FontAwesomeIcon icon={faCaretUp} /> : <FontAwesomeIcon icon={faCaretDown} />}
-                    <span style={{ marginLeft: "0.5vw", fontSize: "17px", fontWeight: "500" }}>
-                        2024-06-07
-                    </span>
-                    <div className="green-text">
-                        merenkirkas@protonmail.com
-                    </div>
-                </div>
-                {isLogDropdownOpen && (
-                    <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                    >
-                        <div className="log-list-dropdown">
-                            {collaboratorsLogs.map((item) => (
-                                <ul key={item.name}>
-                                    <div className="log-list">
-                                        <div style={{ width: "250px" }}>
-                                            <div className="log-list-item-type">{item.type}</div>
-                                        </div>
-                                        <div style={{ width: "300px", marginBottom: "10px" }}>
-                                            <div className="log-list-item">{item.name}</div>
-                                        </div>
-                                        <div style={{ width: "265px" }}>
-                                            <div className="log-list-item">{item.collaborator}</div>
-                                        </div>
-                                    </div>
-                                    <div className="underline"></div>
-                                </ul>
-                            ))}
-                        </div>
-                    </motion.div>
-                )}
-            </div>
+
+             <List data={filteredLogs} /> 
         </div>
     );
 };

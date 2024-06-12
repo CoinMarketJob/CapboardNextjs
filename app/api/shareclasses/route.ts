@@ -7,7 +7,12 @@ export async function POST(request: Request) {
   const {
     name,
     nominalPrice,
-    Note
+    Note,    
+    votingRights,
+    dividendRights,
+    liquidationPreference,
+    antiDilution,
+    hurdle
   } = body; // Modal'dan gelen verileri al
   
 
@@ -15,7 +20,12 @@ export async function POST(request: Request) {
     data: {
         name: name,
         nominalPrice: parseFloat(nominalPrice),
-        Note: Note
+        Note: Note,
+        votingRights,
+        dividendRights,
+        liquidationPreference: liquidationPreference,
+        antiDilution,
+        hurdle
     }
   });
 

@@ -5,7 +5,6 @@
     margin-left: 2vw;
     margin-right: 2vw;
     width: auto;
-    height: 24vh;
     border-radius: 0.2rem;
     border: 1px solid rgba(0, 0, 0, 0.208);
 }
@@ -45,7 +44,7 @@
     margin-left: 2vw;
     margin-right: 2vw;
     width: auto;
-    height: 50vh;
+    height: auto;
     border-radius: 0.2rem;
     background-color: #f2f2f2;
     border: 1px solid rgba(0, 0, 0, 0.208);
@@ -116,6 +115,7 @@
 }
 
 .log-list-dropdown{
+    height: auto;
     margin-top: 1rem;
     padding: 0%;
 }
