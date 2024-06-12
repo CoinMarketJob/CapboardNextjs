@@ -8,28 +8,27 @@ import { Modal } from '@mui/material';
 import Modals from '../components/Modals/modals';
 import GeneralFormDropdown from '../components/GeneralFormDropdown/GeneralFormDropdown';
 
-// Define dummy components for each modal type (replace with actual components)
 const FinancingRound = () => <div>
 
 </div>;
 const Valuation = () => <div>Valuation Component</div>;
 const StockSplit = () => <div className='card-modals' >
-<h2 style={{padding: "0%", transform: "translateX(-40%)" }} className='title' >Split</h2>
+<h2 style={{padding: "0%", transform: "translateX(-60%)", fontSize: "20px" }} className='title' >Split</h2>
 <div className='underline' ></div>
 <ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
-<ul style={{display: "flex", flexDirection: "column"}} >
-<label className="form-label">Date</label>
+<ul style={{display: "flex", flexDirection: "column", padding: "0%"}} >
+<label style={{transform: "translateX(-9.5rem)"}} className="form-label">Date</label>
                 <div style={{width: "18vw"}}>
                 <input
                     name="street"
                     placeholder="10.06.2024"
-                    type="number"
+                    type="date"
                     className="form-control"
                 />
                 </div>
                 </ul>
     <ul style={{display: "flex", flexDirection: "column"}} >
-<label className="form-label">Split Factor</label>
+<label style={{transform: "translateX(-8rem)"}} className="form-label">Split Factor</label>
                 <div style={{width: "18vw"}}>
                 <input
                     name="street"
@@ -40,11 +39,11 @@ const StockSplit = () => <div className='card-modals' >
                 </div>
                 </ul>
 </ul>
-<div style={{margin: "20px", flexDirection: "row", display: "flex"}} >
+<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
 <GeneralFormDropdown
         name="Documents"
         child={
-            <div style={{flexDirection: "row", display: "flex", width: "35vw"}} >
+            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
             <select id="currency" name="currency" className="form-select">
                 <option value="USD">Stakeholder-2</option>
                 <option value="EUR">Stakeholder-1</option>
@@ -69,11 +68,12 @@ const StockSplit = () => <div className='card-modals' >
         }
     />
     </div>
-<div style={{margin: "20px"}} >
+<div style={{margin: "0px"}} >
+    <div style={{transform: "translateX(-38.5%)"}} >
 <GeneralFormDropdown
         name="INTERNAL NOTE"
         child={
-        <div id="notes-container" className="collapse show">
+        <div style={{transform: "translateX(38.5%)"}} id="notes-container" >
             <div className="ms-4">
             <div className="mb-3 form-group input-group-outline">
                 <textarea
@@ -86,17 +86,18 @@ const StockSplit = () => <div className='card-modals' >
         </div>
         }
     />
-    <div style={{marginTop: "2rem"}} className='underline' ></div>
-    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none"}}>Close</button>
-    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
     </div>
+    <div style={{marginTop: "2rem"}} className='underline' ></div>
+    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
+    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
+</div>
 </div>;
 const ConvertibleLoan = () => <div className='card-modals' >
-<h2 style={{padding: "0%", transform: "translateX(-40%)" }} className='title' >Decrease Shares</h2>
+<h2 style={{padding: "0%", transform: "translateX(-50%)", fontSize: "20px" }} className='title' >Decrease Shares</h2>
 <div className='underline' ></div>
 <ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
     <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
-        <label style={{marginTop: "0px", marginBottom: "10px"}} >Stakeholder</label>
+        <label style={{marginTop: "0px", marginBottom: "10px", alignSelf: "flex-start"}} >Stakeholder</label>
     <div>
         <select id="currency" name="currency" className="form-select">
             <option value="USD">Stakeholder-2</option>
@@ -117,13 +118,13 @@ const ConvertibleLoan = () => <div className='card-modals' >
                 </div>
                 </div>
             </div>
-            <label style={{marginTop: "15px", marginBottom: "10px"}} >Date</label>
-            <div style={{border: "1px solid rgba(0, 0, 0, 0.208)", height: "40px", paddingTop: "8px", paddingLeft: "8px", fontSize: "13px" }} className='calendar'>
-            06/09/2024<FontAwesomeIcon style={{ marginLeft: "14vw" }} icon={faCalendar} />
+            <label style={{marginTop: "15px", marginBottom: "5px", alignSelf: "flex-start"}} >Date</label>
+            <div style={{width: "20vw"}}>
+            <input type="date" placeholder="gg.aa.yyyy" style={{width: "20vw"}} className="input" />
         </div>
     </ul>
 <div style={{width: "50%"}}>
-    <label style={{width: "100%", marginLeft: "1rem", marginTop: "26%"}}>Number of shares</label>
+    <label style={{width: "100%", marginLeft: "1rem", marginTop: "25%", transform: "translateX(-120px)"}}>Number of shares</label>
     <input
     style={{width: "100%", marginLeft: "1rem"}}
             name="name"
@@ -133,14 +134,14 @@ const ConvertibleLoan = () => <div className='card-modals' >
             />
             </div>
 </ul>
-<div style={{margin: "20px", flexDirection: "row", display: "flex"}} >
+<div style={{margin: "0px", flexDirection: "row", transform: "translateX(-35%)"}} >
 <GeneralFormDropdown
         name="Maturity and Discount"
         child={
-            <div style={{flexDirection: "row", display: "flex", width: "35vw"}} >
+            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(35%)"}} >
                 <ul style={{display: "flex", flexDirection: "column"}} >
                 <div style={{width: "18vw", marginTop: "1rem"}}>
-                <label>Floor</label>
+                <label style={{transform: "translate(-150px)"}} >Floor</label>
                 <input
                     name="street2"
                     placeholder="Valuation floor"
@@ -149,7 +150,7 @@ const ConvertibleLoan = () => <div className='card-modals' >
                 />
                 </div>
                 <div style={{width: "18vw", marginTop: "1rem"}}>
-                <label>Cap</label>
+                <label style={{transform: "translate(-150px)"}} >Cap</label>
                 <input
                     name="street2"
                     placeholder="Discount"
@@ -160,7 +161,7 @@ const ConvertibleLoan = () => <div className='card-modals' >
                 </ul>
                 <ul style={{display: "flex", flexDirection: "column"}} >
                 <div style={{width: "18vw", marginTop: "1rem"}}>
-                <label>Discount</label>
+                <label style={{transform: "translate(-150px)"}} >Discount</label>
                 <input
                     name="street2"
                     placeholder="Valuation Cap"
@@ -169,11 +170,11 @@ const ConvertibleLoan = () => <div className='card-modals' >
                 />
                 </div>
                 <div style={{width: "18vw", marginTop: "1rem"}}>
-                    <label>Maturity date</label>
+                    <label style={{transform: "translate(-150px)"}} >Maturity date</label>
                 <input
                     name="street2"
                     placeholder="gg.aa.yyyy"
-                    type="text"
+                    type="date"
                     className="form-control"
                 />
                 </div>
@@ -182,14 +183,14 @@ const ConvertibleLoan = () => <div className='card-modals' >
         }
     />
     </div>
-    <div style={{margin: "20px", flexDirection: "row", display: "flex"}} >
+    <div style={{margin: "20px", flexDirection: "row", transform: "translateX(-45%)"}} >
 <GeneralFormDropdown
         name="Interest"
         child={
-            <div style={{flexDirection: "column", display: "flex", width: "35vw"}} >
-                <ul style={{display: "flex", flexDirection: "row"}} >
+            <div style={{flexDirection: "column", display: "flex", width: "35vw", transform: "translateX(45%)"}} >
+                <ul style={{display: "flex", flexDirection: "row",}} >
                     <div>
-                <label >Non-compounding</label>
+                <label  style={{transform: "translate(-120px)"}} >Non-compounding</label>
             <input
             style={{width: "18vw"}}
                     name="street2"
@@ -199,12 +200,12 @@ const ConvertibleLoan = () => <div className='card-modals' >
                 />
                 </div>
                 <div style={{marginLeft: "1rem"}} >
-                <label >Interest Start Date</label>
+                <label  style={{transform: "translate(-100px)"}} >Interest Start Date</label>
             <input
             style={{width: "18vw"}}
                     name="Interest Start Date"
                     placeholder="10.06.2024"
-                    type="number"
+                    type="date"
                     className="form-control"
                 />
                 </div>
@@ -224,11 +225,11 @@ const ConvertibleLoan = () => <div className='card-modals' >
         }
     />
     </div>
-<div style={{margin: "20px", flexDirection: "row", display: "flex"}} >
+<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
 <GeneralFormDropdown
         name="Documents"
         child={
-            <div style={{flexDirection: "row", display: "flex", width: "35vw"}} >
+            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
             <select id="currency" name="currency" className="form-select">
                 <option value="USD">Stakeholder-2</option>
                 <option value="EUR">Stakeholder-1</option>
@@ -253,11 +254,12 @@ const ConvertibleLoan = () => <div className='card-modals' >
         }
     />
     </div>
-<div style={{margin: "20px"}} >
+<div style={{margin: "0px"}} >
+    <div style={{transform: "translateX(-38.5%)"}} >
 <GeneralFormDropdown
         name="INTERNAL NOTE"
         child={
-        <div id="notes-container" className="collapse show">
+        <div style={{transform: "translateX(38.5%)"}} id="notes-container" >
             <div className="ms-4">
             <div className="mb-3 form-group input-group-outline">
                 <textarea
@@ -270,17 +272,18 @@ const ConvertibleLoan = () => <div className='card-modals' >
         </div>
         }
     />
+    </div>
     <div style={{marginTop: "2rem"}} className='underline' ></div>
-    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none"}}>Close</button>
+    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
     <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
 </div>
 </div>;
 const IssueShares = () => <div className='card-modals' >
-<h2 style={{padding: "0%", transform: "translateX(-40%)" }} className='title' >Issue Shares</h2>
+<h2 style={{padding: "0%", transform: "translateX(-55%)", fontSize: "20px"}} className='title' >Issue Shares</h2>
 <div className='underline' ></div>
 <ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
     <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
-        <label style={{marginTop: "0px", marginBottom: "10px"}} >Stakeholder</label>
+        <label style={{marginTop: "0px", marginBottom: "10px", alignSelf: "flex-start"}} >Stakeholder</label>
     <div>
         <select id="currency" name="currency" className="form-select">
             <option value="USD">Stakeholder-2</option>
@@ -301,11 +304,11 @@ const IssueShares = () => <div className='card-modals' >
                 </div>
                 </div>
             </div>
-            <label style={{marginTop: "15px", marginBottom: "10px"}} >Date</label>
-            <div style={{border: "1px solid rgba(0, 0, 0, 0.208)", height: "40px", paddingTop: "8px", paddingLeft: "8px", fontSize: "13px" }} className='calendar'>
-            06/09/2024<FontAwesomeIcon style={{ marginLeft: "14vw" }} icon={faCalendar} />
+            <label style={{marginTop: "15px", marginBottom: "10px", alignSelf: "flex-start"}} >Date</label>
+            <div style={{width: "20vw"}}>
+            <input type="date" placeholder="gg.aa.yyyy" style={{width: "20vw"}} className="input" />
         </div>
-            <label style={{marginTop: "10px", marginBottom: "10px"}} >Share class</label>
+            <label style={{marginTop: "10px", marginBottom: "10px", alignSelf: "flex-start"}} >Share class</label>
             <div>
         <select id="currency" name="currency" className="form-select">
             <option value="USD">Common</option>
@@ -325,7 +328,7 @@ const IssueShares = () => <div className='card-modals' >
                 </div>
                 </div>
             </div>
-            <label style={{marginTop: "15px", marginBottom: "10px"}} >Total investment</label>
+            <label style={{marginTop: "15px", marginBottom: "10px", alignSelf: "flex-start"}} >Total investment</label>
             <input
     style={{width: "100%"}}
             name="name"
@@ -335,7 +338,7 @@ const IssueShares = () => <div className='card-modals' >
             />
     </ul>
     <div style={{width: "50%"}}>
-    <label style={{width: "100%", marginLeft: "1rem", marginTop: "27%"}}>Number of shares</label>
+    <label style={{width: "100%", marginTop: "27%", transform: "translateX(-100px)"}}>Number of shares</label>
     <input
     style={{width: "100%", marginLeft: "1rem"}}
             name="name"
@@ -343,7 +346,7 @@ const IssueShares = () => <div className='card-modals' >
             type="number"
             className="form-control border-end"
             />
-            <label style={{width: "100%", marginLeft: "1rem", marginTop: "7%"}}>Issue price</label>
+            <label style={{width: "100%", marginTop: "15px", transform: "translateX(-120px)"}}>Issue price</label>
     <input
     style={{width: "100%", marginLeft: "1rem"}}
             name="name"
@@ -353,11 +356,11 @@ const IssueShares = () => <div className='card-modals' >
             />
             </div>
 </ul>
-<div style={{margin: "20px", flexDirection: "row", display: "flex"}} >
+<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
 <GeneralFormDropdown
         name="Documents"
         child={
-            <div style={{flexDirection: "row", display: "flex", width: "35vw"}} >
+            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
             <select id="currency" name="currency" className="form-select">
                 <option value="USD">Stakeholder-2</option>
                 <option value="EUR">Stakeholder-1</option>
@@ -382,11 +385,12 @@ const IssueShares = () => <div className='card-modals' >
         }
     />
     </div>
-<div style={{margin: "20px"}} >
+<div style={{margin: "20px", marginTop: "0%"}} >
+    <div style={{transform: "translateX(-38.5%)"}} >
 <GeneralFormDropdown
         name="INTERNAL NOTE"
         child={
-        <div id="notes-container" className="collapse show">
+        <div id="notes-container" style={{transform: "translateX(38.5%)"}} className="collapse show">
             <div className="ms-4">
             <div className="mb-3 form-group input-group-outline">
                 <textarea
@@ -399,17 +403,18 @@ const IssueShares = () => <div className='card-modals' >
         </div>
         }
     />
+    </div>
     <div style={{marginTop: "2rem"}} className='underline' ></div>
-    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none"}}>Close</button>
+    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "1rem", marginBottom: "1rem"}}>Close</button>
     <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
     </div>
 </div>;
 const DecreaseShares = () => <div className='card-modals' >
-    <h2 style={{padding: "0%", transform: "translateX(-40%)" }} className='title' >Decrease Shares</h2>
+    <h2 style={{padding: "0%", transform: "translateX(-50%)", fontSize: "20px" }} className='title' >Decrease Shares</h2>
     <div className='underline' ></div>
     <ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
         <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
-            <label style={{marginTop: "0px", marginBottom: "10px"}} >Stakeholder</label>
+            <label style={{marginTop: "0px", marginBottom: "10px", transform: "translateX(-9rem)"}} >Stakeholder</label>
         <div>
             <select id="currency" name="currency" className="form-select">
                 <option value="USD">Stakeholder-2</option>
@@ -430,11 +435,15 @@ const DecreaseShares = () => <div className='card-modals' >
                     </div>
                     </div>
                 </div>
-                <label style={{marginTop: "15px", marginBottom: "10px"}} >Date</label>
-                <div style={{border: "1px solid rgba(0, 0, 0, 0.208)", height: "40px", paddingTop: "8px", paddingLeft: "8px", fontSize: "13px" }} className='calendar'>
-                06/09/2024<FontAwesomeIcon style={{ marginLeft: "14vw" }} icon={faCalendar} />
-            </div>
-                <label style={{marginTop: "15px", marginBottom: "10px"}} >Share class</label>
+                <label style={{marginTop: "15px", marginBottom: "10px", transform: "translateX(-10.5rem)"}} >Date</label>
+                <input
+                style={{ marginRight: "1rem"}}
+                name="name"
+                placeholder="10.06.2024"
+                type="date"
+                className="form-control border-end"
+            />
+                <label style={{marginTop: "15px", marginBottom: "10px", transform: "translateX(-9rem)"}} >Share class</label>
                 <div>
             <select id="currency" name="currency" className="form-select">
                 <option >Common</option>
@@ -457,7 +466,7 @@ const DecreaseShares = () => <div className='card-modals' >
                 </div>
         </ul>
         <div style={{width: "50%"}}>
-        <label style={{width: "100%", marginLeft: "1rem", marginTop: "26%"}}>Number of shares</label>
+        <label style={{width: "100%", marginLeft: "1rem", marginTop: "26%", transform: "translateX(-8rem)"}}>Number of shares</label>
         <input
         style={{width: "100%", marginLeft: "1rem"}}
                 name="name"
@@ -467,154 +476,11 @@ const DecreaseShares = () => <div className='card-modals' >
                 />
                 </div>
     </ul>
-    <div style={{margin: "20px", flexDirection: "row", display: "flex"}} >
-    <GeneralFormDropdown
-            name="Documents"
-            child={
-                <div style={{flexDirection: "row", display: "flex", width: "35vw"}} >
-                <select id="currency" name="currency" className="form-select">
-                    <option value="USD">Stakeholder-2</option>
-                    <option value="EUR">Stakeholder-1</option>
-                </select>
-                        <div
-                        className="ac-select-container w-100"
-                        style={{ display: "none" }}
-                        >
-                        <div className="ac-select-dropdown w-100">
-                            <div className="ac-select-search-box">
-                            <input
-                                type="text"
-                                placeholder="Search..."
-                                className="form"
-                            />
-                            </div>
-                        </div>
-                        <div></div>
-                        </div>
-                        <FontAwesomeIcon style={{marginLeft: "2rem", marginTop: "10px"}} icon={faCloudArrowUp} />
-                    </div>
-            }
-        />
-        </div>
-    <div style={{margin: "20px"}} >
-    <GeneralFormDropdown
-            name="INTERNAL NOTE"
-            child={
-            <div id="notes-container" className="collapse show">
-                <div className="ms-4">
-                <div className="mb-3 form-group input-group-outline">
-                    <textarea
-                    name="notes"
-                    className="form-control"
-                    placeholder="Notes"
-                    ></textarea>
-                </div>
-                </div>
-            </div>
-            }
-        />
-        <div style={{marginTop: "2rem"}} className='underline' ></div>
-        <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none"}}>Close</button>
-        <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
-        </div>
-</div>;
-const Secondary = () => <div className='card-modals' >
-<h2 style={{padding: "0%", transform: "translateX(-40%)" }} className='title' >Decrease Shares</h2>
-<div className='underline' ></div>
-<ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
-    <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
-        <label style={{marginTop: "0px", marginBottom: "10px"}} >From Stakeholder</label>
-    <div>
-        <select id="currency" name="currency" className="form-select">
-            <option value="USD">Stakeholder-2</option>
-            <option value="EUR">Stakeholder-1</option>
-        </select>
-                <div
-                className="ac-select-container w-100"
-                style={{ display: "none" }}
-                >
-                <div className="ac-select-dropdown w-100">
-                    <div className="ac-select-search-box">
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className="form"
-                    />
-                    </div>
-                </div>
-                </div>
-            </div>
-            <label style={{marginTop: "10px", marginBottom: "10px"}} >From Stakeholder</label>
-            <div>
-        <select id="currency" name="currency" className="form-select">
-            <option value="USD">Stakeholder-2</option>
-            <option value="EUR">Stakeholder-1</option>
-        </select>
-                <div
-                className="ac-select-container w-100"
-                style={{ display: "none" }}
-                >
-                <div className="ac-select-dropdown w-100">
-                    <div className="ac-select-search-box">
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className="form"
-                    />
-                    </div>
-                </div>
-                </div>
-            </div>
-            <label style={{marginTop: "15px", marginBottom: "10px"}} >Date</label>
-            <div style={{border: "1px solid rgba(0, 0, 0, 0.208)", height: "40px", paddingTop: "8px", paddingLeft: "8px", fontSize: "13px" }} className='calendar'>
-            06/09/2024<FontAwesomeIcon style={{ marginLeft: "14vw" }} icon={faCalendar} />
-        </div>
-            <label style={{marginTop: "15px", marginBottom: "10px"}} >Share class</label>
-            <div>
-        <select id="currency" name="currency" className="form-select">
-            <option >Common</option>
-            <option ><button> <FontAwesomeIcon icon={faPlus} /> Add more class</button></option>
-        </select>
-                <div
-                className="ac-select-container w-100"
-                style={{ display: "none" }}
-                >
-                <div className="ac-select-dropdown w-100">
-                    <div className="ac-select-search-box">
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className="form"
-                    />
-                    </div>
-                </div>
-                </div>
-            </div>
-    </ul>
-    <div style={{width: "50%"}}>
-    <label style={{width: "100%", marginLeft: "1rem", marginTop: "48%"}}>Number of shares</label>
-    <input
-    style={{width: "100%", marginLeft: "1rem"}}
-            name="name"
-            placeholder="Amount"
-            type="number"
-            className="form-control border-end"
-            />
-            <label style={{width: "100%", marginLeft: "1rem", marginTop: "7%"}}>Transfer price</label>
-    <input
-    style={{width: "100%", marginLeft: "1rem"}}
-            name="name"
-            placeholder="Share Price"
-            type="number"
-            className="form-control border-end"
-            />
-            </div>
-</ul>
-<div style={{margin: "20px", flexDirection: "row", display: "flex"}} >
+    <div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
 <GeneralFormDropdown
         name="Documents"
         child={
-            <div style={{flexDirection: "row", display: "flex", width: "35vw"}} >
+            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
             <select id="currency" name="currency" className="form-select">
                 <option value="USD">Stakeholder-2</option>
                 <option value="EUR">Stakeholder-1</option>
@@ -639,11 +505,12 @@ const Secondary = () => <div className='card-modals' >
         }
     />
     </div>
-<div style={{margin: "20px"}} >
-<GeneralFormDropdown
+<div style={{margin: "0px"}} >
+    <div style={{transform: "translateX(-38.5%)"}} >
+    <GeneralFormDropdown
         name="INTERNAL NOTE"
         child={
-        <div id="notes-container" className="collapse show">
+        <div id="notes-container" style={{transform: "translateX(38.5%)"}} className="collapse show">
             <div className="ms-4">
             <div className="mb-3 form-group input-group-outline">
                 <textarea
@@ -656,17 +523,167 @@ const Secondary = () => <div className='card-modals' >
         </div>
         }
     />
-    <div style={{marginTop: "2rem"}} className='underline' ></div>
-    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none"}}>Close</button>
-    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
     </div>
+    <div style={{marginTop: "2rem"}} className='underline' ></div>
+    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
+    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
+</div>
+</div>;
+const Secondary = () => <div className='card-modals' >
+<h2 style={{padding: "0%", transform: "translateX(-40%)" }} className='title' >Secondary</h2>
+<div className='underline' ></div>
+<ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
+    <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
+        <label style={{marginTop: "0px", marginBottom: "10px", transform: "translate(-8rem)"}} >From Stakeholder</label>
+    <div>
+        <select id="currency" name="currency" className="form-select">
+            <option value="USD">Stakeholder-2</option>
+            <option value="EUR">Stakeholder-1</option>
+        </select>
+                <div
+                className="ac-select-container w-100"
+                style={{ display: "none" }}
+                >
+                <div className="ac-select-dropdown w-100">
+                    <div className="ac-select-search-box">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="form"
+                    />
+                    </div>
+                </div>
+                </div>
+            </div>
+            <label style={{marginTop: "10px", marginBottom: "10px", transform: "translate(-8rem)"}} >From Stakeholder</label>
+            <div>
+        <select id="currency" name="currency" className="form-select">
+            <option value="USD">Stakeholder-2</option>
+            <option value="EUR">Stakeholder-1</option>
+        </select>
+                <div
+                className="ac-select-container w-100"
+                style={{ display: "none" }}
+                >
+                <div className="ac-select-dropdown w-100">
+                    <div className="ac-select-search-box">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="form"
+                    />
+                    </div>
+                </div>
+                </div>
+            </div>
+            <label style={{marginTop: "15px", marginBottom: "10px", transform: "translate(-10.5rem)"}} >Date</label>
+            <input
+    style={{width: "100%", marginRight: "1rem"}}
+            name="name"
+            placeholder="gg.aa.yyyy"
+            type="date"
+            className="form-control border-end"
+            />
+            <label style={{marginTop: "15px", marginBottom: "10px", transform: "translate(-9rem)"}} >Share class</label>
+            <div>
+        <select id="currency" name="currency" className="form-select">
+            <option >Common</option>
+            <option ><button> <FontAwesomeIcon icon={faPlus} /> Add more class</button></option>
+        </select>
+                <div
+                className="ac-select-container w-100"
+                style={{ display: "none" }}
+                >
+                <div className="ac-select-dropdown w-100">
+                    <div className="ac-select-search-box">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="form"
+                    />
+                    </div>
+                </div>
+                </div>
+            </div>
+    </ul>
+    <div style={{width: "50%"}}>
+    <label style={{width: "100%", marginLeft: "1rem", marginTop: "48%", transform: "translate(-8rem)"}}>Number of shares</label>
+    <input
+    style={{width: "100%", marginLeft: "1rem"}}
+            name="name"
+            placeholder="Amount"
+            type="number"
+            className="form-control border-end"
+            />
+            <label style={{width: "100%", marginLeft: "1rem", marginTop: "7%", transform: "translate(-8rem)"}}>Transfer price</label>
+    <input
+    style={{width: "100%", marginLeft: "1rem"}}
+            name="name"
+            placeholder="Share Price"
+            type="number"
+            className="form-control border-end"
+            />
+            </div>
+</ul>
+<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
+<GeneralFormDropdown
+        name="Documents"
+        child={
+            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
+            <select id="currency" name="currency" className="form-select">
+                <option value="USD">Stakeholder-2</option>
+                <option value="EUR">Stakeholder-1</option>
+            </select>
+                    <div
+                    className="ac-select-container w-100"
+                    style={{ display: "none" }}
+                    >
+                    <div className="ac-select-dropdown w-100">
+                        <div className="ac-select-search-box">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            className="form"
+                        />
+                        </div>
+                    </div>
+                    <div></div>
+                    </div>
+                    <FontAwesomeIcon style={{marginLeft: "2rem", marginTop: "10px"}} icon={faCloudArrowUp} />
+                </div>
+        }
+    />
+    </div>
+<div style={{margin: "0px"}} >
+    <div style={{transform: "translateX(-38.5%)"}} >
+<GeneralFormDropdown
+        name="INTERNAL NOTE"
+        child={
+        <div style={{transform: "translateX(38.5%)"}} id="notes-container" >
+            <div className="ms-4">
+            <div className="mb-3 form-group input-group-outline">
+                <textarea
+                name="notes"
+                className="form-control"
+                placeholder="Notes"
+                ></textarea>
+            </div>
+            </div>
+        </div>
+        }
+    />
+    </div>
+    <div style={{marginTop: "2rem"}} className='underline' ></div>
+    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
+    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
+</div>
 </div>;
 const Payout = () => <div className='card-modals' >
-<h2 style={{padding: "0%", transform: "translateX(-40%)" }} className='title' >Payout</h2>
+<h2 style={{padding: "0%", transform: "translateX(-55%)", fontSize: "20px" }} className='title' >Payout</h2>
 <div className='underline' ></div>
 <ul style={{display: "flex", flexDirection: "row", padding: "1rem", height: "20vh"}} >
     <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%",}} >
-        <label style={{marginTop: "0px", marginBottom: "10px"}} >Stakeholder</label>
+        <label style={{marginTop: "0px", marginBottom: "10px", transform: "translateX(-9rem)"}} >Stakeholder</label>
     <div>
         <select id="currency" name="currency" className="form-select">
             <option value="USD">Stakeholder-1</option>
@@ -692,17 +709,17 @@ const Payout = () => <div className='card-modals' >
     </ul>
     <div style={{width: "50%", display: "flex", flexDirection: "row", marginTop: "3%", transform: "translateX(-105%)"}}>
     <div>
-    <label style={{ marginLeft: "1rem", marginTop: "30%"}}>Date </label>
+    <label style={{ marginLeft: "1rem", marginTop: "30%", transform: "translateX(-6rem)"}}>Date </label>
     <input
     style={{width: "12vw", marginLeft: "1rem"}}
             name="name"
             placeholder="10.06.2024"
-            type="number"
+            type="date"
             className="form-control border-end"
             />
             </div>
     <div>
-    <label style={{ marginLeft: "1rem", marginTop: "30%"}}>Retention </label>
+    <label style={{ marginLeft: "1rem", marginTop: "30%", transform: "translateX(-5rem)"}}>Retention </label>
     <input
     style={{width: "12vw", marginLeft: "1rem"}}
             name="name"
@@ -712,7 +729,7 @@ const Payout = () => <div className='card-modals' >
             />
             </div>
         <div>
-    <label style={{ marginLeft: "1rem", marginTop: "30%"}}>Total Payment</label>
+    <label style={{ marginLeft: "1rem", marginTop: "30%", transform: "translateX(-4.5rem)"}}>Total Payment</label>
     <input
     style={{width: "12vw", marginLeft: "1rem"}}
             name="name"
@@ -723,11 +740,11 @@ const Payout = () => <div className='card-modals' >
             </div>
             </div>
 </ul>
-<div style={{margin: "20px", flexDirection: "row", display: "flex"}} >
+<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
 <GeneralFormDropdown
         name="Documents"
         child={
-            <div style={{flexDirection: "row", display: "flex", width: "35vw"}} >
+            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
             <select id="currency" name="currency" className="form-select">
                 <option value="USD">Stakeholder-2</option>
                 <option value="EUR">Stakeholder-1</option>
@@ -752,11 +769,12 @@ const Payout = () => <div className='card-modals' >
         }
     />
     </div>
-<div style={{margin: "20px"}} >
-<GeneralFormDropdown
+<div style={{margin: "0px"}} >
+    <div style={{transform: "translateX(-38.5%)"}} >
+    <GeneralFormDropdown
         name="INTERNAL NOTE"
         child={
-        <div id="notes-container" className="collapse show">
+        <div id="notes-container" style={{transform: "translateX(38.5%)"}} className="collapse show">
             <div className="ms-4">
             <div className="mb-3 form-group input-group-outline">
                 <textarea
@@ -769,19 +787,858 @@ const Payout = () => <div className='card-modals' >
         </div>
         }
     />
-    <div style={{marginTop: "2rem"}} className='underline' ></div>
-    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none"}}>Close</button>
-    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
     </div>
+    <div style={{marginTop: "2rem"}} className='underline' ></div>
+    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
+    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
+</div>
 </div>;
-const AddPool = () => <div>Add Pool Component</div>;
-const AddPlan = () => <div>Add Plan Component</div>;
-const PoolIncrease = () => <div></div>; // This component definition is empty, please fill it
-const PoolDecrease = () => <div>Pool Decrease Component</div>;
-const SingleGrant = () => <div>Single Grant Component</div>;
+const AddPool = () => <div className='card-modals' >
+<h2 style={{padding: "0%", transform: "translateX(-55%)", fontSize: "1.25rem" }} className='title' >Add Pool</h2>
+<div className='underline' ></div>
+<ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
+    <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
+            <label style={{marginTop: "15px", marginBottom: "10px", transform: "translate(-9rem)"}} >Pool Name</label>
+            <input
+            style={{width: "100%", marginRight: "1rem"}}
+            name="name"
+            placeholder="TT Phantoms, Options pool, ..."
+            type="text"
+            className="form-control border-end"
+            />
+            <label style={{marginTop: "15px", marginBottom: "10px", transform: "translate(-10.5rem)"}} >Date</label>
+            <input
+            style={{width: "100%", marginRight: "1rem"}}
+            name="name"
+            placeholder="gg.aa.yyyy"
+            type="date"
+            className="form-control border-end"
+            />
+    </ul>
+    <div style={{width: "50%"}}>
+    <label style={{width: "100%", marginLeft: "1rem", marginTop: "7%", transform: "translate(-5.5rem)"}}>Amount allocated for grants</label>
+    <ul style={{padding: "0%", display: "flex", flexDirection: "row"}} >
+    <input
+    style={{width: "70%", marginLeft: "1rem"}}
+            name="name"
+            placeholder="Amount"
+            type="number"
+            className="form-control border-end"
+            />
+            <div>
+        <select id="currency" name="currency" className="form-select">
+            <option value="USD">%</option>
+            <option value="EUR">Shares</option>
+        </select>
+                <div
+                className="ac-select-container w-100"
+                style={{ display: "none" }}
+                >
+                <div className="ac-select-dropdown w-100">
+                    <div className="ac-select-search-box">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="form"
+                    />
+                    </div>
+                </div>
+                </div>
+            </div>
+            </ul>
+            <label style={{width: "100%", marginLeft: "1rem", marginTop: "7%", transform: "translate(-7rem)"}}>Underlying share class</label>
+            <div>
+        <select style={{marginLeft: "1rem"}} id="currency" name="currency" className="form-select">
+            <option >Common</option>
+            <option ><button> <FontAwesomeIcon icon={faPlus} /> Add more class</button></option>
+        </select>
+                <div
+                className="ac-select-container w-100"
+                style={{ display: "none" }}
+                >
+                <div className="ac-select-dropdown w-100">
+                    <div className="ac-select-search-box">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="form"
+                    />
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+</ul>
+<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
+<GeneralFormDropdown
+        name="Documents"
+        child={
+            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
+            <select id="currency" name="currency" className="form-select">
+                <option value="USD">Stakeholder-2</option>
+                <option value="EUR">Stakeholder-1</option>
+            </select>
+                    <div
+                    className="ac-select-container w-100"
+                    style={{ display: "none" }}
+                    >
+                    <div className="ac-select-dropdown w-100">
+                        <div className="ac-select-search-box">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            className="form"
+                        />
+                        </div>
+                    </div>
+                    <div></div>
+                    </div>
+                    <FontAwesomeIcon style={{marginLeft: "2rem", marginTop: "10px"}} icon={faCloudArrowUp} />
+                </div>
+        }
+    />
+    </div>
+<div style={{margin: "0px"}} >
+    <div style={{transform: "translateX(-38.5%)"}} >
+<GeneralFormDropdown
+        name="INTERNAL NOTE"
+        child={
+        <div style={{transform: "translateX(38.5%)"}} id="notes-container" >
+            <div className="ms-4">
+            <div className="mb-3 form-group input-group-outline">
+                <textarea
+                name="notes"
+                className="form-control"
+                placeholder="Notes"
+                ></textarea>
+            </div>
+            </div>
+        </div>
+        }
+    />
+    </div>
+    <div style={{marginTop: "2rem"}} className='underline' ></div>
+    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
+    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
+</div>
+</div>;
+const AddPlan = () => <div className='card-modals' >
+<h2 style={{padding: "0%", transform: "translateX(-55%)", fontSize: "1.25rem" }} className='title' >Add Plan</h2>
+<div className='underline' ></div>
+<ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
+    <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
+            <label style={{marginTop: "15px", marginBottom: "10px", transform: "translate(-9rem)"}} >Plan Name</label>
+            <input
+            style={{width: "100%", marginRight: "1rem"}}
+            name="name"
+            placeholder="TT Phantoms, Options pool, ..."
+            type="text"
+            className="form-control border-end"
+            />
+            <label style={{marginTop: "15px", marginBottom: "10px", transform: "translate(-10.5rem)"}} >Date</label>
+            <input
+            style={{width: "100%", marginRight: "1rem"}}
+            name="name"
+            placeholder="gg.aa.yyyy"
+            type="date"
+            className="form-control border-end"
+            />
+    </ul>
+    <div style={{width: "50%"}}>
+    <label style={{width: "100%", marginLeft: "1rem", marginTop: "7%", transform: "translate(-9rem)"}}>From pool</label>
+    <input
+    style={{width: "100%", marginLeft: "1rem"}}
+            name="name"
+            placeholder="1234"
+            type="number"
+            className="form-control border-end"
+            />
+            <label style={{width: "100%", marginLeft: "1rem", marginTop: "7%", transform: "translate(-9rem)"}}>Grant Type</label>
+            <div>
+        <select style={{marginLeft: "1rem"}} id="currency" name="currency" className="form-select">
+            <option >Phantom</option>
+            <option >Stock</option>
+            <option >Stock Options</option>
+            <option >Warrants</option>
+            <option >SARs</option>
+        </select>
+                <div
+                className="ac-select-container w-100"
+                style={{ display: "none" }}
+                >
+                <div className="ac-select-dropdown w-100">
+                    <div className="ac-select-search-box">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="form"
+                    />
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+</ul>
+<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
+<GeneralFormDropdown
+        name="Grant Presets"
+        child={
+            <ul>
+                <div style={{margin: "20px", flexDirection: "row", transform: "translateX(-5%)"}}>
+                <GeneralFormDropdown
+        name="Prices"
+        child={
+            <div style={{flexDirection: "column", display: "flex", width: "35vw", transform: "translateX(40%)"}} >
+            <label style={{marginTop: "15px", marginBottom: "10px", transform: "translate(-17.5rem)"}} >Purchase price</label>
+            <input
+            style={{width: "20vw"}}
+                    name="street2"
+                    placeholder="Purchase Price "
+                    type="text"
+                    className="form-control"
+                />
+                </div>
+        }
+    />
+    </div>
+    <div style={{transform: "translate(-1.5rem)"}} >
+    <GeneralFormDropdown
+        name="Vesting"
+        child={
+            <div style={{flexDirection: "row", display: "flex", width: "50vw", transform: "translateX(27%)", marginLeft: "2rem"}} >
+                <ul style={{display: "flex", flexDirection: "column"}} >
+                <div style={{width: "11vw", marginTop: "1rem"}}>
+                <label style={{transform: "translate(-5.5rem)"}} >Type</label>
+                <input
+                    name="street2"
+                    placeholder="Time (simple)"
+                    type="text"
+                    className="form-control"
+                />
+                </div>
+                <div style={{width: "11vw", marginTop: "1rem"}}>
+                <label style={{transform: "translate(-5rem)"}} >Duration</label>
+                <input
+                    name="street2"
+                    placeholder="48"
+                    type="text"
+                    className="form-control"
+                />
+                </div>
+                </ul>
+                <ul style={{display: "flex", flexDirection: "column"}} >
+                <div style={{width: "11vw", marginTop: "1rem"}}>
+                    <label style={{transform: "translate(-4rem)"}} >Start date</label>
+                <input
+                    name="street2"
+                    placeholder="gg.aa.yyyy"
+                    type="date"
+                    className="form-control"
+                />
+                </div>
+                <div style={{width: "11vw", marginTop: "1rem"}}>
+                <label style={{transform: "translate(-4.5rem)"}} >Vest every
+                </label>
+                <input
+                    name="street2"
+                    placeholder="Valuation Cap"
+                    type="text"
+                    className="form-control"
+                />
+                </div>
+                </ul>
+                <div style={{width: "11vw", marginTop: "1rem"}}>
+                    <label style={{transform: "translate(-5rem)", marginTop: "4.8rem"}} >Cliff</label>
+                <input
+                style={{marginLeft: "1rem",}}
+                    name="street2"
+                    placeholder="12"
+                    type="number"
+                    className="form-control"
+                />
+                </div>
+                </div>
+        }
+    />
+    </div>
+    <div style={{padding: "0%", transform: "translateX(-1rem)"}} >
+    <GeneralFormDropdown
+        name="Definitions"
+        child={
+        <div style={{transform: "translateX(40%)", width: "30vw", padding: "0%"}} id="notes-container" >
+            <div style={{width: "30vw", marginBottom: "0.5rem"}} className="ms-4">
+                <label style={{transform: "translateX(-15rem)", marginTop: "0.25rem"}}>Good leaver</label>
+            <div>
+                <textarea
+                style={{width: "35vw", height: "10vh"}}
+                name="notes"
+                className="form-control"
+                placeholder="Notes"
+                ></textarea>
+            </div>
+            </div>
+            <div style={{width: "30vw", marginBottom: "0.5rem"}} className="ms-4">
+                <label style={{transform: "translateX(-15.5rem)", marginTop: "0.25rem"}}>Bad leaver</label>
+            <div>
+                <textarea
+                style={{width: "35vw", height: "10vh"}}
+                name="notes"
+                className="form-control"
+                placeholder="Notes"
+                ></textarea>
+            </div>
+            </div>
+            <div style={{width: "30vw", marginBottom: "0.5rem"}} className="ms-4">
+                <label style={{transform: "translateX(-14.5rem)", marginTop: "0.25rem"}}>Liquidity event </label>
+            <div>
+                <textarea
+                style={{width: "35vw", height: "10vh"}}
+                name="notes"
+                className="form-control"
+                placeholder="Notes"
+                ></textarea>
+            </div>
+            </div>
+        </div>
+        }
+    />
+    </div>
+            </ul>
+        }
+    />
+    </div>
+<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
+<GeneralFormDropdown
+        name="Documents"
+        child={
+            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
+            <select id="currency" name="currency" className="form-select">
+                <option value="USD">Stakeholder-2</option>
+                <option value="EUR">Stakeholder-1</option>
+            </select>
+                    <div
+                    className="ac-select-container w-100"
+                    style={{ display: "none" }}
+                    >
+                    <div className="ac-select-dropdown w-100">
+                        <div className="ac-select-search-box">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            className="form"
+                        />
+                        </div>
+                    </div>
+                    <div></div>
+                    </div>
+                    <FontAwesomeIcon style={{marginLeft: "2rem", marginTop: "10px"}} icon={faCloudArrowUp} />
+                </div>
+        }
+    />
+    </div>
+<div style={{margin: "0px"}} >
+    <div style={{transform: "translateX(-38.5%)"}} >
+<GeneralFormDropdown
+        name="INTERNAL NOTE"
+        child={
+        <div style={{transform: "translateX(38.5%)"}} id="notes-container" >
+            <div className="ms-4">
+            <div className="mb-3 form-group input-group-outline">
+                <textarea
+                name="notes"
+                className="form-control"
+                placeholder="Notes"
+                ></textarea>
+            </div>
+            </div>
+        </div>
+        }
+    />
+    </div>
+    <div style={{marginTop: "2rem"}} className='underline' ></div>
+    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
+    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
+</div>
+</div>;
+const PoolIncrease = () => <div className='card-modals' >
+<h2 style={{padding: "0%", transform: "translateX(-50%)", fontSize: "20px" }} className='title' >Increase Pool</h2>
+<div className='underline' ></div>
+<ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
+    <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
+        <label style={{marginTop: "0px", marginBottom: "10px", alignSelf: "flex-start"}} >Pool</label>
+    <div>
+        <select id="currency" name="currency" className="form-select">
+            <option value="USD">Pool-1</option>
+            <option value="EUR">Pool-2</option>
+        </select>
+                <div
+                className="ac-select-container w-100"
+                style={{ display: "none" }}
+                >
+                <div className="ac-select-dropdown w-100">
+                    <div className="ac-select-search-box">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="form"
+                    />
+                    </div>
+                </div>
+                </div>
+            </div>
+            <label style={{marginTop: "15px", marginBottom: "5px", alignSelf: "flex-start"}} >Date</label>
+            <div style={{width: "20vw"}}>
+            <input type="date" placeholder="gg.aa.yyyy" style={{width: "20vw"}} className="input" />
+        </div>
+    </ul>
+<div style={{width: "50%"}}>
+    <label style={{width: "100%", marginLeft: "1rem", marginTop: "2.5%", transform: "translateX(-10rem)"}}>Amount</label>
+    <ul style={{padding: "0%", display: "flex", flexDirection: "row"}} >
+    <input
+    style={{width: "70%", marginLeft: "1rem"}}
+            name="name"
+            placeholder="Amount"
+            type="number"
+            className="form-control border-end"
+            />
+            <div>
+        <select id="currency" name="currency" className="form-select">
+            <option value="USD">%</option>
+            <option value="EUR">Shares</option>
+        </select>
+                <div
+                className="ac-select-container w-100"
+                style={{ display: "none" }}
+                >
+                <div className="ac-select-dropdown w-100">
+                    <div className="ac-select-search-box">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="form"
+                    />
+                    </div>
+                </div>
+                </div>
+            </div>
+            </ul>
+            <label style={{width: "100%", marginLeft: "1rem", marginTop: "2.5%", transform: "translateX(-5.5rem)", fontSize: "13px"}}>Current pool percentage: 99.996%</label>
+            </div>
+</ul>
+<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
+<GeneralFormDropdown
+        name="Documents"
+        child={
+            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
+            <select id="currency" name="currency" className="form-select">
+                <option value="USD">Stakeholder-2</option>
+                <option value="EUR">Stakeholder-1</option>
+            </select>
+                    <div
+                    className="ac-select-container w-100"
+                    style={{ display: "none" }}
+                    >
+                    <div className="ac-select-dropdown w-100">
+                        <div className="ac-select-search-box">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            className="form"
+                        />
+                        </div>
+                    </div>
+                    <div></div>
+                    </div>
+                    <FontAwesomeIcon style={{marginLeft: "2rem", marginTop: "10px"}} icon={faCloudArrowUp} />
+                </div>
+        }
+    />
+    </div>
+<div style={{margin: "0px"}} >
+    <div style={{transform: "translateX(-38.5%)"}} >
+<GeneralFormDropdown
+        name="INTERNAL NOTE"
+        child={
+        <div style={{transform: "translateX(38.5%)"}} id="notes-container" >
+            <div className="ms-4">
+            <div className="mb-3 form-group input-group-outline">
+                <textarea
+                name="notes"
+                className="form-control"
+                placeholder="Notes"
+                ></textarea>
+            </div>
+            </div>
+        </div>
+        }
+    />
+    </div>
+    <div style={{marginTop: "2rem"}} className='underline' ></div>
+    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
+    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
+</div>
+</div>;
+const PoolDecrease = () => <div className='card-modals' >
+<h2 style={{padding: "0%", transform: "translateX(-50%)", fontSize: "20px" }} className='title' >Decrease Pool</h2>
+<div className='underline' ></div>
+<ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
+    <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
+        <label style={{marginTop: "0px", marginBottom: "10px", alignSelf: "flex-start"}} >Pool</label>
+    <div>
+        <select id="currency" name="currency" className="form-select">
+            <option value="USD">Pool-1</option>
+            <option value="EUR">Pool-2</option>
+        </select>
+                <div
+                className="ac-select-container w-100"
+                style={{ display: "none" }}
+                >
+                <div className="ac-select-dropdown w-100">
+                    <div className="ac-select-search-box">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="form"
+                    />
+                    </div>
+                </div>
+                </div>
+            </div>
+            <label style={{marginTop: "15px", marginBottom: "5px", alignSelf: "flex-start"}} >Date</label>
+            <div style={{width: "20vw"}}>
+            <input type="date" placeholder="gg.aa.yyyy" style={{width: "20vw"}} className="input" />
+        </div>
+    </ul>
+<div style={{width: "50%"}}>
+    <label style={{width: "100%", marginLeft: "1rem", marginTop: "2.5%", transform: "translateX(-7rem)"}}>Amount to decrease</label>
+    <ul style={{padding: "0%", display: "flex", flexDirection: "row"}} >
+    <input
+    style={{width: "100%", marginLeft: "1rem"}}
+            name="name"
+            placeholder="Amount"
+            type="number"
+            className="form-control border-end"
+            />
+            </ul>
+            </div>
+</ul>
+<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
+    <label style={{marginBottom: "0.2rem"}} >Source</label>
+    <div className='selective-button-group-2' >
+            <button
+            style={{marginLeft: "1rem"}}
+            className="selective-button-1-2">AUTHORIZED CAPITAL</button>
+                <button
+                style={{marginLeft: "0.5rem"}}
+                className="selective-button-2-2">RESERVED SHARES</button>
+                </div>
+<GeneralFormDropdown
+        name="Documents"
+        child={
+            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
+            <select id="currency" name="currency" className="form-select">
+                <option value="USD">Stakeholder-2</option>
+                <option value="EUR">Stakeholder-1</option>
+            </select>
+                    <div
+                    className="ac-select-container w-100"
+                    style={{ display: "none" }}
+                    >
+                    <div className="ac-select-dropdown w-100">
+                        <div className="ac-select-search-box">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            className="form"
+                        />
+                        </div>
+                    </div>
+                    <div></div>
+                    </div>
+                    <FontAwesomeIcon style={{marginLeft: "2rem", marginTop: "10px"}} icon={faCloudArrowUp} />
+                </div>
+        }
+    />
+    </div>
+<div style={{margin: "0px"}} >
+    <div style={{transform: "translateX(-38.5%)"}} >
+<GeneralFormDropdown
+        name="INTERNAL NOTE"
+        child={
+        <div style={{transform: "translateX(38.5%)"}} id="notes-container" >
+            <div className="ms-4">
+            <div className="mb-3 form-group input-group-outline">
+                <textarea
+                name="notes"
+                className="form-control"
+                placeholder="Notes"
+                ></textarea>
+            </div>
+            </div>
+        </div>
+        }
+    />
+    </div>
+    <div style={{marginTop: "2rem"}} className='underline' ></div>
+    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
+    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
+</div>
+</div>;
+const SingleGrant = () => <div className='card-modals' >
+<h2 style={{padding: "0%", transform: "translateX(-50%)", fontSize: "20px" }} className='title' >Decrease Shares</h2>
+<div className='underline' ></div>
+<ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
+    <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
+        <label style={{marginTop: "0px", marginBottom: "10px", transform: "translateX(-9rem)"}} >Stakeholder</label>
+    <div>
+        <select id="currency" name="currency" className="form-select">
+            <option value="USD">Stakeholder-1</option>
+            <option value="EUR">Stakeholder-2</option>
+        </select>
+                <div
+                className="ac-select-container w-100"
+                style={{ display: "none" }}
+                >
+                <div className="ac-select-dropdown w-100">
+                    <div className="ac-select-search-box">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="form"
+                    />
+                    </div>
+                </div>
+                </div>
+            </div>
+            <label style={{marginTop: "15px", marginBottom: "10px", transform: "translateX(-9rem)"}} >From plan</label>
+            <div>
+        <select id="currency" name="currency" className="form-select">
+            <option >Plan-1</option>
+            <option >Plan-2</option>
+            <option ><button> <FontAwesomeIcon icon={faPlus} /> Add more class</button></option>
+        </select>
+                <div
+                className="ac-select-container w-100"
+                style={{ display: "none" }}
+                >
+                <div className="ac-select-dropdown w-100">
+                    <div className="ac-select-search-box">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="form"
+                    />
+                    </div>
+                </div>
+                </div>
+            </div>
+            <label style={{marginTop: "15px", marginBottom: "10px", transform: "translateX(-9rem)"}} >Grant date</label>
+            <input
+            style={{ marginRight: "1rem"}}
+            name="name"
+            placeholder="10.06.2024"
+            type="date"
+            className="form-control border-end"
+        />
+    </ul>
+    <div style={{width: "50%"}}>
+    <label style={{width: "100%", marginLeft: "1rem", marginTop: "26%", transform: "translateX(-8rem)"}}>Granted amount</label>
+    <input
+    style={{width: "100%", marginLeft: "1rem"}}
+            name="name"
+            placeholder="Amount"
+            type="number"
+            className="form-control border-end"
+            />
+            <label style={{marginTop: "15px", marginBottom: "10px", transform: "translateX(-8rem)"}} >Expiry date</label>
+            <input
+            style={{ marginLeft: "1rem"}}
+            name="name"
+            placeholder="10.06.2024"
+            type="date"
+            className="form-control border-end"
+        />
+            </div>
+</ul>
+<ul>
+                <div style={{margin: "20px", flexDirection: "row", transform: "translateX(-22.5rem)"}}>
+                <GeneralFormDropdown
+        name="Prices"
+        child={
+            <div style={{flexDirection: "column", display: "flex", width: "35vw", transform: "translateX(19rem)"}} >
+            <label style={{marginTop: "15px", marginBottom: "10px", transform: "translate(-17.5rem)"}} >Purchase price</label>
+            <input
+            style={{width: "20vw"}}
+                    name="street2"
+                    placeholder="Purchase Price "
+                    type="text"
+                    className="form-control"
+                />
+                </div>
+        }
+    />
+    </div>
+    <div style={{transform: "translateX(-22rem)"}} >
+    <GeneralFormDropdown
+        name="Vesting"
+        child={
+            <div style={{flexDirection: "row", display: "flex", width: "50vw", transform: "translateX(27%)", marginLeft: "2rem"}} >
+                <ul style={{display: "flex", flexDirection: "column"}} >
+                <div style={{width: "11vw", marginTop: "1rem"}}>
+                <label style={{transform: "translate(-5.5rem)"}} >Type</label>
+                <input
+                    name="street2"
+                    placeholder="Time (simple)"
+                    type="text"
+                    className="form-control"
+                />
+                </div>
+                <div style={{width: "11vw", marginTop: "1rem"}}>
+                <label style={{transform: "translate(-5rem)"}} >Duration</label>
+                <input
+                    name="street2"
+                    placeholder="48"
+                    type="text"
+                    className="form-control"
+                />
+                </div>
+                </ul>
+                <ul style={{display: "flex", flexDirection: "column"}} >
+                <div style={{width: "11vw", marginTop: "1rem"}}>
+                    <label style={{transform: "translate(-4rem)"}} >Start date</label>
+                <input
+                    name="street2"
+                    placeholder="gg.aa.yyyy"
+                    type="date"
+                    className="form-control"
+                />
+                </div>
+                <div style={{width: "11vw", marginTop: "1rem"}}>
+                <label style={{transform: "translate(-4.5rem)"}} >Vest every
+                </label>
+                <input
+                    name="street2"
+                    placeholder="Valuation Cap"
+                    type="text"
+                    className="form-control"
+                />
+                </div>
+                </ul>
+                <div style={{width: "11vw", marginTop: "1rem"}}>
+                    <label style={{transform: "translate(-5rem)", marginTop: "4.8rem"}} >Cliff</label>
+                <input
+                style={{marginLeft: "1rem",}}
+                    name="street2"
+                    placeholder="12"
+                    type="number"
+                    className="form-control"
+                />
+                </div>
+                </div>
+        }
+    />
+    </div>
+    <div style={{padding: "0%", transform: "translateX(-21.2rem)"}} >
+    <GeneralFormDropdown
+        name="Definitions"
+        child={
+        <div style={{transform: "translateX(18rem)", width: "30vw", padding: "0%"}} id="notes-container" >
+            <div style={{width: "30vw", marginBottom: "0.5rem"}} className="ms-4">
+                <label style={{transform: "translateX(-15rem)", marginTop: "0.25rem"}}>Good leaver</label>
+            <div>
+                <textarea
+                style={{width: "35vw", height: "10vh"}}
+                name="notes"
+                className="form-control"
+                placeholder="Notes"
+                ></textarea>
+            </div>
+            </div>
+            <div style={{width: "30vw", marginBottom: "0.5rem"}} className="ms-4">
+                <label style={{transform: "translateX(-15.5rem)", marginTop: "0.25rem"}}>Bad leaver</label>
+            <div>
+                <textarea
+                style={{width: "35vw", height: "10vh"}}
+                name="notes"
+                className="form-control"
+                placeholder="Notes"
+                ></textarea>
+            </div>
+            </div>
+            <div style={{width: "30vw", marginBottom: "0.5rem"}} className="ms-4">
+                <label style={{transform: "translateX(-14.5rem)", marginTop: "0.25rem"}}>Liquidity event </label>
+            <div>
+                <textarea
+                style={{width: "35vw", height: "10vh"}}
+                name="notes"
+                className="form-control"
+                placeholder="Notes"
+                ></textarea>
+            </div>
+            </div>
+        </div>
+        }
+    />
+    </div>
+    </ul>
+<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
+<GeneralFormDropdown
+    name="Documents"
+    child={
+        <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
+        <select id="currency" name="currency" className="form-select">
+            <option value="USD">Stakeholder-1</option>
+            <option value="EUR">Stakeholder-2</option>
+        </select>
+                <div
+                className="ac-select-container w-100"
+                style={{ display: "none" }}
+                >
+                <div className="ac-select-dropdown w-100">
+                    <div className="ac-select-search-box">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="form"
+                    />
+                    </div>
+                </div>
+                <div></div>
+                </div>
+                <FontAwesomeIcon style={{marginLeft: "2rem", marginTop: "10px"}} icon={faCloudArrowUp} />
+            </div>
+    }
+/>
+</div>
+<div style={{margin: "0px"}} >
+<div style={{transform: "translateX(-38.5%)"}} >
+<GeneralFormDropdown
+    name="INTERNAL NOTE"
+    child={
+    <div id="notes-container" style={{transform: "translateX(38.5%)"}} className="collapse show">
+        <div className="ms-4">
+        <div className="mb-3 form-group input-group-outline">
+            <textarea
+            name="notes"
+            className="form-control"
+            placeholder="Notes"
+            ></textarea>
+        </div>
+        </div>
+    </div>
+    }
+/>
+</div>
+<div style={{marginTop: "2rem"}} className='underline' ></div>
+<button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
+<button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
+</div>
+</div>;
 
 // Map modal types to their respective components
 const modalComponents: { [key: string]: React.FC } = {
+    'Financing Round': FinancingRound,
+    'Valuation': Valuation,
     'Stock Split': StockSplit,
     'Convertible Loan': ConvertibleLoan,
     'Issue Shares': IssueShares,
@@ -826,12 +1683,14 @@ const ModalBoxT: React.FC<{ CloseModal: () => void }> = ({ CloseModal }) => {
             {}
             <div style={{ display: 'flex', flexDirection: 'row', padding: '0%' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: '0%' }}>
+                    <ModalButton Title="Financing Round" Span="Add a capital increase with valuation, shares, and pools. You can add or edit individual transactions later." onClick={() => handleOpenModal('Financing Round')} />
+                    <ModalButton Title="Valuation" Span="Update your company’s post-money valuation." onClick={() => handleOpenModal('Valuation')} />
                     <ModalButton Title="Stock Split" Span="" onClick={() => handleOpenModal('Stock Split')} />
-                    <ModalButton Title="Decrease Shares" Span="Reduce the amount of shares that a stakeholder has" onClick={() => handleOpenModal('Decrease Shares')} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: '0%' }}>
                     <ModalButton Title="Convertible Loan" Span="Add a convertible loan/SAFE with optional parameters like a cap" onClick={() => handleOpenModal('Convertible Loan')} />
                     <ModalButton Title="Issue Shares" Span="Issue new shares and assign them to a stakeholder." onClick={() => handleOpenModal('Issue Shares')} />
+                    <ModalButton Title="Decrease Shares" Span="Reduce the amount of shares that a stakeholder has" onClick={() => handleOpenModal('Decrease Shares')} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: '0%', marginRight: '1rem' }}>
                     <ModalButton Title="Secondary" Span="Add a share transfer between two stakeholders" onClick={() => handleOpenModal('Secondary')} />
