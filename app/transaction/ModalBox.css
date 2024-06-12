@@ -93,3 +93,39 @@
     background-color: white;
     border: 1px solid rgb(0, 0, 0);
 }
+
+.selective-button-group-2{
+    transform: translateX(10rem);
+    width: 100%;
+}
+
+
+.selective-button-1-2{
+    margin: 0%;
+    width: 25%;
+    height: 50px;
+    color: white;
+    text-align: center;
+    background-color: rgb(84, 84, 84);
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.selective-button-2-2{
+    margin: 0%;
+    width: 25%;
+    height: 50px;
+    color: black;
+    text-align: center;
+    background-color: white;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.selective-button-1-2:hover{
+    margin: 0%;
+    height: 50px;
+    color: black;
+    text-align: center;
+    background-color: white;
+    border: 1px solid rgb(0, 0, 0);
+}
+
