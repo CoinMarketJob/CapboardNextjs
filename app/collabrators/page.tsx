@@ -32,6 +32,10 @@ const Collaborators = () => {
     const [toggleDelete, setToggleDelete] = useState<boolean>(false);
     const [activeDate, setActiveDate] = useState<string | null>(null);
     const [openModal, setOpenModal] = useState<boolean>(false); // State for modal open/close
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [users, setUsers] = useState([]);
 
     const toggleActivities = (date: string) => {
         setActiveDate(activeDate === date ? null : date);
@@ -43,10 +47,15 @@ const Collaborators = () => {
     useEffect(() => {
         async function fetchData() {
             try {
+                
+                const response2 = await fetch('/api/auth/get');
+                const user = await response2.json();
+                console.log(user);
+                setUsers(user);
+
                 const response = await fetch('/api/LogRecord/get');
                 const data = await response.json();
-                console.log(data);
-                setLogs(data);
+                setLogs(data);                
             } catch (error) {
                 console.error('Veri getirme hatası:', error);
             }
@@ -69,7 +78,6 @@ const Collaborators = () => {
         };
 
         setFilteredLogs(groupByDateAndUser(logs));
-        console.log(filteredLogs);
 
     }, [logs])
 
@@ -81,6 +89,50 @@ const Collaborators = () => {
             Email: "merenkirkas@protonmail.com",
         }
     ]
+
+    const AddUser = async () => {
+        try {
+            const submitData = {
+                name,
+                email,
+                password
+              };
+
+            const response = await fetch('/api/auth', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(submitData)
+            });
+            const data = await response.json();
+
+            if(response.ok){                
+                window.location.href="/collabrators";
+            }
+            console.log(data);
+        } catch (error) {
+            console.error('Veri getirme hatası:', error);
+        }
+    }
+
+    const DeleteUser = async (id: number) => {
+        try {
+            const response = await fetch(`/api/auth/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await response.json();
+            
+            if(response.ok){                
+                window.location.href="/collabrators";
+            }
+    }catch (error) {
+        console.error('Veri getirme hatası:', error);
+    }
+}
 
     return (
         <div>
@@ -101,21 +153,18 @@ const Collaborators = () => {
                 <div className="collaborators-list-bar">
                     <div style={{ width: "250px", fontSize: "11px" }} >NAME</div>
                     <div style={{ width: "700px", fontSize: "11px" }} >EMAIL</div>
-                    <div style={{ width: "250px", fontSize: "11px" }} >ACCESS LEVEL</div>
                     <div style={{ width: "200px", fontSize: "11px" }} >ACCEPTED</div>
                 </div>
                 <div className="underline"></div>
-                {collaborators.map((collaborator) => (
-                    <div className="collaborators-list" key={collaborator.name}>
-                        <div style={{ width: "250px", fontSize: "15px" }}>{collaborator.name}</div>
-                        <div style={{ width: "700px", fontSize: "17px" }}>{collaborator.Email}</div>
-                        <div style={{ width: "250px", fontSize: "17px" }}>{collaborator.accessLevel}</div>
-                        <div style={{ width: "200px", fontSize: "17px" }}>{collaborator.accepted}</div>
-                        <FontAwesomeIcon style={{ width: "15px", height: "15px", marginRight: "1rem" }} icon={faPenToSquare} />
-                        <FontAwesomeIcon style={{ width: "15px", height: "15px" }} icon={faTrashCan} />
+                  {users.map((item, index) => (
+                    <div className="collaborators-list" key={index}>
+                        <div style={{ width: "250px", fontSize: "15px" }}>{item.name}</div>
+                        <div style={{ width: "700px", fontSize: "17px" }}>{item.email}</div>
+                        <div style={{ width: "200px", fontSize: "17px" }}>{item.createdAt}</div>
+                        <FontAwesomeIcon style={{ width: "15px", height: "15px" }} icon={faTrashCan} onClick={() => DeleteUser(item.id)} />
                         <div className="underline"></div>
                     </div>
-                ))}
+                ))}  
             </div>
             <div className="card-2">
                 <h2 className="title">Notifications</h2>
@@ -175,6 +224,7 @@ const Collaborators = () => {
                                     placeholder="Danny"
                                     type="text"
                                     className="form-control border-end"
+                                    value={name} onChange={(e) => setName(e.target.value)}
                                 />
                                     <label style={{marginTop: "15px", marginBottom: "10px"}} >Email</label>
                                     <input
@@ -183,14 +233,16 @@ const Collaborators = () => {
                                     placeholder="iglschzgrutlunmjlh@cazlg.com	"
                                     type="Email"
                                     className="form-control border-end"
+                                    value={email} onChange={(e) => setEmail(e.target.value)}
                                 />
-                                    <label style={{marginTop: "15px", marginBottom: "10px"}} >Access level</label>
+                                    <label style={{marginTop: "15px", marginBottom: "10px"}} >Password</label>
                                     <div>
-                                <select id="currency" name="currency" className="form-select">
-                                    <option >Editor</option>
-                                    <option >Full</option>
-                                    <option >Viewer</option>
-                                </select>
+                                    <input
+                                                type="password"
+                                                placeholder="Password"
+                                                className="form-control border-end"
+                                                value={password} onChange={(e) => setPassword(e.target.value)}
+                                            />
                                         <div
                                         className="ac-select-container w-100"
                                         style={{ display: "none" }}
@@ -212,7 +264,7 @@ const Collaborators = () => {
                         </div>
                         <div style={{marginTop: "2rem"}} className='underline' ></div>
                         <button onClick={() => setOpenModal(false)} style={{marginLeft: "13vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
-                        <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
+                        <button onClick={() => AddUser()} style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
                     </div>
                     </div>
                     }

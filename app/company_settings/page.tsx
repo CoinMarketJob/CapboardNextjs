@@ -641,28 +641,6 @@ const CompanySettings = () => {
                 </ul>
                 <button className='button' onClick={BasicInfoSave}>SAVE</button>
                 </div>
-      <div className="card-2">
-        <h4 className="titles">
-          Templates
-        </h4>
-        <div className="card-item-column">
-        <ul style={{display: "flex", flexDirection: "row", fontSize: "13px", marginTop: "2rem"}} >
-          <span>Issue_Certificate</span>
-          <li style={{listStyle: "none", marginLeft: "0.3rem"}} >Preview current template</li>
-          </ul>
-          <div className='select-file-frame' >
-            <input className='select-file' accept='.html' type='file' name='select-file' >
-            </input>
-          </div>
-          <span style={{marginLeft: "2rem", marginTop: "1.5rem", marginBottom:"1rem"}}>Issue certificate templates must contain the following variables:</span>
-          <ul style={{width: "auto", height: "auto"}} >  <span className='span-list-item'>%issue_number%</span>  <span>Certificate number. Ex: 2344</span></ul>
-          <ul> <span className='span-list-item' >%shares_amount%</span>  <span>Shares amount. Ex: 294.593</span></ul>
-          <ul> <span className='span-list-item'>%stakeholder_name%</span>  <span>Stakeholder name</span></ul>
-          <ul> <span className='span-list-item'>%company_name%</span>  <span>Company name</span></ul>
-          <li style={{marginLeft: "2rem", listStyle: "none", fontSize: "14px"}}>Click here to download a template.</li>
-          <button className='button' >SAVE</button>
-          </div>
-      </div>
       <div className="card-3">
         <h4 className="titles">Billing Info</h4>
         <ul className="card-item">
@@ -749,29 +727,6 @@ const CompanySettings = () => {
             <button className='button' onClick={SaveBill}>SAVE</button>
             <button className='button-Invoices'>Invoices</button>
             </ul>
-      </div>
-      <div className="card-4">
-        <h4 className="titles">Delete Company</h4>
-        <span style={{fontSize: "14px", marginLeft: "1rem"}} >Once you delete the company, there is no going back. Please be certain.</span>
-        <ul className='delete-company-row' >
-        <div
-            onClick={() => setToggleDelete(!toggleDelete)}
-            className={`delete-toggle-wrapper ${
-              toggleDelete ? "justify-start" : "justify-end"
-            } p-[1px]`}
-          >
-      <motion.div
-        className={`delete-toggle ${toggleDelete ? 'bg-white' : 'bg-white'}`}
-        layout
-        transition={{type: 'spring' , stiffness:250 , damping: 30}}
-      />
-    </div>
-    <ul style={{flexDirection: "column", marginTop: "1.5rem"}} >
-    <h6 style={{fontSize: "15px", margin: "0" }} >Confirm</h6>
-    <span style={{fontSize: "13px", margin: "0" }} >I want to delete the company.</span>
-    </ul>
-    <button className='delete-button' >DELETE</button>
-    </ul>
       </div>
     </div>
   );

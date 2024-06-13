@@ -174,7 +174,7 @@ model Exercising {
     id                      Int             @id @default(autoincrement())
     transactionId           Int             
     transaction             Transaction     @relation(fields: [transactionId], references: [id], onDelete: Cascade)
-    date                    DateTime
+    date                    DateTime        @default(now())
 }
 
 model Meeting {
@@ -202,6 +202,7 @@ enum LogPage{
   Pools
   Plans
   Grants
+  Exercise
   Documents
   Settings
   BillingInfo

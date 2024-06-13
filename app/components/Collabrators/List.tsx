@@ -13,7 +13,6 @@ const List:React.FC<props> = ({data}) => {
 
     {data.map((group) => {
         const [isLogDropdownOpen, setIsLogDropdownOpen] = useState(false);
-        console.log(group.users[1]);
 
         
         const changeLogDropdown = () => {
