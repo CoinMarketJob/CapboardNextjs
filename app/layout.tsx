@@ -83,7 +83,7 @@ export default function RootLayout({
             <Navlink name="Documents" href="/documents" icon={faFileLines} />
             <NavlinkDropdown name="Company" icon={faBuilding} Navlinks={DropListCompany} />
             <Navlink name="Portfolio" href="/portfolio" icon={faBriefcase} />
-            <Navlink name="Account Settings" href="/subscription" icon={faGear} />
+            <Navlink name="Account Settings" href="/account_settings" icon={faGear} />
             <Navlink name="Logout" href="/logout" icon={faRightFromBracket} />
           </ul>
         </aside>
