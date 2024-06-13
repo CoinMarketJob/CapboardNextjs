@@ -1,0 +1,72 @@
+.card-1, .card-2, .card-3, .card-4{
+    height: auto;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-top: 4vh;
+    border: 1px solid #d2d6da;
+}
+
+.title{
+    font-size: 22px;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.input{
+    color: #495057;
+    height: 4.5vh;
+    margin-left: 1rem;
+    width: 40vw;
+    border: 1px solid #d2d6da;
+}
+
+.input:disabled{
+    cursor: default;
+    background-color: light-dark(rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3));
+    color: light-dark(rgb(84, 84, 84), rgb(170, 170, 170));
+    border-color: rgba(118, 118, 118, 0.3);
+}
+
+.delete-company-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.delete-toggle-wrapper{
+    margin-top: 2rem;
+    display: flex;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.254);
+    background-color: white;
+}
+
+.delete-toggle{
+    height: 19px;
+    width: 19px;
+    background-color: black;
+    border-radius: 1rem;
+}
+
+.justify-start{
+    justify-content: flex-start;
+    background-color: rgba(58, 65, 111, 0.1);
+}
+
+.justify-end{
+    justify-content: flex-end;
+    background-color: #D7BBFF;
+    border-color: #AC96CC;
+}
+
+.delete-button{
+    height: 45px;
+    width: 105px;
+    border: none;
+    color: black;
+    margin-left: 62vw;
+    border-radius: 0.3rem;
+    background-color: #ea0606;
+}
