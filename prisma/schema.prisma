@@ -94,7 +94,7 @@ model Transaction {
 
   documentId            Int?
   document              Documents?      @relation(fields: [documentId], references: [id], onDelete: Cascade)
-
+  exercisings Exercising[]
 }
 
 
@@ -170,6 +170,23 @@ model LogRecord {
   date                    DateTime        @default(now())
 }
 
+model Exercising {
+    id                      Int             @id @default(autoincrement())
+    transactionId           Int             
+    transaction             Transaction     @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+    date                    DateTime
+}
+
+model Meeting {
+    id                      Int             @id @default(autoincrement())
+    name                    String
+    type                    String
+    date                    DateTime
+    timezone                String
+    location                String
+    link                    String
+}
+
 enum LogType {
   View
   Edit
@@ -188,7 +205,8 @@ enum LogPage{
   Documents
   Settings
   BillingInfo
-  Collabarators  
+  Collabarators
+  Meetings  
 }
 
 enum VatType {
