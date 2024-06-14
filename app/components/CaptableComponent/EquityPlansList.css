@@ -8,24 +8,22 @@
     height: 40px;
 }
 
-.HeaderArrow{    
+.HeaderArrow{
     margin-left: 10px;
-    margin-right: 10px;  
+    margin-right: 10px;
 }
 
 .FirstColumn{
-    width: 550px;
+    width: 50px;
     margin-right: 23%;
     margin-left: 10px;
 }
-.FirstColumnTablo{    
-    width: 550px;
-    margin-right: 23%;
+.FirstColumnTablo{
+    width: 50px;
+    margin-right: 19vw;
     margin-left: 50px;
 }
-.SecondColumn{
-    margin-right: 10%;
-}
+
 
 .Tablo{
     display: inline-flex;

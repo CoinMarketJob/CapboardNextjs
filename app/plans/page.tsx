@@ -63,7 +63,7 @@ const page = () => {
                     </div>
                     <div className="col-12 col-md-auto text-end col">
                         <button type="button" 
-                        className="btn-secondary w-100 rounded-1 btn btn-primary" onClick={changeModalState}>Create your Equity Plan</button>
+                        className="btn-secondary w-100 rounded-1 btn btn-primary" style={{color: "black"}} onClick={changeModalState}>Create your Equity Plan</button>
                     </div>
                 </div>
             </div>

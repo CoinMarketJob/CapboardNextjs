@@ -122,15 +122,14 @@ const PoolPage = () => {
         deletePool(id);
     };
 
-    
+
     return (
         <div className={styles.container}>
             <h1 style={{ fontSize: "19px", marginLeft: "1rem", marginTop: "1vh" }}>Pools</h1>
-            <div style={{ marginLeft: "1rem", marginTop: "2rem", border: "1px solid rgba(0, 0, 0, 0.208)", height: "40px", width: "200px", paddingTop: "8px", paddingLeft: "8px", fontSize: "13px" }} className='calendar'>
-                06/09/2024<FontAwesomeIcon style={{ marginLeft: "6rem" }} icon={faCalendar} />
+            <div style={{ marginLeft: "1rem", marginTop: "2rem", height: "40px", width: "200px", paddingTop: "8px", paddingLeft: "8px", fontSize: "13px" }} className='calendar'>
             </div>
 
-            <button onClick={handleCreatePool} className={styles.addPoolBtn}><FontAwesomeIcon style={{ marginRight: "10px" }} icon={faWater} />ADD POOL</button>
+            <button onClick={handleCreatePool} className={styles.addPoolBtn}><FontAwesomeIcon style={{ marginRight: "10px", width: 16, height: 16 }} icon={faWater} />ADD POOL</button>
 
             <div className={styles.poolTable}>
                 <div className={styles.tableHeader}>
@@ -174,8 +173,8 @@ const PoolPage = () => {
                             </ul>
                         </ul>
                     );
-                })} 
-                </div>                
+                })}
+                </div>
             </div>
 
             {isModalOpen && <PoolFormModal isOpen={isModalOpen} onClose={handleCloseModal} onSave={handleAddPool} type={editType} editId={editId} />}

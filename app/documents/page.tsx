@@ -82,17 +82,17 @@ const Documents = () => {
         <ul className="section-2">
         <div className="tab-content" >
           <div className="cmj-hq-main" >
-          <FontAwesomeIcon className="cmj-hq"  icon={faHouse} />
+          <FontAwesomeIcon className="cmj-hq" style={{width: 16, height: 16}} icon={faHouse} />
           CMJ HQ
           </div>
         <div className="right-section">
           <div className="row" >
           <div className="bar" >
-          <FontAwesomeIcon className="bar-icon" icon={faHouse} />
+          <FontAwesomeIcon className="bar-icon" style={{width: 16, height: 16}} icon={faHouse} />
           </div >
           <div className="icon-row" >
-          <FontAwesomeIcon className="icon" icon={faFolderPlus} />
-          <FontAwesomeIcon className="icon" icon={faPlus} onClick={AddDocument} />
+          <FontAwesomeIcon className="icon" style={{width: 16, height: 16}} icon={faFolderPlus} />
+          <FontAwesomeIcon className="icon" style={{width: 16, height: 16}} icon={faPlus} onClick={AddDocument} />
           <input id="Sec" type="file" style={{display: "none"}} onChange={upload} />
           </div>
           <ul className="navbar-2">
@@ -102,7 +102,7 @@ const Documents = () => {
           {documents.map((item,index) => (
             <ul className="navbar-3" key={index}>
               <li style={{paddingTop: '20px', fontSize: '14px'}} >{item.DocumentName}</li>
-              <li style={{paddingTop: '20px', paddingLeft: '27vw', fontSize: '14px'}} >{new Date(item.Date).toLocaleDateString('tr-TR', options)}</li>
+              <li style={{paddingTop: '20px', paddingLeft: '27vw', fontSize: '14px'}} >{new Date(item.Date).toLocaleDateString('en-EN')}</li>
           </ul>
           ))}
           

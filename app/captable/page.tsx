@@ -73,26 +73,7 @@ export default function Home() {
             </Head>
 
             <main className={styles.main}>
-                <div className={styles.header}>
-                    <div style={{margin: "0%", width: "13vw"}} className={styles.dropdown}>
-                        <select style={{width: "13vw"}} >
-                            <option>Latest cap table</option>
-                        </select>
-                    </div>
-                    <div style={{transform: "translateX(-80%)"}} className={styles.dateInput}>
-                        <input type="text" value="07.06.2024" readOnly />
-                    </div>
-                    <div style={{transform: "translateX(40%)"}} className={styles.buttons}>
-                        <button>Edit</button>
-                    </div>
-                    <div className={styles.select}>
-                        <select>
-                            <option>Share</option>
-                            <option>via mail</option>
-                            <option>export to excel</option>
-                        </select>
-                    </div>
-                </div>
+                
 
                 <div className={styles.stats}>
                     <div className={styles.statItem}>
@@ -119,16 +100,7 @@ export default function Home() {
 
                 <div className={styles.tableHeader}>
                     <h3>CapTable per shareholder</h3>
-                    <div className={styles.searchContainer}>
-                        <input type="text" placeholder="search" className={styles.searchInput} />
-                        <div className={styles.toggleContainer}>
-                            <label className={styles.switch}>
-                                <input type="checkbox" checked={onlyTotals} onChange={handleToggle} />
-                                <span className={styles.slider}></span>
-                            </label>
-                            <span>Only totals</span>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <div className={styles.table}>

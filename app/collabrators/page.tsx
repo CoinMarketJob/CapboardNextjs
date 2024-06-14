@@ -116,23 +116,22 @@ const Collaborators = () => {
         }
     }
 
-    const DeleteUser = async (id: number) => {
-        try {
-            const response = await fetch(`/api/auth/${id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const data = await response.json();
+    // const DeleteUser = async (id: number) => {
+    //     try {
+    //         const response = await fetch(`/api/auth/${id}`, {
+    //             method: 'DELETE',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             }
+    //         });
+    //         const data = await response.json();
             
-            if(response.ok){                
-                window.location.href="/collabrators";
-            }
-    }catch (error) {
-        console.error('Veri getirme hatası:', error);
-    }
-}
+    //         if(response.ok){                
+    //             window.location.href="/collabrators";
+    //         }
+    // }catch (error) {
+    //     console.error('Veri getirme hatası:', error);
+    // }
 
     return (
         <div>
@@ -161,7 +160,7 @@ const Collaborators = () => {
                         <div style={{ width: "250px", fontSize: "15px" }}>{item.name}</div>
                         <div style={{ width: "700px", fontSize: "17px" }}>{item.email}</div>
                         <div style={{ width: "200px", fontSize: "17px" }}>{item.createdAt}</div>
-                        <FontAwesomeIcon style={{ width: "15px", height: "15px" }} icon={faTrashCan} onClick={() => DeleteUser(item.id)} />
+                        {/* <FontAwesomeIcon style={{ width: "15px", height: "15px" }} icon={faTrashCan} onClick={() => DeleteUser(item.id)} /> */}
                         <div className="underline"></div>
                     </div>
                 ))}  

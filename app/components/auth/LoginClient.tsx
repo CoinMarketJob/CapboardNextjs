@@ -35,6 +35,7 @@ const LoginClient:React.FC<LoginClientProps> = ({currentUser}) => {
   return (
     <div style={{display: "flex", flexDirection: "column", marginLeft: "30%", marginTop: "15%", width: "19vw", justifyContent: "center"}} >
       <div style={{display: "flex", flexDirection: "column", marginLeft: "15%", backgroundColor: "white", width: "19vw", justifyContent: "center"}}>
+      <h3 style={{marginTop: "1rem", marginLeft: "7vw"}}>Sign-in</h3>
       <label style={{marginTop: "1rem", marginLeft: "1vw"}}>Email</label>
       <input placeholder="Email" style={{marginBottom: "0rem", width: "17vw", marginLeft: "1vw"}} value={email} onChange={(e) => setEmail(e.target.value)}/>
         <label style={{marginTop: "1rem", marginLeft: "1vw"}}>Password</label>

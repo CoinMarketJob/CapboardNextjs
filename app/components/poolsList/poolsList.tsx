@@ -34,18 +34,26 @@ const PoolsListCom: React.FC<PoolListProps> = ({
 
     const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
     const [filteredTransactions, setFilteredTransactions] = useState([]);
-
+    
     const graphData = {
         datasets: [{
-            data: [3.6],
-            backgroundColor: ['green'],
-            borderColor: ['green'],
+        data: [grantable,granted],
+        backgroundColor: ['green', "purple"], // Farklı renkler
+        borderColor: ['green', "purple"],    // Farklı renkler
         }]
     };
 
     const options = {
-        cutout: '80%',
-    };
+        cutout: '90%',
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            fontColor: 'black', // Color of legend labels
+            fontSize: 12, // Font size of legend labels
+          }
+        }
+      };
 
     const toggleDropdown = () => {
         setDropdownVisible(!dropdownVisible);
@@ -79,7 +87,7 @@ const PoolsListCom: React.FC<PoolListProps> = ({
                 <div style={{ width: "100px", fontSize: "10px", marginLeft: "7vw" }}>{granted}</div>
                 <div style={{ width: "100px", fontSize: "10px", marginLeft: "3vw" }}>{grantVested}</div>
                 <div style={{ width: "100px", fontSize: "10px", marginLeft: "5vw" }}>{exercised}</div>
-                <div style={{width: "100px", marginLeft: "3vw", padding: "0%", transform: "translateY(-130%)"}} >
+                <div style={{width: "100px", marginLeft: "3vw", padding: "0%", transform: "translateY(-50%)"}} >
                     <Doughnut style={{width: "80px", height: "100px"}} data={graphData} options={options} />
                 </div>
                 <FontAwesomeIcon style={{margin: "7px"}} icon={faPlus} onClick={() => editFunc("PoolIncrease",id)} />
@@ -91,14 +99,11 @@ const PoolsListCom: React.FC<PoolListProps> = ({
                     <ul className="detailUl">
                         {filteredTransactions.map((item, index) => (
                             <li key={index} className="DetailLi">
-                                <div style={{fontSize: "15px"}}>{item.date}</div>
+                                <div style={{fontSize: "15px"}}>{new Date(item.date).toLocaleDateString('en-EN')}</div>
                                 <div style={{ width: "120px", textAlign: "center", marginLeft: "7vw", fontSize: "13px", backgroundColor: "#f1f5f9", color: "#475569 ", borderRadius: "0.2rem", fontWeight: "500"}} >{item.type}</div>
                                 <div style={{marginLeft: "10vw", fontSize: "15px"}} >{item.amount}</div>
                             </li>
                         ))}
-                        
-                    
-                    
                     </ul>
                 </div>
             )}

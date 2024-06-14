@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation"
 const page = () => {    
     const router = useRouter()
     useEffect(() => {
-        signOut({ callbackUrl: "//login", redirect: true })              
+      signOut();
+        router.push('/login');              
     }, [])
   return (
     <div></div>

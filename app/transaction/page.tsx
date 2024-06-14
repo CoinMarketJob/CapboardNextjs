@@ -90,7 +90,7 @@ const Page = () => {
         <p className="description">Manage CMJ’s transactions.</p>
       </div>
       <button className="addButton" style={{marginLeft: "45vw"}} onClick={() => setOpenModal(true)}>
-        <FontAwesomeIcon icon={faPlus} /> ADD TRANSACTION
+        <FontAwesomeIcon icon={faPlus} style={{width: 16, height: 16}} /> ADD TRANSACTION
       </button>
       </ul>
 
@@ -118,7 +118,7 @@ const Page = () => {
         </div>
 
         <button  onClick={() => Search()} className="searchButton">
-          <FontAwesomeIcon icon={faSearch} />
+          <FontAwesomeIcon icon={faSearch} style={{width: 16, height: 16}} />
         </button>
       </div>
     </div>
@@ -147,7 +147,7 @@ const Page = () => {
                  item.type == "PoolDecrease" || item.type == "DecreaseShares" ? item.shareClass?.name : 
                  item.type == "IssueShares" ? "TRY " + item.totalPayment :  item.type == "Secondary" ? "TRY " + item.price : item.type == "ConvertibleLoan" ? "Floor: TRY " + item.floor 
                  + " - TRY " + item.cap + " Discount:" + item.discount + "%" : ""}</div>
-                <FontAwesomeIcon style={{transform: "translateX(1000%)"}} icon={faTrash} />
+                {/* <FontAwesomeIcon style={{transform: "translateX(1000%)"}} icon={faTrash} /> */}
               </ul>
             ))}
              

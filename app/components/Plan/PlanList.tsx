@@ -92,9 +92,6 @@ const PlanList: React.FC<PlanListProps> = ({ planData }) => {
                                                 <th scope="col">Pool</th>
                                                 <th scope="col"></th>
                                                 <th scope="col">Granted</th>
-                                                <th scope="col">Duration</th>
-                                                <th scope="col">Interval</th>
-                                                <th scope="col">Cliff</th>
                                                 <th scope="col"></th>
                                                 <th scope="col"></th>
                                             </tr>
@@ -108,16 +105,13 @@ const PlanList: React.FC<PlanListProps> = ({ planData }) => {
                                                     <div className="ms-2"></div>
                                                 </td>
                                                 <td className="align-middle"><span>{granted}</span></td>
-                                                <td className="align-middle"><span>{duration}</span></td>
-                                                <td className="align-middle"><span>{interval}</span></td>
-                                                <td className="align-middle"><span>{cliff}</span></td>
                                                 <td className="align-middle text-end">
-                                                    <a className="text-primary text-xs text-uppercase me-2">
+                                                    <a className="text-primary text-xs text-uppercase me-2" href='/grants'>
                                                         <span className="me-2 black-text" >View grants</span>
                                                     </a>
                                                 </td>
                                                 <td className="align-middle text-end">
-                                                    <a className="text-primary text-xs text-uppercase text-bold black-text me-2">View transactions</a>
+                                                    <a className="text-primary text-xs text-uppercase text-bold black-text me-2"  href='/transaction'>View transactions</a>
                                                 </td>
                                             </tr>
                                         </tbody>

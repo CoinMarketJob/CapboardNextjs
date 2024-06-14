@@ -110,9 +110,6 @@ const page = () => {
             <div className="actions">
                 <button className="button" onClick={changeModalState}>CREATE EQUITY GRANT</button>
             </div>
-            <div className="searchContainer">
-                <input type="text" placeholder="search" className="searchInput" />
-            </div>
             <div className="tableWrapper">
                 {grants.map((item, index) => {
                     const transactions = item.transactions;
@@ -138,8 +135,8 @@ const page = () => {
                                         <div key={index} className="tableRow">
                                             <span>{item.id} - {item.plan.planName}</span>
                                             <span>{item.plan.grantType}</span>
-                                            <span>{item.startDate}</span>
-                                            <span>{item.duration} / {item.vestEveryDate} / {item.cliff}</span>
+                                            <span>{item.startDate != "" ? new Date(item.startDate).toLocaleDateString("en-EN") : ""}</span>
+                                            <span>{item.vestingType == "None" ? "" : item.duration + "/" + item.vestEveryDate + "/" + item.cliff}</span>
                                             <span>{item.amount}</span>
                                             <span>{item.vestingType === "None" ? item.amount : "0"}</span>
                                             <span>0</span>

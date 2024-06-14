@@ -35,7 +35,7 @@ const EquityPlansList: React.FC<Plans> = ({data}) => {
           transaction.type === "PoolDecrease"
       )
     }));
-    
+
     const totals = filteredData.map(plan => {
       const total = plan.transactions.reduce((acc, transaction) => {
         if (transaction.type === "PoolCreation" || transaction.type === "PoolIncrease") {
@@ -46,7 +46,7 @@ const EquityPlansList: React.FC<Plans> = ({data}) => {
           return acc; // Diğer transaction tipleri için toplamı değiştirme
         }
       }, 0);
-    
+
       return {
         planId: plan.id,
         poolName: plan.poolName,
@@ -54,10 +54,10 @@ const EquityPlansList: React.FC<Plans> = ({data}) => {
       };
     });
     setShares(totals);
-    console.log(totals); 
+    console.log(totals);
 
     setTotalShares(Array.isArray(shares) ? shares.reduce((accumulator, item) => accumulator + item.total, 0) : 0);
-  
+
     const grantData = data.map(plan => ({
       ...plan,
       transactions: plan.transactions.filter(
@@ -96,11 +96,11 @@ const EquityPlansList: React.FC<Plans> = ({data}) => {
       });
       setCombined(combinedTotals);
       console.log(combinedTotals);
-    }    
+    }
 
   },[data])
 
-  
+
   return (
 
 
@@ -120,12 +120,12 @@ const EquityPlansList: React.FC<Plans> = ({data}) => {
                 </motion.div>
                 </AnimatePresence>
             </div>
-            <div className="FirstColumn">Plans</div>
-            <div className="SecondColumn">{totalShares}</div>
-            <div className="SecondColumn">{totalGrant}</div>
-            <div className="SecondColumn">{totalGrant / totalShares * 100} %</div>
-            <div className="SecondColumn">{(totalShares - totalGrant) / totalShares * 100} %</div>
-            <div className="SecondColumn">0</div>
+            <div  className="FirstColumn">Plans</div>
+            <div style={{marginLeft: "0vw", width: "100px"}} className="SecondColumn">{totalShares}</div>
+            <div style={{marginLeft: "8vw", width: "100px"}} className="SecondColumn">{totalGrant}</div>
+            <div style={{marginLeft: "8vw", width: "100px"}} className="SecondColumn">{totalGrant / totalShares * 100} %</div>
+            <div style={{marginLeft: "8vw", width: "100px"}} className="SecondColumn">{(totalShares - totalGrant) / totalShares * 100} %</div>
+            <div style={{marginLeft: "10vw", width: "100px"}} className="SecondColumn">0</div>
         </div>
         <AnimatePresence>
                         {isOpen && (
@@ -141,16 +141,15 @@ const EquityPlansList: React.FC<Plans> = ({data}) => {
                               <div key={index}>
                                 <div className="Tablo">
                                   <div className="FirstColumnTablo">{item.poolName}</div>
-                                    <div className="SecondColumn">{item.total}</div>
-                                    <div className="SecondColumn">{item.totalGrant}</div>
-                                    <div className="SecondColumn">{item.totalGrant / item.total * 100} %</div>
-                                    <div className="SecondColumn">{(item.total - item.totalGrant) / item.total * 100} %</div>
-                                    <div className="SecondColumn">0</div>
+                                    <div style={{marginLeft: "0vw", width: "100px"}} className="SecondColumn">{item.total}</div>
+                                    <div style={{marginLeft: "8vw", width: "100px"}} className="SecondColumn">{item.totalGrant}</div>
+                                    <div style={{marginLeft: "8vw", width: "100px"}} className="SecondColumn">{item.totalGrant / item.total * 100} %</div>
+                                    <div style={{marginLeft: "8vw", width: "100px"}} className="SecondColumn">{(item.total - item.totalGrant) / item.total * 100} %</div>
+                                    <div style={{marginLeft: "10vw", width: "100px"}} className="SecondColumn">0</div>
                                 </div>
                               </div>
                             );
-                            })}                       
-            
+                            })}
                         </motion.div>
                         )}
                 </AnimatePresence>
