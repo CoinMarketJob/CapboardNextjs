@@ -68,11 +68,9 @@ model Transaction {
   plan                  Plan?            @relation(fields: [planId], references: [id], onDelete: Cascade)
   shareClassId          Int?
   shareClass            ShareClasses?      @relation(fields: [shareClassId], references: [id], onDelete: Cascade)
-  transferPrice         Int?
-  issuePrice            Int?
-  totalInvestment       Int?
-  retention             Int?
+  price                 Int?
   totalPayment          Int?
+  retention             Int?
   floor                 Int?
   cap                   Int?
   discount              Int?
