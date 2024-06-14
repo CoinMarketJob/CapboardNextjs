@@ -9,10 +9,26 @@ import Modals from '../components/Modals/modals';
 import GeneralFormDropdown from '../components/GeneralFormDropdown/GeneralFormDropdown';
 
 const FinancingRound = () => <div>
-
 </div>;
 const Valuation = () => <div>Valuation Component</div>;
-const StockSplit = () => <div className='card-modals' >
+const StockSplit = ({ saveData }) => {
+    const [formData, setFormData] = useState({
+        date: '',
+        splitFactor: '',
+        stakeholder: '',
+        internalNote: ''
+    });
+    const handleInputChange = (e) => {
+        console.log("1234")
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+    const handleSave = () => {
+        // Özel işlemler ve API çağrıları burada yapılabilir
+        saveData(formData);
+    };
+    return(
+<div className='card-modals' >
 <h2 style={{padding: "0%", transform: "translateX(-60%)", fontSize: "20px" }} className='title' >Split</h2>
 <div className='underline' ></div>
 <ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
@@ -20,7 +36,9 @@ const StockSplit = () => <div className='card-modals' >
 <label style={{transform: "translateX(-9.5rem)"}} className="form-label">Date</label>
                 <div style={{width: "18vw"}}>
                 <input
-                    name="street"
+                value={formData.date}
+                onChange={handleInputChange}
+                name="street"
                     placeholder="10.06.2024"
                     type="date"
                     className="form-control"
@@ -31,6 +49,8 @@ const StockSplit = () => <div className='card-modals' >
 <label style={{transform: "translateX(-8rem)"}} className="form-label">Split Factor</label>
                 <div style={{width: "18vw"}}>
                 <input
+                    value={formData.splitFactor}
+                    onChange={handleInputChange}
                     name="street"
                     placeholder="Amount"
                     type="number"
@@ -44,7 +64,7 @@ const StockSplit = () => <div className='card-modals' >
         name="Documents"
         child={
             <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
-            <select id="currency" name="currency" className="form-select">
+            <select value={formData.stakeholder} onChange={handleInputChange} id="currency" name="currency" className="form-select">
                 <option value="USD">Stakeholder-2</option>
                 <option value="EUR">Stakeholder-1</option>
             </select>
@@ -77,6 +97,8 @@ const StockSplit = () => <div className='card-modals' >
             <div className="ms-4">
             <div className="mb-3 form-group input-group-outline">
                 <textarea
+                value={formData.internalNote}
+                onChange={handleInputChange}
                 name="notes"
                 className="form-control"
                 placeholder="Notes"
@@ -91,708 +113,764 @@ const StockSplit = () => <div className='card-modals' >
     <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
     <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
 </div>
-</div>;
-const ConvertibleLoan = () => <div className='card-modals' >
-<h2 style={{padding: "0%", transform: "translateX(-50%)", fontSize: "20px" }} className='title' >Decrease Shares</h2>
-<div className='underline' ></div>
-<ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
-    <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
-        <label style={{marginTop: "0px", marginBottom: "10px", alignSelf: "flex-start"}} >Stakeholder</label>
-    <div>
-        <select id="currency" name="currency" className="form-select">
-            <option value="USD">Stakeholder-2</option>
-            <option value="EUR">Stakeholder-1</option>
-        </select>
-                <div
-                className="ac-select-container w-100"
-                style={{ display: "none" }}
-                >
-                <div className="ac-select-dropdown w-100">
-                    <div className="ac-select-search-box">
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className="form"
-                    />
-                    </div>
-                </div>
-                </div>
-            </div>
-            <label style={{marginTop: "15px", marginBottom: "5px", alignSelf: "flex-start"}} >Date</label>
-            <div style={{width: "20vw"}}>
-            <input type="date" placeholder="gg.aa.yyyy" style={{width: "20vw"}} className="input" />
-        </div>
-    </ul>
-<div style={{width: "50%"}}>
-    <label style={{width: "100%", marginLeft: "1rem", marginTop: "25%", transform: "translateX(-120px)"}}>Number of shares</label>
-    <input
-    style={{width: "100%", marginLeft: "1rem"}}
-            name="name"
-            placeholder="Investment"
-            type="number"
-            className="form-control border-end"
-            />
-            </div>
-</ul>
-<div style={{margin: "0px", flexDirection: "row", transform: "translateX(-35%)"}} >
-<GeneralFormDropdown
-        name="Maturity and Discount"
-        child={
-            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(35%)"}} >
-                <ul style={{display: "flex", flexDirection: "column"}} >
-                <div style={{width: "18vw", marginTop: "1rem"}}>
-                <label style={{transform: "translate(-150px)"}} >Floor</label>
-                <input
-                    name="street2"
-                    placeholder="Valuation floor"
-                    type="text"
-                    className="form-control"
-                />
-                </div>
-                <div style={{width: "18vw", marginTop: "1rem"}}>
-                <label style={{transform: "translate(-150px)"}} >Cap</label>
-                <input
-                    name="street2"
-                    placeholder="Discount"
-                    type="text"
-                    className="form-control"
-                />
-                </div>
-                </ul>
-                <ul style={{display: "flex", flexDirection: "column"}} >
-                <div style={{width: "18vw", marginTop: "1rem"}}>
-                <label style={{transform: "translate(-150px)"}} >Discount</label>
-                <input
-                    name="street2"
-                    placeholder="Valuation Cap"
-                    type="text"
-                    className="form-control"
-                />
-                </div>
-                <div style={{width: "18vw", marginTop: "1rem"}}>
-                    <label style={{transform: "translate(-150px)"}} >Maturity date</label>
-                <input
-                    name="street2"
-                    placeholder="gg.aa.yyyy"
-                    type="date"
-                    className="form-control"
-                />
-                </div>
-                </ul>
-                </div>
-        }
-    />
-    </div>
-    <div style={{margin: "20px", flexDirection: "row", transform: "translateX(-45%)"}} >
-<GeneralFormDropdown
-        name="Interest"
-        child={
-            <div style={{flexDirection: "column", display: "flex", width: "35vw", transform: "translateX(45%)"}} >
-                <ul style={{display: "flex", flexDirection: "row",}} >
-                    <div>
-                <label  style={{transform: "translate(-120px)"}} >Non-compounding</label>
-            <input
-            style={{width: "18vw"}}
-                    name="street2"
-                    placeholder="Discount"
-                    type="number"
-                    className="form-control"
-                />
-                </div>
-                <div style={{marginLeft: "1rem"}} >
-                <label  style={{transform: "translate(-100px)"}} >Interest Start Date</label>
-            <input
-            style={{width: "18vw"}}
-                    name="Interest Start Date"
-                    placeholder="10.06.2024"
-                    type="date"
-                    className="form-control"
-                />
-                </div>
-                </ul>
-                <ul style={{display: "flex", flexDirection: "row"}} >
-                <div className='selective-button-group' >
-            <button className='selective-button-1' >365</button>
-            <button className='selective-button-2' >360</button>
-                </div>
-                <div style={{marginLeft: "12vw"}} className='selective-button-group' >
-            <button className='selective-button-1' >NO</button>
-            <button className='selective-button-2' >YES</button>
-                </div>
-                </ul>
-                </div>
+</div>
+)
+}
+const ConvertibleLoan = ({ saveData }) => {
+    const [formData, setFormData] = useState({
+        date: '',
+        shares: '',
+        stakeholder: '',
+        internalNote: '',
+        floor: '',
+        discount: '',
+        Cap: '',
+        MaturityDate: '',
+        nonCompounding: '',
+        StartDate: '',
+        Documents: '',
+    });
 
-        }
-    />
-    </div>
-<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
-<GeneralFormDropdown
-        name="Documents"
-        child={
-            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
-            <select id="currency" name="currency" className="form-select">
-                <option value="USD">Stakeholder-2</option>
-                <option value="EUR">Stakeholder-1</option>
-            </select>
-                    <div
-                    className="ac-select-container w-100"
-                    style={{ display: "none" }}
-                    >
-                    <div className="ac-select-dropdown w-100">
-                        <div className="ac-select-search-box">
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            className="form"
-                        />
-                        </div>
+    const handleInputChange = (e) => {
+        console.log("2356")
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSave = () => {
+        saveData(formData);
+    };
+
+    return (
+        <div className='card-modals'>
+            <h2 style={{ padding: "0%", transform: "translateX(-50%)", fontSize: "20px" }} className='title'>Convertible Loan</h2>
+            <div className='underline'></div>
+            <ul style={{ display: "flex", flexDirection: "row", padding: "1rem" }}>
+                <ul style={{ display: "flex", flexDirection: "column", width: "50%", padding: "0%" }}>
+                    <label style={{ marginTop: "0px", marginBottom: "10px", alignSelf: "flex-start" }}>Stakeholder</label>
+                    <div>
+                        <select name="stakeholder" className="form-select" value={formData.stakeholder} onChange={handleInputChange}>
+                            <option value="Stakeholder-2">Stakeholder-2</option>
+                            <option value="Stakeholder-1">Stakeholder-1</option>
+                        </select>
                     </div>
-                    <div></div>
+                    <label style={{ marginTop: "15px", marginBottom: "5px", alignSelf: "flex-start" }}>Date</label>
+                    <div style={{ width: "20vw" }}>
+                        <input name='date' value={formData.date} onChange={handleInputChange} type="date" placeholder="gg.aa.yyyy" style={{ width: "20vw" }} className="input" />
                     </div>
-                    <FontAwesomeIcon style={{marginLeft: "2rem", marginTop: "10px"}} icon={faCloudArrowUp} />
-                </div>
-        }
-    />
-    </div>
-<div style={{margin: "0px"}} >
-    <div style={{transform: "translateX(-38.5%)"}} >
-<GeneralFormDropdown
-        name="INTERNAL NOTE"
-        child={
-        <div style={{transform: "translateX(38.5%)"}} id="notes-container" >
-            <div className="ms-4">
-            <div className="mb-3 form-group input-group-outline">
-                <textarea
-                name="notes"
-                className="form-control"
-                placeholder="Notes"
-                ></textarea>
-            </div>
-            </div>
-        </div>
-        }
-    />
-    </div>
-    <div style={{marginTop: "2rem"}} className='underline' ></div>
-    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
-    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
-</div>
-</div>;
-const IssueShares = () => <div className='card-modals' >
-<h2 style={{padding: "0%", transform: "translateX(-55%)", fontSize: "20px"}} className='title' >Issue Shares</h2>
-<div className='underline' ></div>
-<ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
-    <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
-        <label style={{marginTop: "0px", marginBottom: "10px", alignSelf: "flex-start"}} >Stakeholder</label>
-    <div>
-        <select id="currency" name="currency" className="form-select">
-            <option value="USD">Stakeholder-2</option>
-            <option value="EUR">Stakeholder-1</option>
-        </select>
-                <div
-                className="ac-select-container w-100"
-                style={{ display: "none" }}
-                >
-                <div className="ac-select-dropdown w-100">
-                    <div className="ac-select-search-box">
+                </ul>
+                <div style={{ width: "50%" }}>
+                    <label style={{ width: "100%", marginLeft: "1rem", marginTop: "25%", transform: "translateX(-120px)" }}>Number of shares</label>
                     <input
-                        type="text"
-                        placeholder="Search..."
-                        className="form"
+                        value={formData.shares} onChange={handleInputChange}
+                        style={{ width: "100%", marginLeft: "1rem" }}
+                        name="shares"
+                        placeholder="Investment"
+                        type="number"
+                        className="form-control border-end"
                     />
-                    </div>
                 </div>
-                </div>
-            </div>
-            <label style={{marginTop: "15px", marginBottom: "10px", alignSelf: "flex-start"}} >Date</label>
-            <div style={{width: "20vw"}}>
-            <input type="date" placeholder="gg.aa.yyyy" style={{width: "20vw"}} className="input" />
-        </div>
-            <label style={{marginTop: "10px", marginBottom: "10px", alignSelf: "flex-start"}} >Share class</label>
-            <div>
-        <select id="currency" name="currency" className="form-select">
-            <option value="USD">Common</option>
-        </select>
-                <div
-                className="ac-select-container w-100"
-                style={{ display: "none" }}
-                >
-                <div className="ac-select-dropdown w-100">
-                    <div className="ac-select-search-box">
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className="form"
-                    />
-                    </div>
-                </div>
-                </div>
-            </div>
-            <label style={{marginTop: "15px", marginBottom: "10px", alignSelf: "flex-start"}} >Total investment</label>
-            <input
-    style={{width: "100%"}}
-            name="name"
-            placeholder="Amount"
-            type="number"
-            className="form-control border-end"
-            />
-    </ul>
-    <div style={{width: "50%"}}>
-    <label style={{width: "100%", marginTop: "27%", transform: "translateX(-100px)"}}>Number of shares</label>
-    <input
-    style={{width: "100%", marginLeft: "1rem"}}
-            name="name"
-            placeholder="Amount"
-            type="number"
-            className="form-control border-end"
-            />
-            <label style={{width: "100%", marginTop: "15px", transform: "translateX(-120px)"}}>Issue price</label>
-    <input
-    style={{width: "100%", marginLeft: "1rem"}}
-            name="name"
-            placeholder="Share Price"
-            type="number"
-            className="form-control border-end"
-            />
-            </div>
-</ul>
-<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
-<GeneralFormDropdown
-        name="Documents"
-        child={
-            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
-            <select id="currency" name="currency" className="form-select">
-                <option value="USD">Stakeholder-2</option>
-                <option value="EUR">Stakeholder-1</option>
-            </select>
-                    <div
-                    className="ac-select-container w-100"
-                    style={{ display: "none" }}
-                    >
-                    <div className="ac-select-dropdown w-100">
-                        <div className="ac-select-search-box">
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            className="form"
-                        />
+            </ul>
+            <div style={{ margin: "0px", flexDirection: "row", transform: "translateX(-35%)" }}>
+                <GeneralFormDropdown
+                    name="Maturity and Discount"
+                    child={
+                        <div style={{ flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(35%)" }}>
+                            <ul style={{ display: "flex", flexDirection: "column" }}>
+                                <div style={{ width: "18vw", marginTop: "1rem" }}>
+                                    <label style={{ transform: "translate(-150px)" }}>Floor</label>
+                                    <input
+                                        value={formData.floor} onChange={handleInputChange}
+                                        name="floor"
+                                        placeholder="Valuation floor"
+                                        type="text"
+                                        className="form-control"
+                                    />
+                                </div>
+                                <div style={{ width: "18vw", marginTop: "1rem" }}>
+                                    <label style={{ transform: "translate(-150px)" }}>Cap</label>
+                                    <input
+                                        value={formData.Cap} onChange={handleInputChange}
+                                        name="Cap"
+                                        placeholder="Valuation Cap"
+                                        type="text"
+                                        className="form-control"
+                                    />
+                                </div>
+                            </ul>
+                            <ul style={{ display: "flex", flexDirection: "column" }}>
+                                <div style={{ width: "18vw", marginTop: "1rem" }}>
+                                    <label style={{ transform: "translate(-150px)" }}>Discount</label>
+                                    <input
+                                        name="discount"
+                                        value={formData.discount} onChange={handleInputChange}
+                                        placeholder="Discount"
+                                        type="text"
+                                        className="form-control"
+                                    />
+                                </div>
+                                <div style={{ width: "18vw", marginTop: "1rem" }}>
+                                    <label style={{ transform: "translate(-150px)" }}>Maturity date</label>
+                                    <input
+                                        name="MaturityDate"
+                                        value={formData.MaturityDate} onChange={handleInputChange}
+                                        placeholder="gg.aa.yyyy"
+                                        type="date"
+                                        className="form-control"
+                                    />
+                                </div>
+                            </ul>
                         </div>
-                    </div>
-                    <div></div>
-                    </div>
-                    <FontAwesomeIcon style={{marginLeft: "2rem", marginTop: "10px"}} icon={faCloudArrowUp} />
-                </div>
-        }
-    />
-    </div>
-<div style={{margin: "20px", marginTop: "0%"}} >
-    <div style={{transform: "translateX(-38.5%)"}} >
-<GeneralFormDropdown
-        name="INTERNAL NOTE"
-        child={
-        <div id="notes-container" style={{transform: "translateX(38.5%)"}} className="collapse show">
-            <div className="ms-4">
-            <div className="mb-3 form-group input-group-outline">
-                <textarea
-                name="notes"
-                className="form-control"
-                placeholder="Notes"
-                ></textarea>
-            </div>
-            </div>
-        </div>
-        }
-    />
-    </div>
-    <div style={{marginTop: "2rem"}} className='underline' ></div>
-    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "1rem", marginBottom: "1rem"}}>Close</button>
-    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
-    </div>
-</div>;
-const DecreaseShares = () => <div className='card-modals' >
-    <h2 style={{padding: "0%", transform: "translateX(-50%)", fontSize: "20px" }} className='title' >Decrease Shares</h2>
-    <div className='underline' ></div>
-    <ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
-        <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
-            <label style={{marginTop: "0px", marginBottom: "10px", transform: "translateX(-9rem)"}} >Stakeholder</label>
-        <div>
-            <select id="currency" name="currency" className="form-select">
-                <option value="USD">Stakeholder-2</option>
-                <option value="EUR">Stakeholder-1</option>
-            </select>
-                    <div
-                    className="ac-select-container w-100"
-                    style={{ display: "none" }}
-                    >
-                    <div className="ac-select-dropdown w-100">
-                        <div className="ac-select-search-box">
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            className="form"
-                        />
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <label style={{marginTop: "15px", marginBottom: "10px", transform: "translateX(-10.5rem)"}} >Date</label>
-                <input
-                style={{ marginRight: "1rem"}}
-                name="name"
-                placeholder="10.06.2024"
-                type="date"
-                className="form-control border-end"
-            />
-                <label style={{marginTop: "15px", marginBottom: "10px", transform: "translateX(-9rem)"}} >Share class</label>
-                <div>
-            <select id="currency" name="currency" className="form-select">
-                <option >Common</option>
-                <option ><button> <FontAwesomeIcon icon={faPlus} /> Add more class</button></option>
-            </select>
-                    <div
-                    className="ac-select-container w-100"
-                    style={{ display: "none" }}
-                    >
-                    <div className="ac-select-dropdown w-100">
-                        <div className="ac-select-search-box">
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            className="form"
-                        />
-                        </div>
-                    </div>
-                    </div>
-                </div>
-        </ul>
-        <div style={{width: "50%"}}>
-        <label style={{width: "100%", marginLeft: "1rem", marginTop: "26%", transform: "translateX(-8rem)"}}>Number of shares</label>
-        <input
-        style={{width: "100%", marginLeft: "1rem"}}
-                name="name"
-                placeholder="Amount"
-                type="number"
-                className="form-control border-end"
+                    }
                 />
-                </div>
-    </ul>
-    <div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
-<GeneralFormDropdown
-        name="Documents"
-        child={
-            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
-            <select id="currency" name="currency" className="form-select">
-                <option value="USD">Stakeholder-2</option>
-                <option value="EUR">Stakeholder-1</option>
-            </select>
-                    <div
-                    className="ac-select-container w-100"
-                    style={{ display: "none" }}
-                    >
-                    <div className="ac-select-dropdown w-100">
-                        <div className="ac-select-search-box">
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            className="form"
-                        />
-                        </div>
-                    </div>
-                    <div></div>
-                    </div>
-                    <FontAwesomeIcon style={{marginLeft: "2rem", marginTop: "10px"}} icon={faCloudArrowUp} />
-                </div>
-        }
-    />
-    </div>
-<div style={{margin: "0px"}} >
-    <div style={{transform: "translateX(-38.5%)"}} >
-    <GeneralFormDropdown
-        name="INTERNAL NOTE"
-        child={
-        <div id="notes-container" style={{transform: "translateX(38.5%)"}} className="collapse show">
-            <div className="ms-4">
-            <div className="mb-3 form-group input-group-outline">
-                <textarea
-                name="notes"
-                className="form-control"
-                placeholder="Notes"
-                ></textarea>
             </div>
+            <div style={{ margin: "20px", flexDirection: "row", transform: "translateX(-45%)" }}>
+                <GeneralFormDropdown
+                    name="Interest"
+                    child={
+                        <div style={{ flexDirection: "column", display: "flex", width: "35vw", transform: "translateX(45%)" }}>
+                            <ul style={{ display: "flex", flexDirection: "row" }}>
+                                <div>
+                                    <label style={{ transform: "translate(-120px)" }}>Non-compounding</label>
+                                    <input
+                                        style={{ width: "18vw" }}
+                                        name="nonCompounding"
+                                        value={formData.nonCompounding} onChange={handleInputChange}
+                                        placeholder="Non-compounding interest"
+                                        type="number"
+                                        className="form-control"
+                                    />
+                                </div>
+                                <div style={{ marginLeft: "1rem" }}>
+                                    <label style={{ transform: "translate(-100px)" }}>Interest Start Date</label>
+                                    <input
+                                        style={{ width: "18vw" }}
+                                        name="StartDate"
+                                        value={formData.StartDate} onChange={handleInputChange}
+                                        placeholder="10.06.2024"
+                                        type="date"
+                                        className="form-control"
+                                    />
+                                </div>
+                            </ul>
+                            <ul style={{ display: "flex", flexDirection: "row" }}>
+                                <div className='selective-button-group'>
+                                    <button className='selective-button-1'>365</button>
+                                    <button className='selective-button-2'>360</button>
+                                </div>
+                                <div style={{ marginLeft: "12vw" }} className='selective-button-group'>
+                                    <button className='selective-button-1'>NO</button>
+                                    <button className='selective-button-2'>YES</button>
+                                </div>
+                            </ul>
+                        </div>
+                    }
+                />
+            </div>
+            <div style={{ margin: "20px", flexDirection: "row", transform: "translateX(-43%)" }}>
+                <GeneralFormDropdown
+                    name="Documents"
+                    child={
+                        <div style={{ flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)" }}>
+                            <select name="Documents" className="form-select" value={formData.Documents} onChange={handleInputChange}>
+                                <option value="Document-1">Document-1</option>
+                                <option value="Document-2">Document-2</option>
+                            </select>
+                            <FontAwesomeIcon style={{ marginLeft: "2rem", marginTop: "10px" }} icon={faCloudArrowUp} />
+                        </div>
+                    }
+                />
+            </div>
+            <div style={{ margin: "0px" }}>
+                <div style={{ transform: "translateX(-38.5%)" }}>
+                    <GeneralFormDropdown
+                        name="INTERNAL NOTE"
+                        child={
+                            <div style={{ transform: "translateX(38.5%)" }} id="notes-container">
+                                <div className="ms-4">
+                                    <div className="mb-3 form-group input-group-outline">
+                                        <textarea
+                                            value={formData.internalNote} onChange={handleInputChange}
+                                            name="internalNote"
+                                            className="form-control"
+                                            placeholder="Notes"
+                                        ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    />
+                </div>
+                <div style={{ marginTop: "2rem" }} className='underline'></div>
+                <button
+                    style={{ marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh" }}
+                    onClick={() => setFormData({
+                        date: '',
+                        shares: '',
+                        stakeholder: '',
+                        internalNote: '',
+                        floor: '',
+                        discount: '',
+                        Cap: '',
+                        MaturityDate: '',
+                        nonCompounding: '',
+                        StartDate: '',
+                        Documents: '',
+                    })}
+                >
+                    Close
+                </button>
+                <button
+                    style={{ marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white" }}
+                    onClick={handleSave}
+                >
+                    Save
+                </button>
             </div>
         </div>
-        }
-    />
-    </div>
-    <div style={{marginTop: "2rem"}} className='underline' ></div>
-    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
-    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
-</div>
-</div>;
-const Secondary = () => <div className='card-modals' >
-<h2 style={{padding: "0%", transform: "translateX(-40%)" }} className='title' >Secondary</h2>
-<div className='underline' ></div>
-<ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
-    <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
-        <label style={{marginTop: "0px", marginBottom: "10px", transform: "translate(-8rem)"}} >From Stakeholder</label>
-    <div>
-        <select id="currency" name="currency" className="form-select">
-            <option value="USD">Stakeholder-2</option>
-            <option value="EUR">Stakeholder-1</option>
-        </select>
-                <div
-                className="ac-select-container w-100"
-                style={{ display: "none" }}
-                >
-                <div className="ac-select-dropdown w-100">
-                    <div className="ac-select-search-box">
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className="form"
-                    />
+    );
+};
+const IssueShares = ({ saveData }) => {
+    const [formData, setFormData] = useState({
+        stakeholder: '',
+        date: '',
+        shareClass: '',
+        totalInvestment: '',
+        numberOfShares: '',
+        issuePrice: '',
+        documents: '',
+        internalNote: '',
+    });
+
+    const handleInputChange = (e) => {
+        console.log("13534534")
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSave = () => {
+        saveData(formData);
+    };
+
+    return (
+        <div className='card-modals'>
+            <h2 style={{ padding: "0%", transform: "translateX(-55%)", fontSize: "20px" }} className='title'>Issue Shares</h2>
+            <div className='underline'></div>
+            <ul style={{ display: "flex", flexDirection: "row", padding: "1rem" }}>
+                <ul style={{ display: "flex", flexDirection: "column", width: "50%", padding: "0%" }}>
+                    <label style={{ marginTop: "0px", marginBottom: "10px", alignSelf: "flex-start" }}>Stakeholder</label>
+                    <div>
+                        <select name="stakeholder" className="form-select" value={formData.stakeholder} onChange={handleInputChange}>
+                            <option value="Stakeholder-2">Stakeholder-2</option>
+                            <option value="Stakeholder-1">Stakeholder-1</option>
+                        </select>
                     </div>
-                </div>
-                </div>
-            </div>
-            <label style={{marginTop: "10px", marginBottom: "10px", transform: "translate(-8rem)"}} >From Stakeholder</label>
-            <div>
-        <select id="currency" name="currency" className="form-select">
-            <option value="USD">Stakeholder-2</option>
-            <option value="EUR">Stakeholder-1</option>
-        </select>
-                <div
-                className="ac-select-container w-100"
-                style={{ display: "none" }}
-                >
-                <div className="ac-select-dropdown w-100">
-                    <div className="ac-select-search-box">
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className="form"
-                    />
-                    </div>
-                </div>
-                </div>
-            </div>
-            <label style={{marginTop: "15px", marginBottom: "10px", transform: "translate(-10.5rem)"}} >Date</label>
-            <input
-    style={{width: "100%", marginRight: "1rem"}}
-            name="name"
-            placeholder="gg.aa.yyyy"
-            type="date"
-            className="form-control border-end"
-            />
-            <label style={{marginTop: "15px", marginBottom: "10px", transform: "translate(-9rem)"}} >Share class</label>
-            <div>
-        <select id="currency" name="currency" className="form-select">
-            <option >Common</option>
-            <option ><button> <FontAwesomeIcon icon={faPlus} /> Add more class</button></option>
-        </select>
-                <div
-                className="ac-select-container w-100"
-                style={{ display: "none" }}
-                >
-                <div className="ac-select-dropdown w-100">
-                    <div className="ac-select-search-box">
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className="form"
-                    />
-                    </div>
-                </div>
-                </div>
-            </div>
-    </ul>
-    <div style={{width: "50%"}}>
-    <label style={{width: "100%", marginLeft: "1rem", marginTop: "48%", transform: "translate(-8rem)"}}>Number of shares</label>
-    <input
-    style={{width: "100%", marginLeft: "1rem"}}
-            name="name"
-            placeholder="Amount"
-            type="number"
-            className="form-control border-end"
-            />
-            <label style={{width: "100%", marginLeft: "1rem", marginTop: "7%", transform: "translate(-8rem)"}}>Transfer price</label>
-    <input
-    style={{width: "100%", marginLeft: "1rem"}}
-            name="name"
-            placeholder="Share Price"
-            type="number"
-            className="form-control border-end"
-            />
-            </div>
-</ul>
-<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
-<GeneralFormDropdown
-        name="Documents"
-        child={
-            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
-            <select id="currency" name="currency" className="form-select">
-                <option value="USD">Stakeholder-2</option>
-                <option value="EUR">Stakeholder-1</option>
-            </select>
-                    <div
-                    className="ac-select-container w-100"
-                    style={{ display: "none" }}
-                    >
-                    <div className="ac-select-dropdown w-100">
-                        <div className="ac-select-search-box">
+                    <label style={{ marginTop: "15px", marginBottom: "10px", alignSelf: "flex-start" }}>Date</label>
+                    <div style={{ width: "20vw" }}>
                         <input
-                            type="text"
-                            placeholder="Search..."
-                            className="form"
+                            type="date"
+                            name="date"
+                            value={formData.date}
+                            onChange={handleInputChange}
+                            placeholder="gg.aa.yyyy"
+                            style={{ width: "20vw" }}
+                            className="input"
                         />
-                        </div>
                     </div>
-                    <div></div>
+                    <label style={{ marginTop: "10px", marginBottom: "10px", alignSelf: "flex-start" }}>Share class</label>
+                    <div>
+                        <select name="shareClass" className="form-select" value={formData.shareClass} onChange={handleInputChange}>
+                            <option value="Common">Common</option>
+                        </select>
                     </div>
-                    <FontAwesomeIcon style={{marginLeft: "2rem", marginTop: "10px"}} icon={faCloudArrowUp} />
+                    <label style={{ marginTop: "15px", marginBottom: "10px", alignSelf: "flex-start" }}>Total investment</label>
+                    <input
+                        style={{ width: "100%" }}
+                        name="totalInvestment"
+                        value={formData.totalInvestment}
+                        onChange={handleInputChange}
+                        placeholder="Amount"
+                        type="number"
+                        className="form-control border-end"
+                    />
+                </ul>
+                <div style={{ width: "50%" }}>
+                    <label style={{ width: "100%", marginTop: "27%", transform: "translateX(-100px)" }}>Number of shares</label>
+                    <input
+                        style={{ width: "100%", marginLeft: "1rem" }}
+                        name="numberOfShares"
+                        value={formData.numberOfShares}
+                        onChange={handleInputChange}
+                        placeholder="Amount"
+                        type="number"
+                        className="form-control border-end"
+                    />
+                    <label style={{ width: "100%", marginTop: "15px", transform: "translateX(-120px)" }}>Issue price</label>
+                    <input
+                        style={{ width: "100%", marginLeft: "1rem" }}
+                        name="issuePrice"
+                        value={formData.issuePrice}
+                        onChange={handleInputChange}
+                        placeholder="Share Price"
+                        type="number"
+                        className="form-control border-end"
+                    />
                 </div>
-        }
-    />
-    </div>
-<div style={{margin: "0px"}} >
-    <div style={{transform: "translateX(-38.5%)"}} >
-<GeneralFormDropdown
-        name="INTERNAL NOTE"
-        child={
-        <div style={{transform: "translateX(38.5%)"}} id="notes-container" >
-            <div className="ms-4">
-            <div className="mb-3 form-group input-group-outline">
-                <textarea
-                name="notes"
-                className="form-control"
-                placeholder="Notes"
-                ></textarea>
+            </ul>
+            <div style={{ margin: "20px", flexDirection: "row", transform: "translateX(-43%)" }}>
+                <GeneralFormDropdown
+                    name="Documents"
+                    child={
+                        <div style={{ flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)" }}>
+                            <select name="documents" className="form-select" value={formData.documents} onChange={handleInputChange}>
+                                <option value="Document-1">Document-1</option>
+                                <option value="Document-2">Document-2</option>
+                            </select>
+                            <FontAwesomeIcon style={{ marginLeft: "2rem", marginTop: "10px" }} icon={faCloudArrowUp} />
+                        </div>
+                    }
+                />
             </div>
+            <div style={{ margin: "20px", marginTop: "0%" }}>
+                <div style={{ transform: "translateX(-38.5%)" }}>
+                    <GeneralFormDropdown
+                        name="INTERNAL NOTE"
+                        child={
+                            <div id="notes-container" style={{ transform: "translateX(38.5%)" }} className="collapse show">
+                                <div className="ms-4">
+                                    <div className="mb-3 form-group input-group-outline">
+                                        <textarea
+                                            name="internalNote"
+                                            value={formData.internalNote}
+                                            onChange={handleInputChange}
+                                            className="form-control"
+                                            placeholder="Notes"
+                                        ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    />
+                </div>
+                <div style={{ marginTop: "2rem" }} className='underline'></div>
+                <button
+                    style={{ marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "1rem", marginBottom: "1rem" }}
+                    onClick={() => setFormData({
+                        stakeholder: '',
+                        date: '',
+                        shareClass: '',
+                        totalInvestment: '',
+                        numberOfShares: '',
+                        issuePrice: '',
+                        documents: '',
+                        internalNote: '',
+                    })}
+                >
+                    Close
+                </button>
+                <button
+                    style={{ marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white" }}
+                    onClick={handleSave}
+                >
+                    Save
+                </button>
             </div>
         </div>
-        }
-    />
-    </div>
-    <div style={{marginTop: "2rem"}} className='underline' ></div>
-    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
-    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
-</div>
-</div>;
-const Payout = () => <div className='card-modals' >
-<h2 style={{padding: "0%", transform: "translateX(-55%)", fontSize: "20px" }} className='title' >Payout</h2>
-<div className='underline' ></div>
-<ul style={{display: "flex", flexDirection: "row", padding: "1rem", height: "20vh"}} >
-    <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%",}} >
-        <label style={{marginTop: "0px", marginBottom: "10px", transform: "translateX(-9rem)"}} >Stakeholder</label>
-    <div>
-        <select id="currency" name="currency" className="form-select">
-            <option value="USD">Stakeholder-1</option>
-            <option value="EUR">Stakeholder-2</option>
-        </select>
-                <div
-                className="ac-select-container w-100"
-                style={{ display: "none" }}
-                >
-                <div className="ac-select-dropdown w-100">
-                    <div className="ac-select-search-box">
+    );
+};
+const DecreaseShares = ({ saveData }) => {
+    const [formData, setFormData] = useState({
+        stakeholder: '',
+        date: '',
+        shareClass: '',
+        numberOfShares: '',
+        documents: '',
+        internalNote: '',
+    });
+
+    const handleInputChange = (e) => {
+        console.log("13456")
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSave = () => {
+        saveData(formData);
+    };
+
+    return (
+        <div className='card-modals'>
+            <h2 style={{ padding: "0%", transform: "translateX(-50%)", fontSize: "20px" }} className='title'>Decrease Shares</h2>
+            <div className='underline'></div>
+            <ul style={{ display: "flex", flexDirection: "row", padding: "1rem" }}>
+                <ul style={{ display: "flex", flexDirection: "column", width: "50%", padding: "0%" }}>
+                    <label style={{ marginTop: "0px", marginBottom: "10px", transform: "translateX(-9rem)" }}>Stakeholder</label>
+                    <div>
+                        <select name="stakeholder" className="form-select" value={formData.stakeholder} onChange={handleInputChange}>
+                            <option value="Stakeholder-2">Stakeholder-2</option>
+                            <option value="Stakeholder-1">Stakeholder-1</option>
+                        </select>
+                    </div>
+                    <label style={{ marginTop: "15px", marginBottom: "10px", transform: "translateX(-10.5rem)" }}>Date</label>
                     <input
-                        type="text"
-                        placeholder="Search..."
-                        className="form"
+                        style={{ marginRight: "1rem" }}
+                        name="date"
+                        value={formData.date}
+                        onChange={handleInputChange}
+                        placeholder="10.06.2024"
+                        type="date"
+                        className="form-control border-end"
                     />
+                    <label style={{ marginTop: "15px", marginBottom: "10px", transform: "translateX(-9rem)" }}>Share class</label>
+                    <div>
+                        <select name="shareClass" className="form-select" value={formData.shareClass} onChange={handleInputChange}>
+                            <option value="Common">Common</option>
+                            <option value="AddMoreClass">
+                                <button>
+                                    <FontAwesomeIcon icon={faPlus} /> Add more class
+                                </button>
+                            </option>
+                        </select>
                     </div>
+                </ul>
+                <div style={{ width: "50%" }}>
+                    <label style={{ width: "100%", marginLeft: "1rem", marginTop: "26%", transform: "translateX(-8rem)" }}>Number of shares</label>
+                    <input
+                        style={{ width: "100%", marginLeft: "1rem" }}
+                        name="numberOfShares"
+                        value={formData.numberOfShares}
+                        onChange={handleInputChange}
+                        placeholder="Amount"
+                        type="number"
+                        className="form-control border-end"
+                    />
                 </div>
-                </div>
-            </div>
-            <div>
-            </div>
-    </ul>
-    <div style={{width: "50%", display: "flex", flexDirection: "row", marginTop: "3%", transform: "translateX(-105%)"}}>
-    <div>
-    <label style={{ marginLeft: "1rem", marginTop: "30%", transform: "translateX(-6rem)"}}>Date </label>
-    <input
-    style={{width: "12vw", marginLeft: "1rem"}}
-            name="name"
-            placeholder="10.06.2024"
-            type="date"
-            className="form-control border-end"
-            />
-            </div>
-    <div>
-    <label style={{ marginLeft: "1rem", marginTop: "30%", transform: "translateX(-5rem)"}}>Retention </label>
-    <input
-    style={{width: "12vw", marginLeft: "1rem"}}
-            name="name"
-            placeholder="00.0"
-            type="number"
-            className="form-control border-end"
-            />
-            </div>
-        <div>
-    <label style={{ marginLeft: "1rem", marginTop: "30%", transform: "translateX(-4.5rem)"}}>Total Payment</label>
-    <input
-    style={{width: "12vw", marginLeft: "1rem"}}
-            name="name"
-            placeholder="0"
-            type="number"
-            className="form-control border-end"
-            />
-            </div>
-            </div>
-</ul>
-<div style={{margin: "20px", flexDirection: "row", transform: "translateX(-43%)"}} >
-<GeneralFormDropdown
-        name="Documents"
-        child={
-            <div style={{flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)"}} >
-            <select id="currency" name="currency" className="form-select">
-                <option value="USD">Stakeholder-2</option>
-                <option value="EUR">Stakeholder-1</option>
-            </select>
-                    <div
-                    className="ac-select-container w-100"
-                    style={{ display: "none" }}
-                    >
-                    <div className="ac-select-dropdown w-100">
-                        <div className="ac-select-search-box">
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            className="form"
-                        />
+            </ul>
+            <div style={{ margin: "20px", flexDirection: "row", transform: "translateX(-43%)" }}>
+                <GeneralFormDropdown
+                    name="Documents"
+                    child={
+                        <div style={{ flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)" }}>
+                            <select name="documents" className="form-select" value={formData.documents} onChange={handleInputChange}>
+                                <option value="Document-1">Document-1</option>
+                                <option value="Document-2">Document-2</option>
+                            </select>
+                            <FontAwesomeIcon style={{ marginLeft: "2rem", marginTop: "10px" }} icon={faCloudArrowUp} />
                         </div>
-                    </div>
-                    <div></div>
-                    </div>
-                    <FontAwesomeIcon style={{marginLeft: "2rem", marginTop: "10px"}} icon={faCloudArrowUp} />
-                </div>
-        }
-    />
-    </div>
-<div style={{margin: "0px"}} >
-    <div style={{transform: "translateX(-38.5%)"}} >
-    <GeneralFormDropdown
-        name="INTERNAL NOTE"
-        child={
-        <div id="notes-container" style={{transform: "translateX(38.5%)"}} className="collapse show">
-            <div className="ms-4">
-            <div className="mb-3 form-group input-group-outline">
-                <textarea
-                name="notes"
-                className="form-control"
-                placeholder="Notes"
-                ></textarea>
+                    }
+                />
             </div>
+            <div style={{ margin: "0px" }}>
+                <div style={{ transform: "translateX(-38.5%)" }}>
+                    <GeneralFormDropdown
+                        name="INTERNAL NOTE"
+                        child={
+                            <div id="notes-container" style={{ transform: "translateX(38.5%)" }}>
+                                <div className="ms-4">
+                                    <div className="mb-3 form-group input-group-outline">
+                                        <textarea
+                                            name="internalNote"
+                                            value={formData.internalNote}
+                                            onChange={handleInputChange}
+                                            className="form-control"
+                                            placeholder="Notes"
+                                        ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    />
+                </div>
+                <div style={{ marginTop: "2rem" }} className='underline'></div>
+                <button
+                    style={{ marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh" }}
+                    onClick={() => setFormData({
+                        stakeholder: '',
+                        date: '',
+                        shareClass: '',
+                        numberOfShares: '',
+                        documents: '',
+                        internalNote: '',
+                    })}
+                >
+                    Close
+                </button>
+                <button
+                    style={{ marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white" }}
+                    onClick={handleSave}
+                >
+                    Save
+                </button>
             </div>
         </div>
-        }
-    />
-    </div>
-    <div style={{marginTop: "2rem"}} className='underline' ></div>
-    <button style={{marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh"}}>Close</button>
-    <button style={{marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white"}}>Save</button>
-</div>
-</div>;
+    );
+};
+const Secondary = ({ saveData }) => {
+    const [formData, setFormData] = useState({
+        date: '',
+        shareClass: '',
+        shareNumber: '',
+        transferPrice: '',
+        Fromstakeholder: '',
+        Tostakeholder: '',
+        Documents: '',
+        internalNote: '',
+    });
+
+    const handleInputChange = (e) => {
+        console.log("12341")
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSave = () => {
+        saveData(formData);
+    };
+
+    return (
+        <div className='card-modals'>
+            <h2 style={{ padding: "0%", transform: "translateX(-40%)" }} className='title'>Secondary</h2>
+            <div className='underline'></div>
+            <ul style={{ display: "flex", flexDirection: "row", padding: "1rem" }}>
+                <ul style={{ display: "flex", flexDirection: "column", width: "50%", padding: "0%" }}>
+                    <label style={{ marginTop: "0px", marginBottom: "10px", transform: "translate(-8rem)" }}>From Stakeholder</label>
+                    <div>
+                        <select name="Fromstakeholder" className="form-select" value={formData.Fromstakeholder} onChange={handleInputChange}>
+                            <option value="Stakeholder-2">Stakeholder-2</option>
+                            <option value="Stakeholder-1">Stakeholder-1</option>
+                        </select>
+                    </div>
+                    <label style={{ marginTop: "10px", marginBottom: "10px", transform: "translate(-8rem)" }}>To Stakeholder</label>
+                    <div>
+                        <select name="Tostakeholder" className="form-select" value={formData.Tostakeholder} onChange={handleInputChange}>
+                            <option value="Stakeholder-2">Stakeholder-2</option>
+                            <option value="Stakeholder-1">Stakeholder-1</option>
+                        </select>
+                    </div>
+                    <label style={{ marginTop: "15px", marginBottom: "10px", transform: "translate(-10.5rem)" }}>Date</label>
+                    <input
+                        value={formData.date}
+                        onChange={handleInputChange}
+                        style={{ width: "100%", marginRight: "1rem" }}
+                        name="date"
+                        placeholder="gg.aa.yyyy"
+                        type="date"
+                        className="form-control border-end"
+                    />
+                    <label style={{ marginTop: "15px", marginBottom: "10px", transform: "translate(-9rem)" }}>Share class</label>
+                    <div>
+                        <select name="shareClass" className="form-select" value={formData.shareClass} onChange={handleInputChange}>
+                            <option value="Common">Common</option>
+                            <option value="Preferred">Preferred</option>
+                        </select>
+                    </div>
+                </ul>
+                <div style={{ width: "50%" }}>
+                    <label style={{ width: "100%", marginLeft: "1rem", marginTop: "48%", transform: "translate(-8rem)" }}>Number of shares</label>
+                    <input
+                        value={formData.shareNumber}
+                        onChange={handleInputChange}
+                        style={{ width: "100%", marginLeft: "1rem" }}
+                        name="shareNumber"
+                        placeholder="Amount"
+                        type="text"
+                        className="form-control border-end"
+                    />
+                    <label style={{ width: "100%", marginLeft: "1rem", marginTop: "7%", transform: "translate(-8rem)" }}>Transfer price</label>
+                    <input
+                        value={formData.transferPrice}
+                        onChange={handleInputChange}
+                        style={{ width: "100%", marginLeft: "1rem" }}
+                        name="transferPrice"
+                        placeholder="Share Price"
+                        type="number"
+                        className="form-control border-end"
+                    />
+                </div>
+            </ul>
+            <div style={{ margin: "20px", flexDirection: "row", transform: "translateX(-43%)" }}>
+                <GeneralFormDropdown
+                    name="Documents"
+                    child={
+                        <div style={{ flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)" }}>
+                            <select name="Documents" className="form-select" value={formData.Documents} onChange={handleInputChange}>
+                                <option value="Document-1">Document-1</option>
+                                <option value="Document-2">Document-2</option>
+                            </select>
+                            <FontAwesomeIcon style={{ marginLeft: "2rem", marginTop: "10px" }} icon={faCloudArrowUp} />
+                        </div>
+                    }
+                />
+            </div>
+            <div style={{ margin: "0px" }}>
+                <div style={{ transform: "translateX(-38.5%)" }}>
+                    <GeneralFormDropdown
+                        name="INTERNAL NOTE"
+                        child={
+                            <div style={{ transform: "translateX(38.5%)" }} id="notes-container">
+                                <div className="ms-4">
+                                    <div className="mb-3 form-group input-group-outline">
+                                        <textarea
+                                            value={formData.internalNote}
+                                            onChange={handleInputChange}
+                                            name="internalNote"
+                                            className="form-control"
+                                            placeholder="Notes"
+                                        ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    />
+                </div>
+                <div style={{ marginTop: "2rem" }} className='underline'></div>
+                <button style={{ marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh" }} onClick={() => setFormData({
+                    date: '',
+                    shareClass: '',
+                    shareNumber: '',
+                    transferPrice: '',
+                    Fromstakeholder: '',
+                    Tostakeholder: '',
+                    Documents: '',
+                    internalNote: '',
+                })}>Close</button>
+                <button style={{ marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white" }} onClick={handleSave}>Save</button>
+            </div>
+        </div>
+    );
+}
+const Payout = ({ saveData }) => {
+    const [formData, setFormData] = useState({
+        date: '',
+        Retention: '',
+        stakeholder: '',
+        TotalPayment: '',
+        Documents: '',
+        internalNote: '',
+    });
+
+    const handleInputChange = (e) => {
+        console.log("123455")
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSave = () => {
+        saveData(formData);
+    };
+
+    return (
+        <div className='card-modals'>
+            <h2 style={{ padding: "0%", transform: "translateX(-55%)", fontSize: "20px" }} className='title'>Payout</h2>
+            <div className='underline'></div>
+            <ul style={{ display: "flex", flexDirection: "row", padding: "1rem", height: "20vh" }}>
+                <ul style={{ display: "flex", flexDirection: "column", width: "50%", padding: "0%" }}>
+                    <label style={{ marginTop: "0px", marginBottom: "10px", transform: "translateX(-9rem)" }}>Stakeholder</label>
+                    <div>
+                        <select name="stakeholder" className="form-select" value={formData.stakeholder} onChange={handleInputChange}>
+                            <option value="Stakeholder-2">Stakeholder-2</option>
+                            <option value="Stakeholder-1">Stakeholder-1</option>
+                        </select>
+                    </div>
+                </ul>
+                <div style={{ width: "50%", display: "flex", flexDirection: "row", marginTop: "3%", transform: "translateX(-105%)" }}>
+                    <div>
+                        <label style={{ marginLeft: "1rem", marginTop: "30%", transform: "translateX(-6rem)" }}>Date</label>
+                        <input
+                            value={formData.date}
+                            onChange={handleInputChange}
+                            style={{ width: "12vw", marginLeft: "1rem" }}
+                            name="date"
+                            placeholder="10.06.2024"
+                            type="date"
+                            className="form-control border-end"
+                        />
+                    </div>
+                    <div>
+                        <label style={{ marginLeft: "1rem", marginTop: "30%", transform: "translateX(-5rem)" }}>Retention</label>
+                        <input
+                            value={formData.Retention}
+                            onChange={handleInputChange}
+                            style={{ width: "12vw", marginLeft: "1rem" }}
+                            name="Retention"
+                            placeholder="00.0"
+                            type="number"
+                            className="form-control border-end"
+                        />
+                    </div>
+                    <div>
+                        <label style={{ marginLeft: "1rem", marginTop: "30%", transform: "translateX(-4.5rem)" }}>Total Payment</label>
+                        <input
+                            value={formData.TotalPayment}
+                            onChange={handleInputChange}
+                            style={{ width: "12vw", marginLeft: "1rem" }}
+                            name="TotalPayment"
+                            placeholder="0"
+                            type="number"
+                            className="form-control border-end"
+                        />
+                    </div>
+                </div>
+            </ul>
+            <div style={{ margin: "20px", flexDirection: "row", transform: "translateX(-43%)" }}>
+                <GeneralFormDropdown
+                    name="Documents"
+                    child={
+                        <div style={{ flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)" }}>
+                            <select name="Documents" className="form-select" value={formData.Documents} onChange={handleInputChange}>
+                                <option value="Document-1">Document-1</option>
+                                <option value="Document-2">Document-2</option>
+                            </select>
+                            <FontAwesomeIcon style={{ marginLeft: "2rem", marginTop: "10px" }} icon={faCloudArrowUp} />
+                        </div>
+                    }
+                />
+            </div>
+            <div style={{ margin: "0px" }}>
+                <div style={{ transform: "translateX(-38.5%)" }}>
+                    <GeneralFormDropdown
+                        name="INTERNAL NOTE"
+                        child={
+                            <div id="notes-container" style={{ transform: "translateX(38.5%)" }} className="collapse show">
+                                <div className="ms-4">
+                                    <div className="mb-3 form-group input-group-outline">
+                                        <textarea
+                                            value={formData.internalNote}
+                                            onChange={handleInputChange}
+                                            name="internalNote"
+                                            className="form-control"
+                                            placeholder="Notes"
+                                        ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    />
+                </div>
+                <div style={{ marginTop: "2rem" }} className='underline'></div>
+                <button
+                    style={{ marginLeft: "28vw", width: "90px", height: "30px", backgroundColor: "white", border: "none", marginTop: "2vh", marginBottom: "2vh" }}
+                    onClick={() => setFormData({
+                        date: '',
+                        Retention: '',
+                        stakeholder: '',
+                        TotalPayment: '',
+                        Documents: '',
+                        internalNote: '',
+                    })}
+                >
+                    Close
+                </button>
+                <button
+                    style={{ marginLeft: "1vw", width: "90px", height: "50px", backgroundColor: "black", border: "none", color: "white" }}
+                    onClick={handleSave}
+                >
+                    Save
+                </button>
+            </div>
+        </div>
+    );
+}
 const AddPool = () => <div className='card-modals' >
 <h2 style={{padding: "0%", transform: "translateX(-55%)", fontSize: "1.25rem" }} className='title' >Add Pool</h2>
 <div className='underline' ></div>
@@ -1385,7 +1463,7 @@ const PoolDecrease = () => <div className='card-modals' >
 </div>
 </div>;
 const SingleGrant = () => <div className='card-modals' >
-<h2 style={{padding: "0%", transform: "translateX(-50%)", fontSize: "20px" }} className='title' >Decrease Shares</h2>
+<h2 style={{padding: "0%", transform: "translateX(-50%)", fontSize: "20px" }} className='title' >Single Grant</h2>
 <div className='underline' ></div>
 <ul style={{display: "flex", flexDirection: "row", padding: "1rem"}} >
     <ul style={{display: "flex", flexDirection: "column", width: "50%", padding: "0%"}} >
