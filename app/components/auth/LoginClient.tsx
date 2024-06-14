@@ -27,16 +27,20 @@ const LoginClient:React.FC<LoginClientProps> = ({currentUser}) => {
     }
 
       useEffect(() => {
-         if(currentUser){
+          if(currentUser){
           router.push('/dashboard')
           router.refresh();
-         }
+          }
       }, [])
   return (
-    <div>
-        <input value={email} onChange={(e) => setEmail(e.target.value)}/>
-        <input value={password} onChange={(e) => setPassword(e.target.value)}/>
-        <button onClick={() => login()}>Login</button>
+    <div style={{display: "flex", flexDirection: "column", marginLeft: "30%", marginTop: "15%", width: "19vw", justifyContent: "center"}} >
+      <div style={{display: "flex", flexDirection: "column", marginLeft: "15%", backgroundColor: "white", width: "19vw", justifyContent: "center"}}>
+      <label style={{marginTop: "1rem", marginLeft: "1vw"}}>Email</label>
+      <input placeholder="Email" style={{marginBottom: "0rem", width: "17vw", marginLeft: "1vw"}} value={email} onChange={(e) => setEmail(e.target.value)}/>
+        <label style={{marginTop: "1rem", marginLeft: "1vw"}}>Password</label>
+        <input placeholder="Password" style={{marginBottom: "1rem", width: "17vw", marginLeft: "1vw"}} value={password} onChange={(e) => setPassword(e.target.value)}/>
+        <button style={{marginBottom: "1rem", width: "17vw", marginLeft: "1vw"}} onClick={() => login()}>Login</button>
+        </div>
     </div>
   )
 }

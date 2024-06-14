@@ -55,6 +55,7 @@ export default function RootLayout({
     { name: "Pools", icon: faWaterLadder, href: "/pool" },
     { name: "Plans", icon: faMap, href: "/plans" },
     { name: "Grants", icon: faHandHoldingHeart, href: "/grants" },
+    { name: "Exercising", icon: faMoneyCheck, href: "/exercising" },
     ];
 
   // let DropListInvestorRelations: Array<DropDownList> = [
@@ -84,7 +85,7 @@ export default function RootLayout({
             <NavlinkDropdown name="Company" icon={faBuilding} Navlinks={DropListCompany} />
             <Navlink name="Portfolio" href="/portfolio" icon={faBriefcase} />
             <Navlink name="Account Settings" href="/account_settings" icon={faGear} />
-            <Navlink name="Logout" href="/logout" icon={faRightFromBracket} />
+            {/* <Navlink name="Logout" href="/logout" icon={faRightFromBracket} /> */}
           </ul>
         </aside>
 

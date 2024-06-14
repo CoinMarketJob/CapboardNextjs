@@ -35,34 +35,33 @@ export default function Home() {
             const filteredData = plans.map(plan => ({
                 ...plan,
                 transactions: plan.transactions.filter(
-                  transaction =>
+                    transaction =>
                     transaction.type === "PoolCreation" ||
                     transaction.type === "PoolIncrease" ||
                     transaction.type === "PoolDecrease"
                 )
-              }));
-              
-              const totals = filteredData.map(plan => {
+                }));
+
+                const totals = filteredData.map(plan => {
                 const total = plan.transactions.reduce((acc, transaction) => {
-                  if (transaction.type === "PoolCreation" || transaction.type === "PoolIncrease") {
+                    if (transaction.type === "PoolCreation" || transaction.type === "PoolIncrease") {
                     return acc + transaction.amount;
-                  } else if (transaction.type === "PoolDecrease") {
+                    } else if (transaction.type === "PoolDecrease") {
                     return acc - transaction.amount;
-                  } else {
+                    } else {
                     return acc; // Diğer transaction tipleri için toplamı değiştirme
-                  }
+                    }
                 }, 0);
-              
+
                 return {
-                  planId: plan.id,
-                  poolName: plan.poolName,
-                  total,
+                    planId: plan.id,
+                    poolName: plan.poolName,
+                    total,
                 };
-              });
-              console.log(totals); 
-          
-              setTotalShares(Array.isArray(totals) ? totals.reduce((accumulator, item) => accumulator + item.total, 0) : 0);
-    
+                });
+                console.log(totals);
+                setTotalShares(Array.isArray(totals) ? totals.reduce((accumulator, item) => accumulator + item.total, 0) : 0);
+
         }
     }, [plans])
 
@@ -75,15 +74,15 @@ export default function Home() {
 
             <main className={styles.main}>
                 <div className={styles.header}>
-                    <div className={styles.dropdown}>
-                        <select>
+                    <div style={{margin: "0%", width: "13vw"}} className={styles.dropdown}>
+                        <select style={{width: "13vw"}} >
                             <option>Latest cap table</option>
                         </select>
                     </div>
-                    <div className={styles.dateInput}>
+                    <div style={{transform: "translateX(-80%)"}} className={styles.dateInput}>
                         <input type="text" value="07.06.2024" readOnly />
                     </div>
-                    <div className={styles.buttons}>
+                    <div style={{transform: "translateX(40%)"}} className={styles.buttons}>
                         <button>Edit</button>
                     </div>
                     <div className={styles.select}>

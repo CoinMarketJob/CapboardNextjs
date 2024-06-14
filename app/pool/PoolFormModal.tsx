@@ -19,7 +19,7 @@ interface PoolState {
     amount: string;
     typeamount: string;
     date: string;
-    shareClass: string;
+    shareClass: number;
     internalNote: string;
     documents: File | null;
 }
@@ -33,7 +33,7 @@ const PoolFormModal: React.FC<Props> = ({ isOpen, onClose, onSave, type, editId 
         amount: '',
         typeamount: 'shares',
         date: '',
-        shareClass: 'common',
+        shareClass: 0,
         internalNote: '',
         documents: null,
     });

@@ -94,11 +94,11 @@ const ConvertibleLoan = ({ saveData }) => {
         MaturityDate: '',
         nonCompounding: '',
         StartDate: '',
-        Documents: '',
     });
 
+    const [stakeholders, setStakeholders] = useState([]);
+
     const handleInputChange = (e) => {
-        console.log("2356")
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
@@ -106,6 +106,23 @@ const ConvertibleLoan = ({ saveData }) => {
     const handleSave = () => {
         saveData(formData);
     };
+
+    useEffect(() => {
+        async function fetchData() {
+          try {
+  
+            const response2 = await fetch('/api/stakeholders/get');
+            const data2 = await response2.json();
+            setStakeholders(data2);
+            setFormData({ ...formData, stakeholder: data2[0].id });
+  
+          } catch (error) {
+            console.error('Veri getirme hatası:', error);
+          }
+        }
+      
+        fetchData();
+      },[])
 
     return (
         <div className='card-modals'>
@@ -116,8 +133,10 @@ const ConvertibleLoan = ({ saveData }) => {
                     <label style={{ marginTop: "0px", marginBottom: "10px", alignSelf: "flex-start" }}>Stakeholder</label>
                     <div>
                         <select name="stakeholder" className="form-select" value={formData.stakeholder} onChange={handleInputChange}>
-                            <option value="Stakeholder-2">Stakeholder-2</option>
-                            <option value="Stakeholder-1">Stakeholder-1</option>
+                            {stakeholders.map((item,index) => (
+                                <option key={index} value={item.id}>{item.name}</option>
+                                ))
+                            }
                         </select>
                     </div>
                     <label style={{ marginTop: "15px", marginBottom: "5px", alignSelf: "flex-start" }}>Date</label>
@@ -219,30 +238,6 @@ const ConvertibleLoan = ({ saveData }) => {
                                     />
                                 </div>
                             </ul>
-                            <ul style={{ display: "flex", flexDirection: "row" }}>
-                                <div className='selective-button-group'>
-                                    <button className='selective-button-1'>365</button>
-                                    <button className='selective-button-2'>360</button>
-                                </div>
-                                <div style={{ marginLeft: "12vw" }} className='selective-button-group'>
-                                    <button className='selective-button-1'>NO</button>
-                                    <button className='selective-button-2'>YES</button>
-                                </div>
-                            </ul>
-                        </div>
-                    }
-                />
-            </div>
-            <div style={{ margin: "20px", flexDirection: "row", transform: "translateX(-43%)" }}>
-                <GeneralFormDropdown
-                    name="Documents"
-                    child={
-                        <div style={{ flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)" }}>
-                            <select name="Documents" className="form-select" value={formData.Documents} onChange={handleInputChange}>
-                                <option value="Document-1">Document-1</option>
-                                <option value="Document-2">Document-2</option>
-                            </select>
-                            <FontAwesomeIcon style={{ marginLeft: "2rem", marginTop: "10px" }} icon={faCloudArrowUp} />
                         </div>
                     }
                 />
@@ -461,16 +456,17 @@ const IssueShares = ({ saveData }) => {
 };
 const DecreaseShares = ({ saveData }) => {
     const [formData, setFormData] = useState({
-        stakeholder: '',
+        stakeholder: 0,
         date: '',
-        shareClass: '',
+        shareClass: 0,
         numberOfShares: '',
-        documents: '',
         internalNote: '',
     });
 
+    const [stakeholders, setStakeholders] = useState([]);
+    const [shareClasses, setShareClasses] = useState([]);
+
     const handleInputChange = (e) => {
-        console.log("13456")
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
@@ -478,6 +474,30 @@ const DecreaseShares = ({ saveData }) => {
     const handleSave = () => {
         saveData(formData);
     };
+
+    
+    useEffect(() => {
+        async function fetchData() {
+          try {
+  
+            const response2 = await fetch('/api/stakeholders/get');
+            const data2 = await response2.json();
+            setStakeholders(data2);
+            setFormData({ ...formData, stakeholder: data2[0].id });
+
+            
+            const response1 = await fetch('/api/shareclasses/get');
+            const data1 = await response1.json();
+            setShareClasses(data1);
+            setFormData({ ...formData, shareClass: data1[0].id });
+  
+          } catch (error) {
+            console.error('Veri getirme hatası:', error);
+          }
+        }
+      
+        fetchData();
+      },[])
 
     return (
         <div className='card-modals'>
@@ -488,8 +508,10 @@ const DecreaseShares = ({ saveData }) => {
                     <label style={{ marginTop: "0px", marginBottom: "10px", transform: "translateX(-9rem)" }}>Stakeholder</label>
                     <div>
                         <select name="stakeholder" className="form-select" value={formData.stakeholder} onChange={handleInputChange}>
-                            <option value="Stakeholder-2">Stakeholder-2</option>
-                            <option value="Stakeholder-1">Stakeholder-1</option>
+                            {stakeholders.map((item,index) => (
+                                <option key={index} value={item.id}>{item.name}</option>
+                                ))
+                            } 
                         </select>
                     </div>
                     <label style={{ marginTop: "15px", marginBottom: "10px", transform: "translateX(-10.5rem)" }}>Date</label>
@@ -505,12 +527,10 @@ const DecreaseShares = ({ saveData }) => {
                     <label style={{ marginTop: "15px", marginBottom: "10px", transform: "translateX(-9rem)" }}>Share class</label>
                     <div>
                         <select name="shareClass" className="form-select" value={formData.shareClass} onChange={handleInputChange}>
-                            <option value="Common">Common</option>
-                            <option value="AddMoreClass">
-                                <button>
-                                    <FontAwesomeIcon icon={faPlus} /> Add more class
-                                </button>
-                            </option>
+                            {shareClasses.map((item,index) => (
+                                <option key={index} value={item.id}>{item.name}</option>    
+                            ))
+                            }
                         </select>
                     </div>
                 </ul>
@@ -527,20 +547,6 @@ const DecreaseShares = ({ saveData }) => {
                     />
                 </div>
             </ul>
-            <div style={{ margin: "20px", flexDirection: "row", transform: "translateX(-43%)" }}>
-                <GeneralFormDropdown
-                    name="Documents"
-                    child={
-                        <div style={{ flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)" }}>
-                            <select name="documents" className="form-select" value={formData.documents} onChange={handleInputChange}>
-                                <option value="Document-1">Document-1</option>
-                                <option value="Document-2">Document-2</option>
-                            </select>
-                            <FontAwesomeIcon style={{ marginLeft: "2rem", marginTop: "10px" }} icon={faCloudArrowUp} />
-                        </div>
-                    }
-                />
-            </div>
             <div style={{ margin: "0px" }}>
                 <div style={{ transform: "translateX(-38.5%)" }}>
                     <GeneralFormDropdown
@@ -594,12 +600,13 @@ const Secondary = ({ saveData }) => {
         transferPrice: '',
         Fromstakeholder: '',
         Tostakeholder: '',
-        Documents: '',
         internalNote: '',
     });
 
+    const [stakeholders, setStakeholders] = useState([]);
+    const [shareClasses, setShareClasses] = useState([]);
+
     const handleInputChange = (e) => {
-        console.log("12341")
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
@@ -607,6 +614,31 @@ const Secondary = ({ saveData }) => {
     const handleSave = () => {
         saveData(formData);
     };
+
+    
+    useEffect(() => {
+        async function fetchData() {
+          try {
+  
+            const response2 = await fetch('/api/stakeholders/get');
+            const data2 = await response2.json();
+            setStakeholders(data2);
+            setFormData({ ...formData, Fromstakeholder: data2[0].id });
+            setFormData({ ...formData, Tostakeholder: data2[0].id });
+
+            
+            const response1 = await fetch('/api/shareclasses/get');
+            const data1 = await response1.json();
+            setShareClasses(data1);
+            setFormData({ ...formData, shareClass: data1[0].id });
+  
+          } catch (error) {
+            console.error('Veri getirme hatası:', error);
+          }
+        }
+      
+        fetchData();
+      },[])
 
     return (
         <div className='card-modals'>
@@ -617,15 +649,19 @@ const Secondary = ({ saveData }) => {
                     <label style={{ marginTop: "0px", marginBottom: "10px", transform: "translate(-8rem)" }}>From Stakeholder</label>
                     <div>
                         <select name="Fromstakeholder" className="form-select" value={formData.Fromstakeholder} onChange={handleInputChange}>
-                            <option value="Stakeholder-2">Stakeholder-2</option>
-                            <option value="Stakeholder-1">Stakeholder-1</option>
+                            {stakeholders.map((item,index) => (
+                                <option key={index} value={item.id}>{item.name}</option>
+                                ))
+                            }
                         </select>
                     </div>
                     <label style={{ marginTop: "10px", marginBottom: "10px", transform: "translate(-8rem)" }}>To Stakeholder</label>
                     <div>
                         <select name="Tostakeholder" className="form-select" value={formData.Tostakeholder} onChange={handleInputChange}>
-                            <option value="Stakeholder-2">Stakeholder-2</option>
-                            <option value="Stakeholder-1">Stakeholder-1</option>
+                            {stakeholders.map((item,index) => (
+                                <option key={index} value={item.id}>{item.name}</option>
+                                ))
+                            }
                         </select>
                     </div>
                     <label style={{ marginTop: "15px", marginBottom: "10px", transform: "translate(-10.5rem)" }}>Date</label>
@@ -641,8 +677,10 @@ const Secondary = ({ saveData }) => {
                     <label style={{ marginTop: "15px", marginBottom: "10px", transform: "translate(-9rem)" }}>Share class</label>
                     <div>
                         <select name="shareClass" className="form-select" value={formData.shareClass} onChange={handleInputChange}>
-                            <option value="Common">Common</option>
-                            <option value="Preferred">Preferred</option>
+                            {shareClasses.map((item,index) => (
+                                <option key={index} value={item.id}>{item.name}</option>    
+                            ))
+                            }
                         </select>
                     </div>
                 </ul>
@@ -669,20 +707,6 @@ const Secondary = ({ saveData }) => {
                     />
                 </div>
             </ul>
-            <div style={{ margin: "20px", flexDirection: "row", transform: "translateX(-43%)" }}>
-                <GeneralFormDropdown
-                    name="Documents"
-                    child={
-                        <div style={{ flexDirection: "row", display: "flex", width: "35vw", transform: "translateX(43%)" }}>
-                            <select name="Documents" className="form-select" value={formData.Documents} onChange={handleInputChange}>
-                                <option value="Document-1">Document-1</option>
-                                <option value="Document-2">Document-2</option>
-                            </select>
-                            <FontAwesomeIcon style={{ marginLeft: "2rem", marginTop: "10px" }} icon={faCloudArrowUp} />
-                        </div>
-                    }
-                />
-            </div>
             <div style={{ margin: "0px" }}>
                 <div style={{ transform: "translateX(-38.5%)" }}>
                     <GeneralFormDropdown
@@ -761,19 +785,19 @@ const Payout = ({ saveData }) => {
         <div className='card-modals'>
             <h2 style={{ padding: "0%", transform: "translateX(-55%)", fontSize: "20px" }} className='title'>Payout</h2>
             <div className='underline'></div>
-            <ul style={{ display: "flex", flexDirection: "row", padding: "1rem" }}>
+            <ul style={{flexDirection: "row", padding: "1rem" }}>
                 <ul style={{ display: "flex", flexDirection: "column", width: "50%", padding: "0%" }}>
                     <label style={{ marginTop: "0px", marginBottom: "10px", alignSelf: "flex-start" }}>Stakeholder</label>
-                    <div>
+                    <div style={{position: "relative", zIndex: 2}} >
                         <select name="stakeholder" className="form-select" value={formData.stakeholder} onChange={handleInputChange}>
                             {stakeholders.map((item,index) => (
                                 <option key={index} value={item.id}>{item.name}</option>
                                 ))
-                            }   
+                            }
                         </select>
                     </div>
                 </ul>
-                <div style={{ width: "50%", display: "flex", flexDirection: "row", marginTop: "3%", transform: "translateX(-105%)" }}>
+                <div style={{width: "50%", display: "flex", flexDirection: "row", marginTop: "3%", transform: "translateX(-5%) translateY(-50%)", position: "relative", zIndex: 1}}>
                     <div>
                         <label style={{ marginLeft: "1rem", marginTop: "30%", transform: "translateX(-6rem)" }}>Date</label>
                         <input
@@ -1733,9 +1757,9 @@ const ModalBoxT: React.FC<{ CloseModal: () => void }> = ({ CloseModal }) => {
 
     const save = async (formData) => {
         console.log(openModal);
-        var api = "/api/transactions/create/" + openModal == "Issue Shares" ? "Issue" : openModal == "Payout" ? "payout" : "";
+        var api = openModal == "Issue Shares" ? "Issue" : openModal == "Payout" ? "payout" :  openModal == "Decrease Share" ? "decrease" : openModal == "Secondary" ? "secondary" : openModal == "Convertible Loan" ? "convertible" : "split";
         try {
-            const response = await fetch(api, {
+            const response = await fetch("/api/transactions/create/" + api, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -1773,9 +1797,8 @@ const ModalBoxT: React.FC<{ CloseModal: () => void }> = ({ CloseModal }) => {
             {}
             <div style={{ display: 'flex', flexDirection: 'row', padding: '0%' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: '0%' }}>
-                    <ModalButton Title="Stock Split" Span="" onClick={() => handleOpenModal('Stock Split')} />                    
                     <ModalButton Title="Decrease Shares" Span="Reduce the amount of shares that a stakeholder has" onClick={() => handleOpenModal('Decrease Shares')} />
-
+                    <ModalButton Title="Payout" Span="Track payouts and other dividends. It doesn’t impact the cap table." onClick={() => handleOpenModal('Payout')} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: '0%' }}>
                     <ModalButton Title="Convertible Loan" Span="Add a convertible loan/SAFE with optional parameters like a cap" onClick={() => handleOpenModal('Convertible Loan')} />
@@ -1783,7 +1806,6 @@ const ModalBoxT: React.FC<{ CloseModal: () => void }> = ({ CloseModal }) => {
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: '0%', marginRight: '1rem' }}>
                     <ModalButton Title="Secondary" Span="Add a share transfer between two stakeholders" onClick={() => handleOpenModal('Secondary')} />
-                    <ModalButton Title="Payout" Span="Track payouts and other dividends. It doesn’t impact the cap table." onClick={() => handleOpenModal('Payout')} />
                 </div>
             </div>
 

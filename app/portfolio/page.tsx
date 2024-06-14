@@ -32,23 +32,6 @@ const Portfolio = () => {
 
     return (
         <div>
-            <div className='card'>
-                <FontAwesomeIcon
-                    style={{
-                        width: "4rem",
-                        height: "4rem",
-                        marginLeft: "40vw",
-                        marginBottom: "1rem",
-                        color: "#494c50"
-                    }}
-                    icon={faCircleInfo}
-                />
-                <span>Manage all your portfolio on autopilot with Capboard</span>
-                <span style={{ marginTop: "1rem" }}>
-                    Add your investments manually or in bulk and invite the company representative to keep the company up to date.
-                </span>
-                <button className='button'>I AM A FOUNDER/IVE CREATED A COMPANY</button>
-            </div>
             <ul style={{ flexDirection: "row", display: "flex" }}>
                 <div className='dashboard'>
                     <h2 className='title'>Managed</h2>
@@ -67,21 +50,17 @@ const Portfolio = () => {
                             <span style={{ fontWeight: "500" }}>{name}</span>
                             <span style={{ marginTop: "10px" }}>{country}</span>
                         </ul>
+                        <a href='/company_settings'>
                         <FontAwesomeIcon
+                        
                             style={{
                                 marginLeft: "27.5vw",
                                 marginTop: "20px"
                             }}
                             icon={faChevronRight}
-                        />
+                        /></a>
                     </ul>
                     <div className='underline'></div>
-                </div>
-                <div className='card-2'>
-                    <h2 className='title'>Shared With Me</h2>
-                    <span style={{ marginLeft: "1vw" }}>
-                        Companies that shared a cap table or documents with you
-                    </span>
                 </div>
             </ul>
             <span style={{ marginLeft: "35vw", fontSize: "13px" }}>
