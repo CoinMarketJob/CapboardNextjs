@@ -160,7 +160,7 @@ const Collaborators = () => {
                     <div className="collaborators-list" key={index}>
                         <div style={{ width: "250px", fontSize: "15px" }}>{item.name}</div>
                         <div style={{ width: "700px", fontSize: "17px" }}>{item.email}</div>
-                        <div style={{ width: "200px", fontSize: "17px" }}>{item.createdAt}</div>
+                        <div style={{ width: "200px", fontSize: "17px" }}>{new Date(item.createdAt).toLocaleDateString("en-En")}</div>
                         { /*<FontAwesomeIcon style={{ width: "15px", height: "15px" }} icon={faTrashCan} onClick={() => DeleteUser(item.id)} /> */}
                     </div>
                     <div className="underline"></div>

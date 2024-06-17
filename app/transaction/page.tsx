@@ -78,7 +78,7 @@ const Page = () => {
 
   return (
     <div style={{padding: "0%", width: "84vw"}} >
-    <div className="container">
+    <div className="containerr">
       <Modal open={openModal} onClose={closeModal}>
         <Box>
           <ModalBoxT CloseModal={closeModal} />
@@ -89,9 +89,10 @@ const Page = () => {
         <h1 style={{fontSize: "20px"}}>Transactions</h1>
         <p className="description">Manage CMJ’s transactions.</p>
       </div>
-      <button className="addButton" style={{marginLeft: "45vw"}} onClick={() => setOpenModal(true)}>
-        <span style={{fontSize: 24}}>+</span> ADD TRANSACTION
-      </button>
+        <button className="button" onClick={() => setOpenModal(true)}>
+            <FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff", marginRight: "10px", width: 16, height:16, overflow: "visible" }} />
+            ADD COLLABORATOR
+        </button>
       </ul>
 
       <div className="filters">
@@ -118,7 +119,7 @@ const Page = () => {
         </div>
 
         <button  onClick={() => Search()} className="searchButton">
-          <FontAwesomeIcon icon={faSearch} style={{width: 16, height: 16}} />
+          <FontAwesomeIcon icon={faSearch} style={{width: 16, height: 16, overflow: "visible", verticalAlign: "-0.125rem"}} />
         </button>
       </div>
     </div>

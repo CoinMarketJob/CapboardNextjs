@@ -129,7 +129,7 @@ const PoolPage = () => {
             <div style={{ marginLeft: "1rem", marginTop: "2rem", height: "40px", width: "200px", paddingTop: "8px", paddingLeft: "8px", fontSize: "13px" }} className='calendar'>
             </div>
 
-            <button onClick={handleCreatePool} className={styles.addPoolBtn}><FontAwesomeIcon style={{ marginRight: "10px", width: 16, height: 16 }} icon={faWater} />ADD POOL</button>
+            <button onClick={handleCreatePool} className={styles.addPoolBtn}><FontAwesomeIcon style={{ marginRight: "10px", width: 16, height: 16, overflow: "visible", verticalAlign: "-0.125rem" }} icon={faWater} />ADD POOL</button>
 
             <div className={styles.poolTable}>
                 <div className={styles.tableHeader}>

@@ -40,7 +40,7 @@ const NavlinkDropdown: React.FC<NavlinkDropdownProps> = ({
     <li className="nav-link-drop-down-li">
       <div className="nav-link-drop-down-li-div">
         <a className="nav-link-drop-down-a" onClick={ChangeVisibilityMenu}>
-          <FontAwesomeIcon icon={icon} className="nav-link-drop-down-icon" />
+          <FontAwesomeIcon icon={icon} className="nav-link-drop-down-icon" style={{ overflow: "visible", verticalAlign: "-0.125rem"}} />
           <span className="nav-link-drop-text">{name} </span>
           <div className="nav-link-arrow-div">
             <AnimatePresence>
