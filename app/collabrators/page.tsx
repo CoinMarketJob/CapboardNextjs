@@ -47,7 +47,7 @@ const Collaborators = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                
+
                 const response2 = await fetch('/api/auth/get');
                 const user = await response2.json();
                 console.log(user);
@@ -55,7 +55,7 @@ const Collaborators = () => {
 
                 const response = await fetch('/api/LogRecord/get');
                 const data = await response.json();
-                setLogs(data);                
+                setLogs(data);
             } catch (error) {
                 console.error('Veri getirme hatası:', error);
             }
@@ -96,7 +96,7 @@ const Collaborators = () => {
                 name,
                 email,
                 password
-              };
+                };
 
             const response = await fetch('/api/auth', {
                 method: 'POST',
@@ -107,7 +107,7 @@ const Collaborators = () => {
             });
             const data = await response.json();
 
-            if(response.ok){                
+            if(response.ok){
                 window.location.href="/collabrators";
             }
             console.log(data);
@@ -125,8 +125,8 @@ const Collaborators = () => {
     //             }
     //         });
     //         const data = await response.json();
-            
-    //         if(response.ok){                
+
+    //         if(response.ok){
     //             window.location.href="/collabrators";
     //         }
     // }catch (error) {
@@ -145,7 +145,7 @@ const Collaborators = () => {
                 >
                     <h2 className="title">Collaborators</h2>
                     <button className="button" onClick={() => setOpenModal(true)}>
-                        <FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff", marginRight: "10px" }} />
+                        <FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff", marginRight: "10px", width: "17px", height: "17px" }} />
                         ADD COLLABORATOR
                     </button>
                 </div>
@@ -155,15 +155,17 @@ const Collaborators = () => {
                     <div style={{ width: "200px", fontSize: "11px" }} >ACCEPTED</div>
                 </div>
                 <div className="underline"></div>
-                  {users.map((item, index) => (
+                    {users.map((item, index) => (
+                        <div style={{display: "flex", flexDirection: "column"}} key={index} >
                     <div className="collaborators-list" key={index}>
                         <div style={{ width: "250px", fontSize: "15px" }}>{item.name}</div>
                         <div style={{ width: "700px", fontSize: "17px" }}>{item.email}</div>
                         <div style={{ width: "200px", fontSize: "17px" }}>{item.createdAt}</div>
-                        {/* <FontAwesomeIcon style={{ width: "15px", height: "15px" }} icon={faTrashCan} onClick={() => DeleteUser(item.id)} /> */}
-                        <div className="underline"></div>
+                        { /*<FontAwesomeIcon style={{ width: "15px", height: "15px" }} icon={faTrashCan} onClick={() => DeleteUser(item.id)} /> */}
                     </div>
-                ))}  
+                    <div className="underline"></div>
+                    </div>
+                ))}
             </div>
             <div className="card-2">
                 <h2 className="title">Notifications</h2>
@@ -181,7 +183,7 @@ const Collaborators = () => {
                         <motion.div
                             className={`delete-toggle ${toggleDelete ? "bg-white" : "bg-white"}`}
                             layout
-                            transition={{ type: "spring", stiffness: 250, damping: 30 }}
+                            transition={{ type: "spring", stiffness: 0, damping: 30}}
                         />
                     </div>
                     <div style={{ marginLeft: "1rem", marginTop: "5vh" }}>
