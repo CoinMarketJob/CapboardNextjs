@@ -77,7 +77,7 @@ const Page = () => {
 
 
   return (
-    <div style={{padding: "0%", width: "80vw"}} >
+    <div style={{padding: "0%", width: "84vw"}} >
     <div className="container">
       <Modal open={openModal} onClose={closeModal}>
         <Box>
@@ -125,32 +125,34 @@ const Page = () => {
 
     {Object.keys(filteredData).map(date => (
 
-      <ul key={date} style={{backgroundColor: "rgba(0, 0, 0, 0)", border: "1px solid rgba(0, 0, 0, 0.194)", marginTop: "2rem", padding: "0%", display: "flex", flexDirection: "row"}} >
+      <ul key={date} style={{backgroundColor: "#f2f2f2f2", border: "1px solid rgba(0, 0, 0, 0.194)", marginTop: "2rem", padding: "0%", display: "flex", flexDirection: "row", width: "82vw"}} >
         <GeneralFormDropdown
           name={date}
           child={
           <div style={{width: "70vw"}} id="notes-container">
 
             {filteredData[date].map((item) => (
-               <ul key={item.id} style={{display: "flex", flexDirection: "row", padding: "0%"}} >
-                <span>{`#${item.id}`}</span>
-                <div style={{backgroundColor: "#7f95e7", textAlign: "center", color: "white", marginLeft: "1rem", width: "100px", height: "30px", borderRadius: "0.2rem"}} >{item.type}</div>
+              <div key={item.id} style={{display: "flex", flexDirection: "column"}} >
+                <div className='underline' ></div>
+                <ul key={item.id} style={{display: "flex", flexDirection: "row", padding: "0%", marginTop: "0.5rem", marginBottom: "0.5rem"}} >
+                <span style={{width: "30px"}} >{`#${item.id}`}</span>
+                <div style={{backgroundColor: "#7f95e7", textAlign: "center", color: "white", marginLeft: "1rem", width: "200px", height: "30px", borderRadius: "0.2rem"}} >{item.type}</div>
                 <div style={{marginLeft: "1.5rem", width: "300px", height: "30px"}} >{item.stakeholder?.name}</div>
-                <div style={{width: "300px", height: "30px"}} >{item.type == "PoolDecrease" 
-                || item.type == "DecreaseShares" ? "-" : item.type== "PlanCreation" ? "" : "+"} 
-                {item.type == "PlanCreation" ? item.plan.planName : item.type == "ConvertibleLoan" 
-                || item.type == "Payout" ? item.totalPayment :  item.amount} 
-                 {item.type == "Grant" ? item.plan.grantType : item.type == "PlanCreation" ? "" : 
+                <div style={{width: "300px", height: "30px"}} >{item.type == "PoolDecrease"
+                || item.type == "DecreaseShares" ? "-" : item.type== "PlanCreation" ? "" : "+"}
+                {item.type == "PlanCreation" ? item.plan.planName : item.type == "ConvertibleLoan"
+                || item.type == "Payout" ? item.totalPayment :  item.amount}
+                  {item.type == "Grant" ? item.plan.grantType : item.type == "PlanCreation" ? "" :
                 item.type == "ConvertibleLoan" || item.type == "Payout" ? "TRY" : "shares"}
                 </div>
                 <div>{item.type == "PoolCreation" || item.type == "PoolIncrease" ||
-                 item.type == "PoolDecrease" || item.type == "DecreaseShares" ? item.shareClass?.name : 
-                 item.type == "IssueShares" ? "TRY " + item.totalPayment :  item.type == "Secondary" ? "TRY " + item.price : item.type == "ConvertibleLoan" ? "Floor: TRY " + item.floor 
-                 + " - TRY " + item.cap + " Discount:" + item.discount + "%" : ""}</div>
+                  item.type == "PoolDecrease" || item.type == "DecreaseShares" ? item.shareClass?.name :
+                  item.type == "IssueShares" ? "TRY " + item.totalPayment :  item.type == "Secondary" ? "TRY " + item.price : item.type == "ConvertibleLoan" ? "Floor: TRY " + item.floor 
+                  + " - TRY " + item.cap + " Discount:" + item.discount + "%" : ""}</div>
                 {/* <FontAwesomeIcon style={{transform: "translateX(1000%)"}} icon={faTrash} /> */}
               </ul>
+              </div>
             ))}
-             
           </div>
           }
         />
