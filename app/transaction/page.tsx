@@ -90,7 +90,7 @@ const Page = () => {
         <p className="description">Manage CMJ’s transactions.</p>
       </div>
       <button className="addButton" style={{marginLeft: "45vw"}} onClick={() => setOpenModal(true)}>
-        <FontAwesomeIcon icon={faPlus} style={{width: 16, height: 16}} /> ADD TRANSACTION
+        <span style={{fontSize: 24}}>+</span> ADD TRANSACTION
       </button>
       </ul>
 

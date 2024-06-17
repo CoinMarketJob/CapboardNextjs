@@ -6,8 +6,10 @@
 }
 
 .Logo{
-    width: 175px;
-    height: 175px;
+    min-width: 175px;
+    min-height: 175px;
+    max-width: 175px;
+    max-height: 175px;
     text-align: center;
     margin-left: 3vw;
     margin-top: 1rem;
