@@ -5,6 +5,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import "./portfolio.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import gorsel from './Gorsel.png'
 
 const Portfolio = () => {
     const [name, setName] = useState('');
@@ -39,7 +40,7 @@ const Portfolio = () => {
                     <ul className='company-list'>
                         <div className='logo'>                            
                             <img
-                                src={logoUrl || "/placeholder-logo.png"} // Eğer logoUrl yoksa, placeholder göster
+                                src={logoUrl || gorsel.src} // Eğer logoUrl yoksa, placeholder göster
                                 alt="Logo"
                                 style={{ cursor: "pointer" }}
                                 className="Logo" // Tıklanabilir olduğunu gösteren imleç

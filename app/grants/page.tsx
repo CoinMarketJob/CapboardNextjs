@@ -100,7 +100,7 @@ const page = () => {
     }, []);
 
     return (
-        <div className="container">
+        <div className="containerr">
             <Modal id="ModalSign" open={openModal} onClose={closeModal}>
                 <Box sx={{ ...style }}>
                     <ModalBox CloseModal={closeModal} />
@@ -142,7 +142,8 @@ const page = () => {
                                             <span>0</span>
                                             <span>0</span>
                                             <span>
-                                                <MoreVertIcon onClick={(e) => handleClick(e, item)} />
+                                                <MoreVertIcon onClick={(e) => handleClick(e, item)} 
+                                                style={{ padding: 0, backgroundColor: "#f8f8f8"}}/>
                                             </span>
                                         </div>
                                     );

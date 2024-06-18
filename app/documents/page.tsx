@@ -76,41 +76,38 @@ const Documents = () => {
       <section className="section">
         <ul className="navbar" >
           <Link className="link" href="/documents">Documents</Link>
-          <Link className="link" href="/signatures" >Signatures</Link>
-          <Link className="link" href="/templates">Templates</Link>
         </ul>
         <ul className="section-2">
         <div className="tab-content" >
           <div className="cmj-hq-main" >
-          <FontAwesomeIcon className="cmj-hq" style={{width: 16, height: 16}} icon={faHouse} />
-          CMJ HQ
+            <FontAwesomeIcon className="cmj-hq" style={{width: 16, height: 16, overflow: "visible"}} icon={faHouse} />
+            <span style={{verticalAlign: "middle"}}>CMJ</span>
           </div>
         <div className="right-section">
           <div className="row" >
           <div className="bar" >
-          <FontAwesomeIcon className="bar-icon" style={{width: 16, height: 16}} icon={faHouse} />
+          <FontAwesomeIcon className="bar-icon" style={{width: 16, height: 16, overflow: "visible"}} icon={faHouse} />
           </div >
           <div className="icon-row" >
           <FontAwesomeIcon className="icon" style={{width: 16, height: 16}} icon={faFolderPlus} />
           <FontAwesomeIcon className="icon" style={{width: 16, height: 16}} icon={faPlus} onClick={AddDocument} />
           <input id="Sec" type="file" style={{display: "none"}} onChange={upload} />
           </div>
-          <ul className="navbar-2">
-            <li style={{paddingTop: '20px', fontSize: '14px'}} >Name</li>
-            <li style={{paddingTop: '20px', paddingLeft: '30vw', fontSize: '14px'}} >Date</li>
-          </ul>
-          {documents.map((item,index) => (
-            <ul className="navbar-3" key={index}>
-              <li style={{paddingTop: '20px', fontSize: '14px'}} >{item.DocumentName}</li>
-              <li style={{paddingTop: '20px', paddingLeft: '27vw', fontSize: '14px'}} >{new Date(item.Date).toLocaleDateString('en-EN')}</li>
-          </ul>
+
+          <table>
+            <tr>
+              <td style={{width: "50%"}}>Name</td>
+              <td style={{width: "20%"}}>Date</td>
+            </tr>
+            {documents.map((item,index) => (
+              <tr key={index}>
+                <td style={{paddingTop: '20px', fontSize: '14px'}} >{item.DocumentName}</td>
+                <td style={{paddingTop: '20px', fontSize: '14px'}} >{new Date(item.Date).toLocaleDateString('en-EN')}</td>
+              </tr>
           ))}
-          
-          <div className="section-right-bottom" >
-            <div className="drop-file">
-              Drop files or folders from your computer here!
-            </div>
-          </div>
+
+
+          </table>          
           </div>
           </div>
         </div>

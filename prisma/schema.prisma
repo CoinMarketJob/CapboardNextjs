@@ -51,6 +51,7 @@ model ShareClasses {
   tax                         Boolean @default(false)
   hurdle                      Boolean @default(false)
   issueCertificates           Boolean @default(false)
+  note                        String?
 
   pools Pool[]
   transaction Transaction[]

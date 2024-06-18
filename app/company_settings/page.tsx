@@ -1,9 +1,9 @@
 "use client";
-
 import React, { ChangeEvent, use, useState, useRef, useEffect  } from 'react';
 import "./company_settings.css";
 import { transform } from 'next/dist/build/swc';
 import { motion } from 'framer-motion';
+import gorsel from './Gorsel.png'
 
 const CompanySettings = () => {
   const [toggleDelete, setToggleDelete] = useState<boolean>(false);
@@ -192,7 +192,7 @@ const CompanySettings = () => {
             onChange={handleFileChange}
           />
           <img
-            src={logoUrl || "/placeholder-logo.png"} // Eğer logoUrl yoksa, placeholder göster
+            src={logoUrl || gorsel.src} // Eğer logoUrl yoksa, placeholder göster
             alt="Logo"
             onClick={handleLogoClick}
             style={{ cursor: "pointer" }}
@@ -228,24 +228,24 @@ const CompanySettings = () => {
                 <div>
                   <select id="country" name="country" className="form-select" 
                     value={country} onChange={(e) => setCountry(e.target.value)}>
-                    <option value="asd">Turkey</option>
-                    <option value="71">Ethiopia</option>
-                    <option value="68">Equatorial Guinea</option>
-                    <option value="118">
+                    <option value="Turkey">Turkey</option>
+                    <option value="Ethiopia">Ethiopia</option>
+                    <option value="Equatorial Guinea">Equatorial Guinea</option>
+                    <option value="Korea, Democratic People's Republic of">
                       Korea, Democratic People's Republic of
                     </option>
-                    <option value="144">Mauritius</option>
-                    <option value="193">Saint Pierre and Miquelon</option>
-                    <option value="199">Sao Tome and Principe</option>
-                    <option value="242">
+                    <option value="Mauritius">Mauritius</option>
+                    <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                    <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                    <option value="United States Minor Outlying Islands">
                       United States Minor Outlying Islands
                     </option>
-                    <option value="1">Afghanistan</option>
-                    <option value="9">Antigua and Barbuda</option>
-                    <option value="7">Anguilla</option>
-                    <option value="6">Angola</option>
-                    <option value="10">Argentina</option>
-                    <option value="4">American Samoa</option>
+                    <option value="Afghanistan">Afghanistan</option>
+                    <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                    <option value="Anguilla">Anguilla</option>
+                    <option value="Angola">Angola</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="American Samoa">American Samoa</option>
                     <option value="12">Aruba</option>
                     <option value="15">Azerbaijan</option>
                     <option value="19">Barbados</option>

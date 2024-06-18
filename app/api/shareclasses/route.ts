@@ -7,7 +7,7 @@ export async function POST(request: Request) {
   const {
     name,
     nominalPrice,
-    Note,    
+    note,    
     votingRights,
     dividendRights,
     liquidationPreference,
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     data: {
         name: name,
         nominalPrice: parseFloat(nominalPrice),
-        Note: Note,
+        note: note,
         votingRights,
         dividendRights,
         liquidationPreference: liquidationPreference,

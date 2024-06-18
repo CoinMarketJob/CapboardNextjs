@@ -70,11 +70,6 @@ const Stakeholders = () => {
             Stakeholders list
           </button>
         </li>
-        <li role="presentation">
-          <button type="button" role="tab" className="nav-link">
-            Change request
-          </button>
-        </li>
       </ul>
 
       <div className="tab-content-special">

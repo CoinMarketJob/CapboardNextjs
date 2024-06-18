@@ -2,6 +2,8 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import styles from './share.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 type ShareClass = {
   name: string;
@@ -125,7 +127,6 @@ export default function Home() {
           <div className={`${styles.tableRow} ${styles.tableHeader}`}>
             <div className={styles.tableCell}>NAME</div>
             <div className={styles.tableCell}>RIGHTS</div>
-            <div className={styles.tableCell}>SENIORITY</div>
             <div className={styles.tableCell}>NOTES</div>
             <div className={styles.tableCell}></div>
           </div>
@@ -140,11 +141,11 @@ export default function Home() {
                 <div className={item.antiDilution ? styles.checkmark : styles.crossmark}>{item.antiDilution ? '✓ anti-dilution' : '✗ no anti-dilution'}</div>
                 <div className={item.hurdle ? styles.checkmark : styles.crossmark}>{item.hurdle ? '✓ hurdle' : '✗ no hurdle'}</div>
               </div>
-              <div className={styles.tableCell}>--</div>
-              <div className={styles.tableCell}>--</div>
+              <div className={styles.tableCell}>{item.note == "" ? "--" : item.note}</div>
               <div className={styles.tableCell}>
-                <button className={styles.iconButton}>✏</button>
-                <button className={styles.iconButton} onClick={() => Delete(item.id)}>🗑</button>
+                <button className={styles.iconButton} onClick={() => Delete(item.id)}>
+                  <FontAwesomeIcon icon={faTrash} style={{width: 16, height: 16}} />
+                </button>
               </div>
             </div>
           ))}

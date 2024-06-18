@@ -91,7 +91,7 @@ const Page = () => {
       </div>
         <button className="button" onClick={() => setOpenModal(true)}>
             <FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff", marginRight: "10px", width: 16, height:16, overflow: "visible" }} />
-            ADD COLLABORATOR
+            ADD TRANSACTION
         </button>
       </ul>
 
